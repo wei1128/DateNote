@@ -9,7 +9,8 @@
 #import "HomeViewController.h"
 #import "KDCalendarView.h"
 
-@interface HomeViewController ()
+@interface HomeViewController () <KDCalendarDelegate, KDCalendarDataSource>
+@property (weak, nonatomic) IBOutlet KDCalendarView *calendar;
 
 @end
 
@@ -17,13 +18,47 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.calendar.delegate = self;
+    self.calendar.dataSource = self;
+    
+}
+
+-(NSDate*)startDate
+{
+    NSDateComponents *offsetDateComponents = [[NSDateComponents alloc] init];
+    offsetDateComponents.month = -3;
+    NSDate *threeMonthsBeforeDate = [[NSCalendar currentCalendar]dateByAddingComponents:offsetDateComponents
+                                                                                 toDate:[NSDate date]
+                                                                                options:0];
+    
+    return threeMonthsBeforeDate;
+}
+
+-(NSDate*)endDate
+{
+    NSDateComponents *offsetDateComponents = [[NSDateComponents alloc] init];
+    
+    offsetDateComponents.year = 2;
+    offsetDateComponents.month = 3;
+    
+    NSDate *yearLaterDate = [[NSCalendar currentCalendar] dateByAddingComponents:offsetDateComponents
+                                                                          toDate:[NSDate date]
+                                                                         options:0];
+    
+    return yearLaterDate;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)calendarController:(KDCalendarView*)calendarViewController didScrollToMonth:(NSDate*)date
+{
+    NSDateFormatter* headerFormatter = [[NSDateFormatter alloc] init];
+    headerFormatter.dateFormat = @"MMMM, yyyy";
+}
+
 
 /*
 #pragma mark - Navigation
