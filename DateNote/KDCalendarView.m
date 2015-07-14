@@ -98,7 +98,6 @@
     
     
     [self addSubview:self.collectionView];
-    
     // Events
     
     
