@@ -40,7 +40,6 @@
 -(void)calendarController:(KDCalendarView*)calendarViewController didSelectDay:(NSDate*)date;
 -(void)calendarController:(KDCalendarView*)calendarViewController didScrollToMonth:(NSDate*)date;
 
-
 /* YES by default */
 -(BOOL)calendarController:(KDCalendarView*)calendarViewController canSelectDate:(NSDate*)date;
 

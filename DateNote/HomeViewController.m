@@ -20,16 +20,25 @@
     [super viewDidLoad];
     self.calendar.delegate = self;
     self.calendar.dataSource = self;
+    self.calendar.showsEvents = YES;
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSDate *today = [[NSDate alloc]init];
+    [self.calendar setMonthDisplayed:today];
+    
+
+    [self.calendar setDateSelected:today];
+    //[self.calendar dateByAddingComponents:components toDate:components options:0];
 }
 
 -(NSDate*)startDate
 {
     NSDateComponents *offsetDateComponents = [[NSDateComponents alloc] init];
     offsetDateComponents.month = -3;
-    NSDate *threeMonthsBeforeDate = [[NSCalendar currentCalendar]dateByAddingComponents:offsetDateComponents
-                                                                                 toDate:[NSDate date]
-                                                                                options:0];
+    NSDate *threeMonthsBeforeDate = [[NSCalendar currentCalendar]dateByAddingComponents:offsetDateComponents toDate:[NSDate date] options:0];
     
     return threeMonthsBeforeDate;
 }
@@ -41,9 +50,7 @@
     offsetDateComponents.year = 2;
     offsetDateComponents.month = 3;
     
-    NSDate *yearLaterDate = [[NSCalendar currentCalendar] dateByAddingComponents:offsetDateComponents
-                                                                          toDate:[NSDate date]
-                                                                         options:0];
+    NSDate *yearLaterDate = [[NSCalendar currentCalendar] dateByAddingComponents:offsetDateComponents toDate:[NSDate date] options:0];
     
     return yearLaterDate;
 }
@@ -57,6 +64,8 @@
 {
     NSDateFormatter* headerFormatter = [[NSDateFormatter alloc] init];
     headerFormatter.dateFormat = @"MMMM, yyyy";
+    
+    
 }
 
 
