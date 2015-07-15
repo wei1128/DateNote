@@ -20,15 +20,18 @@
     [super viewDidLoad];
     self.calendar.delegate = self;
     self.calendar.dataSource = self;
+    self.calendar.showsEvents = YES;
     
-    
-
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     NSDate *today = [[NSDate alloc]init];
     [self.calendar setMonthDisplayed:today];
+    
+
+    [self.calendar setDateSelected:today];
+    //[self.calendar dateByAddingComponents:components toDate:components options:0];
 }
 
 -(NSDate*)startDate

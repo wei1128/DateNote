@@ -449,8 +449,6 @@
     [self setDateSelected:dateSelected animated:NO];
 }
 
-
-
 -(void) setDataSource:(id<KDCalendarDataSource>)dataSource
 {
     _dataSource = dataSource;
@@ -492,6 +490,7 @@
         _store = [[EKEventStore alloc] init];
     }
     
+    
     void(^FetchEventsBlock)(void) = ^{
         
         NSPredicate *predicate = [_store predicateForEventsWithStartDate:_startDateCache
@@ -519,6 +518,18 @@
          
         }
         
+        NSMutableArray *eventsContainer = (NSMutableArray*)eventsByMonth[1][6];
+        [eventsContainer addObject:@"123"];
+        [eventsContainer addObject:@"345"];
+        [eventsContainer addObject:@"345"];
+        [eventsContainer addObject:@"345"];
+        [eventsContainer addObject:@"345"];
+        [eventsContainer addObject:@"345"];
+        [eventsContainer addObject:@"345"];
+        [eventsContainer addObject:@"345"];
+        
+        
+        /*
         for (EKEvent* event in eventsArray)
         {
           
@@ -530,6 +541,9 @@
             
             [eventsContainer addObject:event];
         }
+        */
+
+        
         
         self.events = [NSArray arrayWithArray:eventsByMonth];
         
@@ -540,13 +554,11 @@
             [wself.collectionView reloadData];
             
         });
-        
-        
-        
-        
     };
     
+    dispatch_async(dispatch_get_global_queue(0, 0), FetchEventsBlock);
     
+    /*
     if([EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent] != EKAuthorizationStatusAuthorized)
     {
         [_store requestAccessToEntityType:EKEntityTypeEvent
@@ -565,8 +577,7 @@
     {
         dispatch_async(dispatch_get_global_queue(0, 0), FetchEventsBlock);
     }
-    
-    
+    */
 }
 
 
