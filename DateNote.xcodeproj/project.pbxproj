@@ -30,6 +30,9 @@
 		269E57CF1B53B386009895D8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269E57CD1B53B386009895D8 /* HomeViewController.m */; };
 		269E57D01B53B386009895D8 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 269E57CE1B53B386009895D8 /* HomeViewController.xib */; };
 		7C08A9EAD6F197971610F834 /* libPods-DateNote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 816D42E15CCD84D5BCE37842 /* libPods-DateNote.a */; };
+		EFA687A71B56529C002B0AEC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA687A61B56529C002B0AEC /* libsqlite3.0.dylib */; };
+		EFA687AD1B565340002B0AEC /* SqlClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA687AA1B565340002B0AEC /* SqlClient.m */; };
+		EFA687AE1B565340002B0AEC /* SqlData.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA687AC1B565340002B0AEC /* SqlData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +88,11 @@
 		269E57CE1B53B386009895D8 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		816D42E15CCD84D5BCE37842 /* libPods-DateNote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DateNote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5FCD7777FF8A703F770E36D /* Pods-DateNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateNote.release.xcconfig"; path = "Pods/Target Support Files/Pods-DateNote/Pods-DateNote.release.xcconfig"; sourceTree = "<group>"; };
+		EFA687A61B56529C002B0AEC /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		EFA687A91B565340002B0AEC /* SqlClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqlClient.h; sourceTree = "<group>"; };
+		EFA687AA1B565340002B0AEC /* SqlClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqlClient.m; sourceTree = "<group>"; };
+		EFA687AB1B565340002B0AEC /* SqlData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqlData.h; sourceTree = "<group>"; };
+		EFA687AC1B565340002B0AEC /* SqlData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqlData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +242,17 @@
 				C5FCD7777FF8A703F770E36D /* Pods-DateNote.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		EFA687A81B565331002B0AEC /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				EFA687A91B565340002B0AEC /* SqlClient.h */,
+				EFA687AA1B565340002B0AEC /* SqlClient.m */,
+				EFA687AB1B565340002B0AEC /* SqlData.h */,
+				EFA687AC1B565340002B0AEC /* SqlData.m */,
+			);
+			name = SQLite;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
