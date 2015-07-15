@@ -9,6 +9,7 @@
 #import "DaliyViewController.h"
 #import "DaliyCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "SVPullToRefresh.h"
 
 @interface DaliyViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *contentView;
@@ -26,7 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
+    [self setupView];
+
     self.month_en = @[@"January",@"February",@"March",@"April",@"May",@"June",@"July",@"August",@"September",@"October",@"November",@"December"];
     self.events=[[NSMutableArray alloc]init];
     self.events_filter=[[NSMutableArray alloc]init];
@@ -43,6 +46,86 @@
 
     self.contentView.dataSource = self;
     self.contentView.delegate = self;
+}
+
+- (void)setupView
+{
+    __weak DaliyViewController *weakSelf = self;
+    
+    // setup pull-to-refresh
+    [self.contentView addPullToRefreshWithActionHandler:^{
+        NSLog(@"pull to refresh works");
+        [weakSelf insertRowAtTop];
+    }];
+        
+    // setup infinite scrolling
+
+    [self.contentView addInfiniteScrollingWithActionHandler:^{
+        NSLog(@"infinite scrolling works");
+        [weakSelf insertRowAtBottom];
+    }];
+    
+}
+
+#pragma mark - Actions
+
+- (NSMutableArray *)mockEvents
+{
+    NSArray *array = @[@{@"me_id" : @"1", @"mt_id" : @"1", @"e_title" : @"煮紅豆湯", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-07-16 12:00:00", @"r_id" : @"1",@"desc" : @"快喝紅豆湯,快喝紅豆湯,快喝紅豆湯,紅豆兩湯匙,砂糖半匙,一杯水,電鍋跳起來就可以喝了", @"img_url" : @"http://img1.groupon.com.tw/fi/9(1091).jpg", @"color": @"#FDFF37",@"t_name":@"女孩月事"},
+                    @{@"me_id" : @"2", @"mt_id" : @"2", @"e_title" : @"Y! Summer Party", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-07-20 14:00:00", @"r_id" : @"2",@"desc" : @"帶門票, 午餐券, 停車票, 住宿券, 照相機, 防曬油, 泳衣", @"img_url" : @"https://c2.staticflickr.com/8/7277/7772597482_a587f7278b.jpg", @"color": @"#FF3937",@"t_name":@"一起去郊遊"},
+                    @{@"me_id" : @"3", @"mt_id" : @"3", @"e_title" : @"煮紅豆湯", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-08-12 12:00:00", @"r_id" : @"3",@"desc" : @"快喝紅豆湯,快喝紅豆湯,快喝紅豆湯,紅豆兩湯匙,砂糖半匙,一杯水,電鍋跳起來就可以喝了", @"img_url" : @"http://img1.groupon.com.tw/fi/9(1091).jpg", @"color": @"#FDFF37",@"t_name":@"女孩月事"}];
+
+    return [array mutableCopy];
+}
+
+- (void)insertRowAtTop
+{
+    __weak DaliyViewController *weakSelf = self;
+
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf.contentView beginUpdates];
+
+        // TODO: Fetch data from local DB
+        NSMutableArray *events = [weakSelf mockEvents];
+        [events addObjectsFromArray:weakSelf.events];
+        weakSelf.events = events;
+
+        NSArray *indexPaths = @[[NSIndexPath indexPathForRow:0 inSection:0],
+                                [NSIndexPath indexPathForRow:1 inSection:0],
+                                [NSIndexPath indexPathForRow:2 inSection:0]];
+        [weakSelf.contentView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
+
+        [weakSelf.contentView endUpdates];
+
+        [weakSelf.contentView.pullToRefreshView stopAnimating];
+    });
+}
+
+- (void)insertRowAtBottom
+{
+    __weak DaliyViewController *weakSelf = self;
+
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf.contentView beginUpdates];
+
+        // TODO: Fetch data from local DB
+        NSMutableArray *events = [weakSelf.events mutableCopy];
+        [events addObjectsFromArray:[weakSelf mockEvents]];
+        weakSelf.events = events;
+
+        NSArray *indexPaths = @[[NSIndexPath indexPathForRow:weakSelf.events.count-3 inSection:0],
+                                [NSIndexPath indexPathForRow:weakSelf.events.count-2 inSection:0],
+                                [NSIndexPath indexPathForRow:weakSelf.events.count-1 inSection:0]];
+        [weakSelf.contentView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+
+        [weakSelf.contentView endUpdates];
+        
+        [weakSelf.contentView.infiniteScrollingView stopAnimating];
+    });
 }
 
 -(void)filterInit{
