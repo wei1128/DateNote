@@ -29,6 +29,7 @@
     [sqlData closeDatabase];
 }
 
+/*
 -(NSMutableArray *)getMyEvent{
     SqlData *sqlData = [[SqlData alloc] init];
     [sqlData getDatabase];
@@ -37,4 +38,5 @@
     
     return result;
 }
+ */
 @end

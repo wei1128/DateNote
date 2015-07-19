@@ -69,6 +69,11 @@
     
 }
 
+-(void)calendarController:(KDCalendarView*)calendarViewController didSelectDay:(NSDate*)date
+{
+    NSLog(@"update table view");
+}
+
 
 /*
 #pragma mark - Navigation

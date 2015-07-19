@@ -13,12 +13,15 @@
 @property (nonatomic, strong) NSArray *documentsPath;
 @property (nonatomic, strong) NSString *databaseFilePath;
 
++ (void)initializeEdiableCopyOfDatabase;
++ (void)createEdiableCopyOfDatabaseIfNeeded;
++ (NSMutableArray *)select:(NSString *)cmd;
+
 - (void)getDatabase;
 - (void)initTabel;
 - (void)createTable:(char *)createSql;
 - (void)dropTable:(NSString *)tableName;
 - (void)closeDatabase;
-- (NSMutableArray *)select:(NSString *)tableName;
 - (void)insertTempData;
 - (void)insertMyEvent:(NSDictionary *)myEvent;
 - (void)insertMyTemplete:(NSDictionary *)myTemplete;

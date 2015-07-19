@@ -9,22 +9,52 @@
 #import "SqlData.h"
 #import <sqlite3.h>
 
+static sqlite3 *database = nil;
 
 @interface SqlData ()
 
-@property (nonatomic, assign) sqlite3 *dataBase;
++ (sqlite3 *)database;
++ (void)setDatabase :(sqlite3 *)newDatabase;
+
 @end
 
 @implementation SqlData
 
-- (void)getDatabase{
++ (void)initializeEdiableCopyOfDatabase {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDictionary = [paths objectAtIndex:0];
+    NSString *writableDBPath = [documentsDictionary stringByAppendingPathComponent:@"datenote.sqlite"];
+    NSString *defaultDBPath = [[[NSBundle mainBundle]resourcePath]stringByAppendingPathComponent:@"datenote.sqlite"];
     
-    self.documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    self.databaseFilePath = [[self.documentsPath objectAtIndex:0] stringByAppendingPathComponent:@"db.sql"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:writableDBPath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:writableDBPath error:nil];
+    }
+    [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error];
+    [self initDatabase :writableDBPath];
+}
+
++ (void)createEdiableCopyOfDatabaseIfNeeded {
+    BOOL success;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDictionary = [paths objectAtIndex:0];
+    NSString *writableDBPath = [documentsDictionary stringByAppendingPathComponent:@"datenote.sqlite"];
     
+    success = [fileManager fileExistsAtPath:writableDBPath];
+    if (!success) {
+        NSString *defaultDBPath = [[[NSBundle mainBundle]resourcePath]stringByAppendingPathComponent:@"datenote.sqlite"];
+        [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error];
+    }
+    [self initDatabase :writableDBPath];
+}
+
++ (void)initDatabase :(NSString *)path {
     sqlite3 *database = nil;
     
-    if (sqlite3_open([self.databaseFilePath UTF8String], &database)==SQLITE_OK) {
+    if (sqlite3_open([path UTF8String], &database)==SQLITE_OK) {
         NSLog(@"open sqlite db ok.");
         //這裡寫入要對資料庫操作的程式碼
         
@@ -35,8 +65,53 @@
         sqlite3_close(database);
     }
     
-    self.dataBase = database;
+    [self setDatabase:database];
 }
+
++ (void)setDatabase :(sqlite3 *)newDatabase {
+    database = newDatabase;
+}
+
++ (NSMutableArray *)select:(NSString *)cmd{
+    //建立 Sqlite 語法
+    const char *sql = [cmd UTF8String];
+    
+    //stm將存放查詢結果
+    sqlite3_stmt *statement =nil;
+    NSMutableArray *result = [[NSMutableArray alloc]init];
+    
+    if (sqlite3_prepare_v2(database, sql, -1, &statement, NULL) == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            
+            NSString *keyName, *value;
+            NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+            int column_count = sqlite3_column_count(statement);
+            NSLog(@"count = %d",column_count);
+            for (int i=0; i<column_count; i++) {
+                int column_type = sqlite3_column_type(statement,i);
+                keyName = [NSString stringWithUTF8String:(char *)sqlite3_column_name(statement, i)];
+                if (column_type == SQLITE_INTEGER) {
+                    NSLog(@"%@",keyName);
+                    value = [NSString stringWithFormat:@"%d",(int)sqlite3_column_int(statement, i)];
+                }else{
+                    value = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, i)];
+                }
+                
+                NSLog(@"keyname = %@ , value = %@", keyName, value);
+                [data setObject:value forKey:keyName];
+            }
+            [result addObject:data];
+        }
+        
+        //使用完畢後將statement清空
+        sqlite3_finalize(statement);
+    }
+    
+    return result;
+}
+
+
+/*
 
 - (void)initTabel{
     char *createMyEventSql = "create table if not exists myEvent (my_event_id INTEGER PRIMARY KEY, my_templete_id INTEGER, title TEXT, detail_url TEXT, time TEXT, recycle_id TEXT, desc TEXT, img_url TEXT)";
@@ -225,7 +300,7 @@
     const char *sql = "create index film_title_index on film(title);";
 }
 
-
+*/
 
 
 
