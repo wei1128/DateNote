@@ -12,7 +12,7 @@
 
 @interface DaliyViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *contentView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *filter;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *filter;
 
 @property (strong, nonatomic) NSMutableArray *events;
 @property (strong, nonatomic) NSMutableArray *events_filter;
@@ -30,19 +30,32 @@
     self.month_en = @[@"January",@"February",@"March",@"April",@"May",@"June",@"July",@"August",@"September",@"October",@"November",@"December"];
     self.events=[[NSMutableArray alloc]init];
     self.events_filter=[[NSMutableArray alloc]init];
-    self.events =@[@{@"me_id" : @"1", @"mt_id" : @"1", @"e_title" : @"煮紅豆湯", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-07-16 12:00:00", @"r_id" : @"1",@"desc" : @"快喝紅豆湯,快喝紅豆湯,快喝紅豆湯,紅豆兩湯匙,砂糖半匙,一杯水,電鍋跳起來就可以喝了", @"img_url" : @"http://img1.groupon.com.tw/fi/9(1091).jpg", @"color": @"#FDFF37",@"t_name":@"女孩月事"},
-  @{@"me_id" : @"2", @"mt_id" : @"2", @"e_title" : @"Y! Summer Party", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-07-20 14:00:00", @"r_id" : @"2",@"desc" : @"帶門票, 午餐券, 停車票, 住宿券, 照相機, 防曬油, 泳衣", @"img_url" : @"https://c2.staticflickr.com/8/7277/7772597482_a587f7278b.jpg", @"color": @"#FF3937",@"t_name":@"一起去郊遊"},
-  @{@"me_id" : @"3", @"mt_id" : @"3", @"e_title" : @"煮紅豆湯", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-08-12 12:00:00", @"r_id" : @"3",@"desc" : @"快喝紅豆湯,快喝紅豆湯,快喝紅豆湯,紅豆兩湯匙,砂糖半匙,一杯水,電鍋跳起來就可以喝了", @"img_url" : @"http://img1.groupon.com.tw/fi/9(1091).jpg", @"color": @"#FDFF37",@"t_name":@"女孩月事"}];
+    self.events =@[@{@"me_id" : @"1", @"mt_id" : @"1", @"e_title" : @"煮紅豆湯", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-07-25 12:00:00", @"r_id" : @"1",@"desc" : @"快喝紅豆湯,快喝紅豆湯,快喝紅豆湯,紅豆兩湯匙,砂糖半匙,一杯水,電鍋跳起來就可以喝了", @"img_url" : @"http://img1.groupon.com.tw/fi/9(1091).jpg", @"color": @"#FF3799",@"t_name":@"女孩月事"},
+  @{@"me_id" : @"2", @"mt_id" : @"2", @"e_title" : @"Y! Summer Party", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-07-26 14:00:00", @"r_id" : @"2",@"desc" : @"帶門票, 午餐券, 停車票, 住宿券, 照相機, 防曬油, 泳衣", @"img_url" : @"https://c2.staticflickr.com/8/7277/7772597482_a587f7278b.jpg", @"color": @"#47cccc",@"t_name":@"一起去郊遊"},
+  @{@"me_id" : @"4", @"mt_id" : @"4", @"e_title" : @"寶寶預產期", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-08-21 14:00:00", @"r_id" : @"2",@"desc" : @"寶貝要來報到囉", @"img_url" : @"http://healthy.bayvoice.net/wp-content/uploads/sites/5/2014/08/14072294350202.jpg", @"color": @"#ff7f50",@"t_name":@"新手爸媽日記"},
+  @{@"me_id" : @"3", @"mt_id" : @"3", @"e_title" : @"煮紅豆湯", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-08-25 12:00:00", @"r_id" : @"3",@"desc" : @"快喝紅豆湯,快喝紅豆湯,快喝紅豆湯,紅豆兩湯匙,砂糖半匙,一杯水,電鍋跳起來就可以喝了", @"img_url" : @"http://img1.groupon.com.tw/fi/9(1091).jpg", @"color": @"#FF3799",@"t_name":@"女孩月事"},
+  @{@"me_id" : @"5", @"mt_id" : @"5", @"e_title" : @"去郭元益拿喜餅", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-09-21 08:00:00", @"r_id" : @"3",@"desc" : @"baby 滿月餅 給同事", @"img_url" : @"http://denwell.com/Uploads/104%E8%81%AF%E5%90%8D%E5%9B%8D%E9%A4%85-755X495-2.jpg", @"color": @"#ff7f50",@"t_name":@"新手爸媽日記"}];
 
-    self.events_filter =@[@{@"me_id" : @"1", @"mt_id" : @"1", @"e_title" : @"煮紅豆湯", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-07-14 12:00:00", @"r_id" : @"1",@"desc" : @"快喝紅豆湯,快喝紅豆湯,快喝紅豆湯,紅豆兩湯匙,砂糖半匙,一杯水,電鍋跳起來就可以喝了", @"img_url" : @"http://img1.groupon.com.tw/fi/9(1091).jpg", @"color": @"#FDFF37",@"t_name":@"女孩月事"},
-                   @{@"me_id" : @"2", @"mt_id" : @"2", @"e_title" : @"Y! Summer Party", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-07-20 14:00:00", @"r_id" : @"2",@"desc" : @"帶門票, 午餐券, 停車票, 住宿券, 照相機, 防曬油, 泳衣", @"img_url" : @"https://c2.staticflickr.com/8/7277/7772597482_a587f7278b.jpg", @"color": @"#FF3937",@"t_name":@"一起去郊遊"},
-                   @{@"me_id" : @"3", @"mt_id" : @"3", @"e_title" : @"煮紅豆湯", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-08-12 12:00:00", @"r_id" : @"3",@"desc" : @"快喝紅豆湯,快喝紅豆湯,快喝紅豆湯,紅豆兩湯匙,砂糖半匙,一杯水,電鍋跳起來就可以喝了", @"img_url" : @"http://img1.groupon.com.tw/fi/9(1091).jpg", @"color": @"#FDFF37",@"t_name":@"女孩月事"}];
+    self.events_filter =self.events;
     
-    
-    self.category =@[@"全部",@"女孩月事",@"一起去郊遊",@"black"];
+    // set filter
+    [self setFilterTitle];
 
     self.contentView.dataSource = self;
     self.contentView.delegate = self;
+}
+
+-(void) setFilterTitle{
+    
+    self.category =@[@"全部分類", @"新手爸媽日記",@"女孩月事",@"一起去郊遊"];
+    NSArray *category_color = @[@"#2e85ff",@"#ff7f50", @"#FF3799",@"#47cccc"];
+    [self.filter removeSegmentAtIndex:0 animated:NO]; // remove default value
+    [self.filter removeSegmentAtIndex:0 animated:NO]; // remove default value
+    for(int i=0;i<self.category.count;i++){
+        [self.filter insertSegmentWithTitle:self.category[i] atIndex:i animated:NO];
+        [[[self.filter subviews] objectAtIndex:i] setTintColor:[self colorFromHexString:category_color[i]]];
+    }
+    self.filter.selectedSegmentIndex=0;
 }
 
 -(void)filterInit{
