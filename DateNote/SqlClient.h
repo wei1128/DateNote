@@ -16,7 +16,6 @@
 
 -(void)insertOneDayEvent:(NSString *)startTime :(NSString *)title :(NSString *)description;
 
--(NSMutableArray *)getMyEvent;
 //templateList
 -(NSMutableArray *)getTemplateList;
 -(NSMutableArray *)getTemplateListByID:(NSString *)t_id;
@@ -29,6 +28,10 @@
 -(NSMutableArray *)getMyPastEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id;
 -(NSMutableArray *)getMyEventByDay:(NSString *)time;
 -(NSMutableArray *)getMyEventByPeriod:(NSString *)startTime :(NSString *)endTime;
+-(void) deleteMyEventByMyEventID:(NSString *)me_id;
+-(void) deleteMyEventByMyTemplateID:(NSString *)mt_id;
+-(void) deleteMyEventByRecycleID:(NSString *)r_id;
+
 
 
 //myTemplate
