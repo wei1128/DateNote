@@ -39,16 +39,20 @@
 }
 
 - (void)initTabel{
-    char *createMyEventSql = "create table if not exists myEvent (my_event_id INTEGER PRIMARY KEY, my_templete_id INTEGER, title TEXT, detail_url TEXT, time TEXT, recycle_id TEXT, desc TEXT, img_url TEXT)";
-    char *createMyTempleteSql = "create table if not exists myTemplete (my_templete_id INTEGER PRIMARY KEY, templete_id INTEGER, tilte TEXT, color TEXT)";
-    char *createTempleteListSql = "create table if not exists templeteList (templete_id INTEGER PRIMARY KEY, title TEXT)";
-    char *createTempleteEventListSql = "create table if not exists templeteEventList (event_id INTEGER PRIMARY KEY, templete_id INTEGER, recycle TEXT, title TEXT, desc TEXT, detail_url TEXT, unit TEXT, period INTEGER)";
+    char *createMyEventSql = "create table if not exists myEvent (me_id INTEGER PRIMARY KEY, mt_id INTEGER, e_title TEXT, e_detail_url TEXT, e_time TEXT, r_id TEXT, desc TEXT, img_url TEXT)";
+    char *createMyTemplateSql = "create table if not exists myTemplate (mt_id INTEGER PRIMARY KEY, template_id INTEGER, t_name TEXT, color TEXT)";
+    char *createTemplateListSql = "create table if not exists templateList (template_id INTEGER PRIMARY KEY, t_name TEXT)";
+    char *createTemplateEventListSql = "create table if not exists templateEventList (event_id INTEGER PRIMARY KEY, template_id INTEGER, recycle TEXT, e_title TEXT, desc TEXT, e_detail_url TEXT, unit TEXT, period INTEGER, img_url TEXT)";
+    
+    char *createMyEventViewSql = "create view myEventView as select a.*,b.t_name,b.color from myEvent a,myTemplate b where a.mt_id = b.mt_id";
     
     
     [self createTable:createMyEventSql];
-    [self createTable:createMyTempleteSql];
-    [self createTable:createTempleteListSql];
-    [self createTable:createTempleteEventListSql];
+    [self createTable:createMyTemplateSql];
+    [self createTable:createTemplateListSql];
+    [self createTable:createTemplateEventListSql];
+    
+    [self createTable:createMyEventViewSql];
     
 }
 
@@ -93,6 +97,52 @@
 - (NSMutableArray *)select:(NSString *)tableName{
     //建立 Sqlite 語法
     NSString *sqlString = [NSString stringWithFormat:@"%@%@", @"select * from ", tableName];
+        
+    NSMutableArray *result = [self getData:sqlString];
+    
+    return result;
+}
+
+-(NSMutableArray *)getMyEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id{
+    //建立 Sqlite 語法
+    NSString *sqlString = [NSString stringWithFormat:@"select * from myEventView where e_time >='%@' and mt_id=%@   order by e_time asc limit %ld,%ld", time, mt_id, (long)pg*(long)count, (long)count];
+    
+    NSMutableArray *result = [self getData:sqlString];
+    
+    return result;
+}
+
+-(NSMutableArray *)getMyPastEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id{
+    //建立 Sqlite 語法
+    NSString *sqlString = [NSString stringWithFormat:@"select * from myEventView where e_time <='%@' and mt_id=%@   order by e_time desc limit %ld,%ld", time, mt_id, (long)pg*(long)count, (long)count];
+    
+    NSMutableArray *result = [self getData:sqlString];
+    
+    return result;
+}
+
+-(NSMutableArray *)getMyEventByDay:(NSString *)startTime :(NSString *)endTime{
+    //建立 Sqlite 語法
+    NSString *sqlString = [NSString stringWithFormat:@"select * from myEventView where e_time >='%@' and e_time <='%@'   order by e_time asc",startTime, endTime];
+    
+    NSMutableArray *result = [self getData:sqlString];
+    
+    return result;
+}
+
+-(NSMutableArray *)getMyEventByPeriod:(NSString *)startTime :(NSString *)endTime{
+    //建立 Sqlite 語法
+    NSString *sqlString = [NSString stringWithFormat:@"select * from myEventView where e_time >='%@' and e_time <='%@' order by e_time asc",startTime, endTime];
+    
+    NSMutableArray *result = [self getData:sqlString];
+    
+    return result;
+    
+}
+
+
+- (NSMutableArray *) getData:(NSString *) sqlString{
+    NSLog(@"sql query = %@",sqlString);
     const char *sql = [sqlString UTF8String];
     
     //stm將存放查詢結果
@@ -105,18 +155,18 @@
             NSString *keyName, *value;
             NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
             int column_count = sqlite3_column_count(statement);
-            NSLog(@"count = %d",column_count);
+//            NSLog(@"count = %d",column_count);
             for (int i=0; i<column_count; i++) {
                 int column_type = sqlite3_column_type(statement,i);
                 keyName = [NSString stringWithUTF8String:(char *)sqlite3_column_name(statement, i)];
                 if (column_type == SQLITE_INTEGER) {
-                    NSLog(@"%@",keyName);
+//                    NSLog(@"%@",keyName);
                     value = [NSString stringWithFormat:@"%d",(int)sqlite3_column_int(statement, i)];
                 }else{
                     value = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, i)];
                 }
                 
-                NSLog(@"keyname = %@ , value = %@", keyName, value);
+//                NSLog(@"keyname = %@ , value = %@", keyName, value);
                 [data setObject:value forKey:keyName];
             }
             [result addObject:data];
@@ -127,7 +177,24 @@
     }
     
     return result;
+}
 
+- (NSMutableArray *) getTemplateListByID:(NSString *) t_id{
+    //建立 Sqlite 語法
+    NSString *sqlString = [NSString stringWithFormat:@"%@%@", @"select * from templateList where template_id =", t_id];
+    
+    NSMutableArray *result = [self getData:sqlString];
+    
+    return result;
+}
+
+-(NSMutableArray *)getTemplateEventListByTID:(NSString *)t_id{
+    //建立 Sqlite 語法
+    NSString *sqlString = [NSString stringWithFormat:@"%@%@", @"select * from templateEventList where template_id =", t_id];
+    
+    NSMutableArray *result = [self getData:sqlString];
+    
+    return result;
 }
 
 - (void)selectTemplateWithId{
@@ -141,7 +208,7 @@
     char *insertErrorMsg;
     
     //建立 Sqlite 語法
-    const char *insertSql="insert into templeteList (title)values('小孩出生')";
+    const char *insertSql="insert into templateList (t_name)values('小孩出生')";
     if (sqlite3_exec(self.dataBase, insertSql, NULL, NULL, &insertErrorMsg)==SQLITE_OK) {
         NSLog(@"INSERT OK");
     }
@@ -149,17 +216,17 @@
 }
 
 - (void)insertMyEvent:(NSMutableDictionary *)myEvent{
-    NSString *my_templete_id = [myEvent valueForKey:@"my_templete_id"];
-    NSString *title = [myEvent objectForKey:@"title"];
-    NSString *detail_url = [myEvent objectForKey:@"detail_url"];
-    NSString *time = [myEvent objectForKey:@"time"];
-    NSString *recycle_id = [myEvent objectForKey:@"recycle_id"];
+    NSString *mt_id = [myEvent valueForKey:@"mt_id"];
+    NSString *e_title = [myEvent objectForKey:@"e_title"];
+    NSString *e_detail_url = [myEvent objectForKey:@"e_detail_url"];
+    NSString *e_time = [myEvent objectForKey:@"e_time"];
+    NSString *r_id = [myEvent objectForKey:@"r_id"];
     NSString *desc = [myEvent objectForKey:@"desc"];
     NSString *img_url = [myEvent objectForKey:@"img_url"];
     
-    NSString *sqlFormat = @"insert into myEvent (my_templete_id,title,detail_url,time,recycle_id,desc,img_url)values(%@,'%@','%@','%@','%@','%@','%@')";
+    NSString *sqlFormat = @"insert into myEvent (mt_id,e_title,e_detail_url,e_time,r_id,desc,img_url)values(%@,'%@','%@','%@','%@','%@','%@')";
     
-    NSString *sqlString = [NSString stringWithFormat:sqlFormat, my_templete_id, title, detail_url, time, recycle_id, desc, img_url];
+    NSString *sqlString = [NSString stringWithFormat:sqlFormat, mt_id, e_title, e_detail_url, e_time, r_id, desc, img_url];
     NSLog(@"sql = %@",sqlString);
     
     const char *sql = [sqlString UTF8String];
@@ -168,44 +235,45 @@
     
 }
 
-- (void)insertMyTemplete:(NSMutableDictionary *)myTemplete{
-    NSString *templete_id = [myTemplete objectForKey:@"templete_id"];
-    NSString *title = [myTemplete objectForKey:@"tilte"];
-    NSString *color = [myTemplete objectForKey:@"color"];
+- (void)insertMyTemplate:(NSMutableDictionary *)myTemplate{
+    NSString *template_id = [myTemplate objectForKey:@"template_id"];
+    NSString *t_name = [myTemplate objectForKey:@"t_name"];
+    NSString *color = [myTemplate objectForKey:@"color"];
     
-    NSString *sqlFormat = @"insert into myTemplete (templete_id,title,color)values(%@,'%@','%@')";
+    NSString *sqlFormat = @"insert into myTemplate (template_id,t_name,color)values(%@,'%@','%@')";
     
-    NSString *sqlString = [NSString stringWithFormat:sqlFormat, templete_id, title, color];
-    
-    const char *sql = [sqlString UTF8String];
-    
-    [self insertData:sql];
-}
-
-- (void)insertTempleteList:(NSMutableDictionary *)templeteList{
-    NSString *title = [templeteList objectForKey:@"tilte"];
-    
-    NSString *sqlFormat = @"insert into templeteList (title)values('%@')";
-    
-    NSString *sqlString = [NSString stringWithFormat:sqlFormat, title];
+    NSString *sqlString = [NSString stringWithFormat:sqlFormat, template_id, t_name, color];
     
     const char *sql = [sqlString UTF8String];
     
     [self insertData:sql];
 }
 
-- (void)insertTempleteEventList:(NSMutableDictionary *)templeteEventList{
-    NSString *templete_id = [templeteEventList objectForKey:@"templete_id"];
-    NSString *recycle = [templeteEventList objectForKey:@"recycle"];
-    NSString *title = [templeteEventList objectForKey:@"title"];
-    NSString *desc = [templeteEventList objectForKey:@"desc"];
-    NSString *detail_url = [templeteEventList objectForKey:@"detail_url"];
-    NSString *unit = [templeteEventList objectForKey:@"unit"];
-    NSString *period = [templeteEventList objectForKey:@"period"];
+- (void)insertTemplateList:(NSMutableDictionary *)templateList{
+    NSString *t_name = [templateList objectForKey:@"t_name"];
     
-    NSString *sqlFormat = @"insert into templeteEventList (templete_id,recycle,title,desc,detail_url,unit,period)values(%@,'%@','%@','%@','%@','%@',%@)";
+    NSString *sqlFormat = @"insert into templateList (t_name)values('%@')";
     
-    NSString *sqlString = [NSString stringWithFormat:sqlFormat, templete_id, recycle, title, desc, detail_url, unit, period];
+    NSString *sqlString = [NSString stringWithFormat:sqlFormat, t_name];
+    
+    const char *sql = [sqlString UTF8String];
+    
+    [self insertData:sql];
+}
+
+- (void)insertTemplateEventList:(NSMutableDictionary *)templateEventList{
+    NSString *template_id = [templateEventList objectForKey:@"template_id"];
+    NSString *recycle = [templateEventList objectForKey:@"recycle"];
+    NSString *e_title = [templateEventList objectForKey:@"e_title"];
+    NSString *desc = [templateEventList objectForKey:@"desc"];
+    NSString *e_detail_url = [templateEventList objectForKey:@"e_detail_url"];
+    NSString *unit = [templateEventList objectForKey:@"unit"];
+    NSString *period = [templateEventList objectForKey:@"period"];
+    NSString *img_url = [templateEventList objectForKey:@"img_url"];
+    
+    NSString *sqlFormat = @"insert into templateEventList (template_id,recycle,e_title,desc,e_detail_url,unit,period,img_url)values(%@,'%@','%@','%@','%@','%@',%@,'%@')";
+    
+    NSString *sqlString = [NSString stringWithFormat:sqlFormat, template_id, recycle, e_title, desc, e_detail_url, unit, period, img_url];
     
     const char *sql = [sqlString UTF8String];
     
@@ -217,7 +285,14 @@
 
     if (sqlite3_exec(self.dataBase, sql, NULL, NULL, &insertErrorMsg)==SQLITE_OK) {
         NSLog(@"INSERT OK");
+    }else{
+        NSLog(@"insertData -- error = %s",insertErrorMsg);
     }
+    NSLog(@"sqlite3_last_insert_rowid = %lld", sqlite3_last_insert_rowid(self.dataBase));
+}
+
+- (NSInteger)getLastInsertRowID{
+    return sqlite3_last_insert_rowid(self.dataBase);
 }
 
 

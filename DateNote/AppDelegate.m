@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
+#import "SqlClient.h"
 
 @interface AppDelegate ()
 
@@ -18,6 +19,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //self.window.rootViewController = [[HomeViewController alloc] init];
+    
+    SqlClient *sqlClient = [[SqlClient alloc] init];
+    [sqlClient initDataBase];
+//    [sqlClient resetData];
     
     return YES;
 }
