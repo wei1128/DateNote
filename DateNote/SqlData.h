@@ -29,7 +29,8 @@
 +(NSMutableArray *)getTemplateEventListByTID:(NSString *)t_id;
 
 //myEvent
-+(NSMutableArray *)getMyEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id;
++(NSMutableArray *)getMyEventFrom:(NSString *)time count:(NSInteger)count pg:(NSInteger)pg my_id:(NSString *)mt_id;
++(NSMutableArray *)getMyEventFrom:(NSString *)time count:(NSInteger)count pg:(NSInteger)pg;
 +(NSMutableArray *)getMyPastEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id;
 +(NSMutableArray *)getMyEventByDay:(NSString *)startTime :(NSString *)endTime;
 +(NSMutableArray *)getMyEventFrom:(NSString *)startTime to:(NSString *)endTime;

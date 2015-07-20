@@ -150,8 +150,24 @@ NSString * const colorList[] = {
     return result;
 }
 
--(NSMutableArray *)getMyEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id{
-    NSMutableArray *result = [SqlData getMyEvent:time :count :pg :mt_id];
++(NSMutableArray *)getMyEventFrom:(NSDate *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    
+    NSString *timeStr = [formatter stringFromDate:time];
+    
+    NSMutableArray *result = [SqlData getMyEventFrom:timeStr count:count pg:pg my_id:mt_id];
+    return result;
+}
++(NSMutableArray *)getMyEventFrom:(NSDate *)time :(NSInteger)count :(NSInteger)pg {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    
+    NSString *timeStr = [formatter stringFromDate:time];
+    
+    NSMutableArray *result = [SqlData getMyEventFrom:timeStr count:count pg:pg];
     return result;
 }
 
@@ -161,7 +177,7 @@ NSString * const colorList[] = {
     return result;
 }
 
--(NSMutableArray *)getMyTemplate{
++(NSMutableArray *)getMyTemplate{
     NSMutableArray *result = [SqlData select:@"myTemplate"];
     
     return result;

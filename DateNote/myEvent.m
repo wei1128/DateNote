@@ -40,6 +40,22 @@
     return events;
 }
 
++ (NSArray *)from:(NSDate *)time pg:(NSInteger)pg mt_id:(NSString *)mt_id {
+    NSArray *events = [SqlClient getMyEventFrom:time count:20 pg:pg mt_id:mt_id];
+    
+    events = [myEvent myEventsWithArray:events];
+    
+    return events;
+}
+
++ (NSArray *)from:(NSDate *)time pg:(NSInteger)pg {
+    NSArray *events = [SqlClient getMyEventFrom:time count:20 pg:pg];
+    
+    events = [myEvent myEventsWithArray:events];
+    
+    return events;
+}
+
 + (NSArray *)myEventsWithArray:(NSArray *)array {
     NSMutableArray *events = [NSMutableArray array];
     

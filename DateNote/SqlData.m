@@ -119,9 +119,18 @@ static sqlite3 *database = nil;
     sqlite3_close(database);
 }
 
-+(NSMutableArray *)getMyEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id{
++(NSMutableArray *)getMyEventFrom:(NSString *)time count:(NSInteger)count pg:(NSInteger)pg my_id:(NSString *)mt_id{
     //建立 Sqlite 語法
     NSString *sqlString = [NSString stringWithFormat:@"select * from myEventView where e_time >='%@' and mt_id=%@   order by e_time asc limit %ld,%ld", time, mt_id, (long)pg*(long)count, (long)count];
+    
+    NSMutableArray *result = [self getData:sqlString];
+    
+    return result;
+}
+
++(NSMutableArray *)getMyEventFrom:(NSString *)time count:(NSInteger)count pg:(NSInteger)pg {
+    //建立 Sqlite 語法
+    NSString *sqlString = [NSString stringWithFormat:@"select * from myEventView where e_time >='%@' order by e_time asc limit %ld,%ld", time, (long)pg*(long)count, (long)count];
     
     NSMutableArray *result = [self getData:sqlString];
     
