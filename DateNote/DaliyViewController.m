@@ -170,20 +170,8 @@
 }
 
 - (IBAction)changeFilter:(UISegmentedControl *)sender {
-    /*
-    //self.events = self.my_templates;
-    if([sender selectedSegmentIndex]>0){
-        NSMutableArray *temp = [[NSMutableArray alloc] init];
-        for (int i =0; i< self.self.events.count; i++) {
-            if(self.events[i][@"t_name"]==self.category[[sender selectedSegmentIndex]]){
-                [temp addObject:self.events[i]];
-            }
-        }
-        self.events = temp;
-        temp = nil;
-    }
+    [self initEvent];
     [self.contentView reloadData];
-     */
 }
 
 - (void)didReceiveMemoryWarning {
