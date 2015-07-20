@@ -14,11 +14,11 @@
 -(void)initTempData;
 -(void)resetData;
 
--(void)insertOneDayEventStartWith:(NSString *)startTime title:(NSString *)title description:(NSString *)description;
--(void)insertDayEventStartWith:(NSString *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
--(void)insertWeekEventStartWith:(NSString *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
--(void)insertMonthEventStartWith:(NSString *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
--(void)insertYearEventStartWith:(NSString *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
+-(void)insertOneDayEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description;
+-(void)insertDayEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
+-(void)insertWeekEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
+-(void)insertMonthEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
+-(void)insertYearEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
 
 //templateList
 -(NSMutableArray *)getTemplateList;
