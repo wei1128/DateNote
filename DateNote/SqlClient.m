@@ -19,16 +19,118 @@ NSString * const colorList[] = {
 
 @implementation SqlClient
 
--(void)insertOneDayEvent:(NSString *)startTime :(NSString *)title :(NSString *)description{
-    NSDictionary *tempDic = @{@"mt_id": @"0",@"r_id": @"0",@"e_title": @"title",@"e_time": @"time",@"e_detail_url": @"detail_url",@"desc": @"desc",@"img_url": @"img_url"};
-    NSMutableDictionary *inputDic = [[NSMutableDictionary alloc] initWithDictionary:tempDic];
+-(void)insertOneDayEventStartWith:(NSDate *)startTime tilte:(NSString *)title description:(NSString *)description{
+    NSString *date = [self getNewDateWith:startTime day:0 month:0 year:0];
     
-    [inputDic setObject:startTime forKey:@"e_time"];
-    [inputDic setObject:title forKey:@"e_title"];
-    [inputDic setObject:description forKey:@"desc"];
+    NSMutableDictionary *inputDic = [self createMyEventDic:date title:title description:description r_id:nil];
     
     [SqlData insertMyEvent:inputDic];
 }
+
+-(void)insertDayEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id{
+    for (int i=0; i<100; i++) {
+        
+        NSString *date = [self getNewDateWith:startTime day:i month:0 year:0];
+        
+        NSMutableDictionary *inputDic = [self createMyEventDic:date title:title description:description r_id:r_id];
+        
+        [SqlData insertMyEvent:inputDic];
+    }
+}
+
+-(void)insertWeekEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id{
+    for (int i=0; i<100; i++) {
+        
+        NSString *date = [self getNewDateWith:startTime day:i*7 month:0 year:0];
+        
+        NSMutableDictionary *inputDic = [self createMyEventDic:date title:title description:description r_id:r_id];
+        
+        [SqlData insertMyEvent:inputDic];
+    }
+}
+
+-(void)insertMonthEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id{
+    for (int i=0; i<100; i++) {
+        
+        NSString *date = [self getNewDateWith:startTime day:0 month:i year:0];
+        
+        NSMutableDictionary *inputDic = [self createMyEventDic:date title:title description:description r_id:r_id];
+        
+        [SqlData insertMyEvent:inputDic];
+    }
+
+}
+
+-(void)insertYearEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id{
+    for (int i=0; i<100; i++) {
+        
+        NSString *date = [self getNewDateWith:startTime day:0 month:0 year:i];
+        
+        NSMutableDictionary *inputDic = [self createMyEventDic:date title:title description:description r_id:r_id];
+        
+        [SqlData insertMyEvent:inputDic];
+    }
+
+}
+
+-(NSMutableDictionary *)createMyEventDic:(NSString *)date title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id{
+    NSDictionary *tempDic = @{@"mt_id": @"0",@"r_id": @"0",@"e_title": @"title",@"e_time": @"time",@"e_detail_url": @"detail_url",@"desc": @"desc",@"img_url": @"img_url"};
+    NSMutableDictionary *inputDic = [[NSMutableDictionary alloc] initWithDictionary:tempDic];
+    
+    if (date != nil) {
+        [inputDic setObject:date forKey:@"e_time"];
+    }
+    
+    if (title != nil) {
+        [inputDic setObject:title forKey:@"e_title"];
+    }
+    
+    if (description != nil) {
+        [inputDic setObject:description forKey:@"desc"];
+    }
+    
+    if (r_id != nil) {
+        [inputDic setObject:r_id forKey:@"r_id"];
+    }
+    
+    return inputDic;
+    
+}
+
+-(NSString *)getNewDateWith:(NSDate *)startTime day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    
+    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    
+    if (day > 0 ) {
+        [offsetComponents setDay:day];
+    }
+    
+    if (month > 0 ) {
+        [offsetComponents setMonth:month];
+    }
+    
+    if (year > 0 ) {
+        [offsetComponents setYear:year];
+    }
+    
+    //NSString to NSDate
+    // NSDate *date = [dateFormatter dateFromString:startTime];
+    // NSLog(@"origin Date = %@", date);
+    
+    NSDate *newDate = [gregorian dateByAddingComponents:offsetComponents toDate:startTime options:0];
+    
+    //NSDate to NSString
+    NSString *strDate = [dateFormatter stringFromDate:newDate];
+    NSLog(@"new Data = %@", strDate);
+    
+    return strDate;
+}
+
 
 -(NSMutableArray *)getTemplateList{
     NSMutableArray *result = [SqlData select:@"templateList"];
