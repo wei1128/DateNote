@@ -115,16 +115,6 @@
 }
 
 #pragma mark - Actions
-
-- (NSMutableArray *)mockEvents
-{
-    NSArray *array = @[@{@"me_id" : @"1", @"mt_id" : @"1", @"e_title" : @"煮紅豆湯", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-07-16 12:00:00", @"r_id" : @"1",@"desc" : @"快喝紅豆湯,快喝紅豆湯,快喝紅豆湯,紅豆兩湯匙,砂糖半匙,一杯水,電鍋跳起來就可以喝了", @"img_url" : @"http://img1.groupon.com.tw/fi/9(1091).jpg", @"color": @"#FDFF37",@"t_name":@"女孩月事"},
-                    @{@"me_id" : @"2", @"mt_id" : @"2", @"e_title" : @"Y! Summer Party", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-07-20 14:00:00", @"r_id" : @"2",@"desc" : @"帶門票, 午餐券, 停車票, 住宿券, 照相機, 防曬油, 泳衣", @"img_url" : @"https://c2.staticflickr.com/8/7277/7772597482_a587f7278b.jpg", @"color": @"#FF3937",@"t_name":@"一起去郊遊"},
-                    @{@"me_id" : @"3", @"mt_id" : @"3", @"e_title" : @"煮紅豆湯", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-08-12 12:00:00", @"r_id" : @"3",@"desc" : @"快喝紅豆湯,快喝紅豆湯,快喝紅豆湯,紅豆兩湯匙,砂糖半匙,一杯水,電鍋跳起來就可以喝了", @"img_url" : @"http://img1.groupon.com.tw/fi/9(1091).jpg", @"color": @"#FDFF37",@"t_name":@"女孩月事"}];
-
-    return [array mutableCopy];
-}
-
 - (void)insertRowAtTop
 {
     __weak DaliyViewController *weakSelf = self;
