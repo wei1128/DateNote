@@ -13,29 +13,31 @@
 @property (nonatomic, strong) NSArray *documentsPath;
 @property (nonatomic, strong) NSString *databaseFilePath;
 
-- (void)getDatabase;
-- (void)initTabel;
-- (void)createTable:(char *)createSql;
-- (void)dropTable:(NSString *)tableName;
-- (void)closeDatabase;
-- (NSInteger)getLastInsertRowID;
++ (void)initializeEdiableCopyOfDatabase;
++ (void)createEdiableCopyOfDatabaseIfNeeded;
++ (NSMutableArray *)select:(NSString *)tableName;
 
-- (NSMutableArray *)select:(NSString *)tableName;
-- (NSMutableArray *)getTemplateListByID:(NSString *)t_id;
++ (void)closeDatabase;
++ (NSMutableArray *)getData:(NSString *)cmd;
++ (NSInteger)getLastInsertRowID;
++ (void)insertData:(const char *)sql;
+
++ (NSMutableArray *)select:(NSString *)tableName;
++ (NSMutableArray *)getTemplateListByID:(NSString *)t_id;
 
 //templateEventList
--(NSMutableArray *)getTemplateEventListByTID:(NSString *)t_id;
++(NSMutableArray *)getTemplateEventListByTID:(NSString *)t_id;
 
 //myEvent
--(NSMutableArray *)getMyEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id;
--(NSMutableArray *)getMyPastEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id;
--(NSMutableArray *)getMyEventByDay:(NSString *)startTime :(NSString *)endTime;
--(NSMutableArray *)getMyEventByPeriod:(NSString *)startTime :(NSString *)endTime;
++(NSMutableArray *)getMyEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id;
++(NSMutableArray *)getMyPastEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id;
++(NSMutableArray *)getMyEventByDay:(NSString *)startTime :(NSString *)endTime;
++(NSMutableArray *)getMyEventByPeriod:(NSString *)startTime :(NSString *)endTime;
 
-- (void)insertTempData;
-- (void)insertMyEvent:(NSMutableDictionary *)myEvent;
-- (void)insertMyTemplate:(NSMutableDictionary *)myTemplate;
-- (void)insertTemplateList:(NSMutableDictionary *)templateList;
-- (void)insertTemplateEventList:(NSMutableDictionary *)templateEventList;
++ (void)insertTempData;
++ (void)insertMyEvent:(NSMutableDictionary *)myEvent;
++ (void)insertMyTemplate:(NSMutableDictionary *)myTemplate;
++ (void)insertTemplateList:(NSMutableDictionary *)templateList;
++ (void)insertTemplateEventList:(NSMutableDictionary *)templateEventList;
 
 @end

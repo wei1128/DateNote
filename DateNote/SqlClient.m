@@ -27,123 +27,59 @@ NSString * const colorList[] = {
     [inputDic setObject:title forKey:@"e_title"];
     [inputDic setObject:description forKey:@"desc"];
     
-    SqlData *sqlData = [[SqlData alloc] init];
-    [sqlData getDatabase];
-    [sqlData insertMyEvent:inputDic];
-    [sqlData closeDatabase];
-}
-
--(NSMutableArray *)getMyEvent{
-    SqlData *sqlData = [[SqlData alloc] init];
-    [sqlData getDatabase];
-    NSMutableArray *result = [sqlData select:@"myEvent"];
-    [sqlData closeDatabase];
-    
-    return result;
+    [SqlData insertMyEvent:inputDic];
 }
 
 -(NSMutableArray *)getTemplateList{
-    SqlData *sqlData = [[SqlData alloc] init];
-    [sqlData getDatabase];
-    NSMutableArray *result = [sqlData select:@"templateList"];
-    [sqlData closeDatabase];
+    NSMutableArray *result = [SqlData select:@"templateList"];
     
     return result;
 }
 
 -(NSMutableArray *)getTemplateListByID:(NSString *)t_id{
-    SqlData *sqlData = [[SqlData alloc] init];
-    [sqlData getDatabase];
-    
-    NSMutableArray *result = [sqlData getTemplateListByID:t_id];
-    [sqlData closeDatabase];
+    NSMutableArray *result = [SqlData getTemplateListByID:t_id];
     
     return result;
 }
 
 -(NSMutableArray *)getTemplateEventListByTID:(NSString *)t_id{
-    SqlData *sqlData = [[SqlData alloc] init];
-    [sqlData getDatabase];
-    
-    NSMutableArray *result = [sqlData getTemplateEventListByTID:t_id];
-    [sqlData closeDatabase];
+    NSMutableArray *result = [SqlData getTemplateEventListByTID:t_id];
     
     return result;
 }
 
 -(NSMutableArray *)getMyEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id{
-    SqlData *sqlData = [[SqlData alloc] init];
-    [sqlData getDatabase];
-    
-    NSMutableArray *result = [sqlData getMyEvent:time :count :pg :mt_id];
-    [sqlData closeDatabase];
-    
+    NSMutableArray *result = [SqlData getMyEvent:time :count :pg :mt_id];
     return result;
 }
 
 -(NSMutableArray *)getMyPastEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id{
-    SqlData *sqlData = [[SqlData alloc] init];
-    [sqlData getDatabase];
-    
-    NSMutableArray *result = [sqlData getMyPastEvent:time :count :pg :mt_id];
-    [sqlData closeDatabase];
+    NSMutableArray *result = [SqlData getMyPastEvent:time :count :pg :mt_id];
     
     return result;
 }
 
 -(NSMutableArray *)getMyTemplate{
-    SqlData *sqlData = [[SqlData alloc] init];
-    [sqlData getDatabase];
-    
-    NSMutableArray *result = [sqlData select:@"myTemplate"];
-    [sqlData closeDatabase];
+    NSMutableArray *result = [SqlData select:@"myTemplate"];
     
     return result;
 }
 
 -(NSMutableArray *)getMyEventByDay:(NSString *)time{
-    SqlData *sqlData = [[SqlData alloc] init];
-    [sqlData getDatabase];
-    
     NSString *startTime = [NSString stringWithFormat:@"%@ 00:00:00",time];
     NSString *endTime = [NSString stringWithFormat:@"%@ 23:59:59",time];
     
-    NSMutableArray *result = [sqlData getMyEventByDay:startTime :endTime];
-    [sqlData closeDatabase];
+    NSMutableArray *result = [SqlData getMyEventByDay:startTime :endTime];
     
     return result;
 }
 
 -(NSMutableArray *)getMyEventByPeriod:(NSString *)startTime :(NSString *)endTime{
-    SqlData *sqlData = [[SqlData alloc] init];
-    [sqlData getDatabase];
-    
-    NSMutableArray *result = [sqlData getMyEventByPeriod:startTime :endTime];
-    [sqlData closeDatabase];
-    
+    NSMutableArray *result = [SqlData getMyEventByPeriod:startTime :endTime];
     return result;
 }
 
--(void)resetData{
-    SqlData *sqlData = [[SqlData alloc] init];
-    [sqlData getDatabase];
-    
-    [sqlData dropTable:@"myEvent"];
-    [sqlData dropTable:@"myTemplate"];
-    [sqlData dropTable:@"templateEventList"];
-    [sqlData dropTable:@"templateList"];
-    
-    [sqlData closeDatabase];
-    
-    [self initDataBase];
-    [self initTempData];
-}
-
 -(void)initDataBase{
-    
-    SqlData *sqlData = [[SqlData alloc] init];
-    [sqlData getDatabase];
-    
 //    [sqlData dropTable:@"myEvent"];
 //    [sqlData dropTable:@"myTemplate"];
 //    [sqlData dropTable:@"templateEventList"];
@@ -168,88 +104,83 @@ NSString * const colorList[] = {
     
     
     NSMutableArray *dbCheck = self.getTemplateList;
-
+    NSLog(@"row count = %lu", (unsigned long)dbCheck.count);
     if (dbCheck.count == 0){
         NSLog(@"---------------------------------");
-        
-        [sqlData initTabel];
         //建立第一個template list
         NSDictionary *tempDic = @{@"mt_id": @"0",@"r_id": @"0",@"e_title": @"",@"e_time": @"",@"e_detail_url": @"",@"desc": @"",@"img_url": @""};
         NSMutableDictionary *inputDic = [[NSMutableDictionary alloc] initWithDictionary:tempDic];
         [inputDic setObject:@"小孩出生" forKey:@"t_name"];
-        [sqlData insertTemplateList:inputDic];
+        [SqlData insertTemplateList:inputDic];
         
-        NSMutableArray *result = [sqlData select:@"templateList"];
-        NSLog(@"templateList = %@",result);
+//        NSMutableArray *result = [SqlData select:@"templateList"];
+//        NSLog(@"templateList = %@",result);
         //建立第一個template list
         
         //建立template event
         tempDic = @{@"template_id": @"1",@"recycle": @"1",@"e_title": @"B型肝炎遺傳工程疫苗第二劑",@"desc": @"",@"e_detail_url": @"",@"unit": @"month",@"period": @"1",@"img_url": @""};
         inputDic = [[NSMutableDictionary alloc] initWithDictionary:tempDic];
-        [sqlData insertTemplateEventList:inputDic];
+        [SqlData insertTemplateEventList:inputDic];
         
         [inputDic setObject:@"五合一疫苗(白喉破傷風非細胞性百日咳、b型嗜血桿菌及不活化小兒麻痺混合疫苗)第一劑" forKey:@"e_title"];
         [inputDic setObject:@"2" forKey:@"period"];
-        [sqlData insertTemplateEventList:inputDic];
+        [SqlData insertTemplateEventList:inputDic];
         
         [inputDic setObject:@"五合一疫苗(白喉破傷風非細胞性百日咳、b型嗜血桿菌及不活化小兒麻痺混合疫苗)第二劑" forKey:@"e_title"];
         [inputDic setObject:@"4" forKey:@"period"];
-        [sqlData insertTemplateEventList:inputDic];
+        [SqlData insertTemplateEventList:inputDic];
         
         [inputDic setObject:@"B型肝炎遺傳工程疫苗第三劑,五合一疫苗(白喉破傷風非細胞性百日咳、b型嗜血桿菌及不活化小兒麻痺混合疫苗)第三劑" forKey:@"e_title"];
         [inputDic setObject:@"6" forKey:@"period"];
-        [sqlData insertTemplateEventList:inputDic];
+        [SqlData insertTemplateEventList:inputDic];
         
         [inputDic setObject:@"6個月的副食品" forKey:@"e_title"];
         [inputDic setObject:@"每天一餐，吃的量不強求" forKey:@"desc"];
         [inputDic setObject:@"http://qqmei0904.pixnet.net/blog/post/183054209-%E5%89%AF%E9%A3%9F%E5%93%81%E9%A3%9F%E8%AD%9C%E8%88%87%E9%A3%9F%E7%94%A8%E9%80%B2%E5%BA%A6%E7%B8%BD%E6%95%B4%E7%90%86" forKey:@"e_detail_url"];
-        [sqlData insertTemplateEventList:inputDic];
+        [SqlData insertTemplateEventList:inputDic];
         
         [inputDic setObject:@"7個月的副食品" forKey:@"e_title"];
         [inputDic setObject:@"若寶寶一餐副食品可以吃到80ml左右，那麼即可增加為一天餵食兩次" forKey:@"desc"];
         [inputDic setObject:@"7" forKey:@"period"];
-        [sqlData insertTemplateEventList:inputDic];
+        [SqlData insertTemplateEventList:inputDic];
         
         [inputDic setObject:@"8個月的副食品" forKey:@"e_title"];
         [inputDic setObject:@"一天吃四餐" forKey:@"desc"];
         [inputDic setObject:@"8" forKey:@"period"];
-        [sqlData insertTemplateEventList:inputDic];
+        [SqlData insertTemplateEventList:inputDic];
         
         [inputDic setObject:@"9個月的副食品" forKey:@"e_title"];
         [inputDic setObject:@"一天吃四餐" forKey:@"desc"];
         [inputDic setObject:@"9" forKey:@"period"];
-        [sqlData insertTemplateEventList:inputDic];
+        [SqlData insertTemplateEventList:inputDic];
         [inputDic setObject:@"" forKey:@"desc"];
         [inputDic setObject:@"" forKey:@"e_detail_url"];
         
         [inputDic setObject:@"麻疹腮腺炎德國麻疹混合疫苗第一劑,水痘疫苗一劑" forKey:@"e_title"];
         [inputDic setObject:@"12" forKey:@"period"];
-        [sqlData insertTemplateEventList:inputDic];
+        [SqlData insertTemplateEventList:inputDic];
         
         [inputDic setObject:@"日本腦炎疫苗第一劑" forKey:@"e_title"];
         [inputDic setObject:@"15" forKey:@"period"];
-        [sqlData insertTemplateEventList:inputDic];
+        [SqlData insertTemplateEventList:inputDic];
         
         [inputDic setObject:@"五合一疫苗(白喉破傷風非細胞性百日咳、b型嗜血桿菌及不活化小兒麻痺混合疫苗)第四劑" forKey:@"e_title"];
         [inputDic setObject:@"18" forKey:@"period"];
-        [sqlData insertTemplateEventList:inputDic];
+        [SqlData insertTemplateEventList:inputDic];
         
         [inputDic setObject:@"日本腦炎疫苗第三劑" forKey:@"e_title"];
         [inputDic setObject:@"27" forKey:@"period"];
-        [sqlData insertTemplateEventList:inputDic];
+        [SqlData insertTemplateEventList:inputDic];
 
-        result = [sqlData select:@"templateEventList"];
-        NSLog(@"templateEventList = %@",result);
+//        result = [SqlData select:@"templateEventList"];
+//        NSLog(@"templateEventList = %@",result);
         
         //建立template event
     }
-    [sqlData closeDatabase];
+    
 }
 
 -(void)initTempData{
-    
-    SqlData *sqlData = [[SqlData alloc] init];
-    [sqlData getDatabase];
     
     NSMutableArray *dbCheck = [self getTemplateListByID:@"1"];
 //    NSLog(@"bbbbb = %@",dbCheck[0]);
@@ -263,17 +194,17 @@ NSString * const colorList[] = {
 //    NSLog(@"getTemplateEventListByTID = %@",dbCheck);
     
 //    myTemplate
-    NSMutableArray *result = [sqlData select:@"myTemplate"];
+    NSMutableArray *result = [SqlData select:@"myTemplate"];
     NSString *color = colorList[result.count];
     NSDictionary *tempDic = @{@"template_id": @"1",@"t_name": myTemplateName,@"color": color};
     NSMutableDictionary *inputDic = [[NSMutableDictionary alloc] initWithDictionary:tempDic];
     NSLog(@"myTemplate = %@",result);
-    [sqlData insertMyTemplate:inputDic];
+    [SqlData insertMyTemplate:inputDic];
     //清資料
 //    [sqlData dropTable:@"myTemplate"];
 //    [sqlData dropTable:@"myEvent"];
     
-    NSInteger mt_id = [sqlData getLastInsertRowID];
+    NSInteger mt_id = [SqlData getLastInsertRowID];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -300,14 +231,15 @@ NSString * const colorList[] = {
         NSLog(@"date = %@",[dateFormatter stringFromDate:newEndTime]);
         [inputDic setObject:[dateFormatter stringFromDate:newEndTime] forKey:@"e_time"];
         
-        [sqlData insertMyEvent:inputDic];
+        [SqlData insertMyEvent:inputDic];
     }
     
 //    dbCheck = [sqlData select:@"templateEventList"];
 //    NSLog(@"my event list = %@",self.getMyEvent);
     
     
-    [sqlData closeDatabase];
+    [SqlData closeDatabase];
 }
+
 
 @end

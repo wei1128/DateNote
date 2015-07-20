@@ -8,21 +8,23 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
-#import "SqlClient.h"
+#import "SqlData.h"
+#import "myEvent.h"
 
 @interface AppDelegate ()
-
+- (void)createEdiableCopyOfDatabaseIfNeeded;
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //self.window.rootViewController = [[HomeViewController alloc] init];
+    self.window.rootViewController = [[HomeViewController alloc] init];
+    [SqlData initializeEdiableCopyOfDatabase];
+    //[SqlData createEdiableCopyOfDatabaseIfNeeded];
     
-    SqlClient *sqlClient = [[SqlClient alloc] init];
-    [sqlClient initDataBase];
-//    [sqlClient resetData];
+    myEvent *me = [[myEvent alloc]init];
+    NSMutableArray *result = [me getMyEvent:[[NSDate alloc]init] :1 :1 :@""];
     
     return YES;
 }
