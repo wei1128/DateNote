@@ -79,6 +79,16 @@ NSString * const colorList[] = {
     return result;
 }
 
+-(void) deleteMyEventByMyEventID:(NSString *)me_id{
+    [SqlData deleteMyEventByMyEventID:me_id];
+}
+-(void) deleteMyEventByMyTemplateID:(NSString *)mt_id{
+    [SqlData deleteMyEventByMyTemplateID:mt_id];
+}
+-(void) deleteMyEventByRecycleID:(NSString *)r_id{
+    [SqlData deleteMyEventByRecycleID:r_id];
+}
+
 -(void)initDataBase{
 //    [sqlData dropTable:@"myEvent"];
 //    [sqlData dropTable:@"myTemplate"];
