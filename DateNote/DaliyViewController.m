@@ -89,7 +89,7 @@
     for (int i = 0; i < self.my_templates.count; i++) {
         myTemplate *mt = self.my_templates[i];
         [self.filter insertSegmentWithTitle:mt.t_name atIndex:i + 1 animated:NO];
-        [[[self.filter subviews] objectAtIndex:i] setTintColor:[self colorFromHexString:mt.color]];
+        [[[self.filter subviews] objectAtIndex:i + 1] setTintColor:[self colorFromHexString:mt.color]];
     }
 
     self.filter.selectedSegmentIndex=0;
