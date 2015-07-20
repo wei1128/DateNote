@@ -21,7 +21,7 @@
 		<key>Pods-DateNote-SVPullToRefresh.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Pods-DateNote.xcscheme</key>
 		<dict>
@@ -38,17 +38,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>753BF5871D44149AB8E1909E</key>
+		<key>665CC22DEA142050E6C0BE23</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79296770D6E831DF9A6D50B4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>98F414E561A173CED7A2AB9B</key>
+		<key>6A388DEDDD89341962695D48</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -64,6 +59,11 @@
 			<true/>
 		</dict>
 		<key>AA0BA6371115CDA6D41ED049</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C38B4CCEADD79E2E615815FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

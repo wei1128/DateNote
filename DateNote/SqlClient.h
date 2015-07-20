@@ -14,7 +14,11 @@
 -(void)initTempData;
 -(void)resetData;
 
--(void)insertOneDayEvent:(NSString *)startTime :(NSString *)title :(NSString *)description;
+-(void)insertOneDayEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description;
+-(void)insertDayEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
+-(void)insertWeekEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
+-(void)insertMonthEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
+-(void)insertYearEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
 
 //templateList
 -(NSMutableArray *)getTemplateList;
