@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         self.me_id = [dictionary[@"me_id"] integerValue];
-        self.mt_id = [dictionary[@"me_id"] integerValue];
+        self.mt_id = [dictionary[@"mt_id"] integerValue];
         self.e_title = dictionary[@"e_title"];
         self.e_detail_url = dictionary[@"e_detail_url"];
         
@@ -27,6 +27,8 @@
         self.r_id = dictionary[@"r_id"];
         self.desc = dictionary[@"desc"];
         self.img_url = dictionary[@"img_url"];
+        self.color = dictionary[@"color"];
+        self.t_name = dictionary[@"t_name"];
     }
     
     return self;
@@ -40,16 +42,34 @@
     return events;
 }
 
-+ (NSArray *)from:(NSDate *)time pg:(NSInteger)pg mt_id:(NSString *)mt_id {
-    NSArray *events = [SqlClient getMyEventFrom:time count:20 pg:pg mt_id:mt_id];
++ (NSArray *)before:(NSDate *)start pg:(NSInteger)pg mt_id:(NSString *)mt_id {
+    NSArray *events = [SqlClient getMyPastEvent:start count:5 pg:pg mt_id:mt_id];
     
     events = [myEvent myEventsWithArray:events];
     
     return events;
 }
 
++ (NSArray *)before:(NSDate *)start pg:(NSInteger)pg {
+    NSArray *events = [SqlClient getMyPastEvent:start count:5 pg:pg];
+    
+    events = [myEvent myEventsWithArray:events];
+    
+    return events;
+}
+
+
++ (NSArray *)from:(NSDate *)time pg:(NSInteger)pg mt_id:(NSString *)mt_id {
+    NSArray *events = [SqlClient getMyEventFrom:time count:5 pg:pg mt_id:mt_id];
+    
+    events = [myEvent myEventsWithArray:events];
+    
+    return events;
+}
+
+
 + (NSArray *)from:(NSDate *)time pg:(NSInteger)pg {
-    NSArray *events = [SqlClient getMyEventFrom:time count:20 pg:pg];
+    NSArray *events = [SqlClient getMyEventFrom:time count:5 pg:pg];
     
     events = [myEvent myEventsWithArray:events];
     

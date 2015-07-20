@@ -17,7 +17,7 @@
 
 - (id)initWithDictionary :(NSDictionary *)dictionary;
 
-+ (NSArray *)getTemplate;
++ (NSArray *)getTemplates;
 + (NSArray *)myTemplateWithArray:(NSArray *)array;
 
 @end

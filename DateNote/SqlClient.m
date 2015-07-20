@@ -150,7 +150,7 @@ NSString * const colorList[] = {
     return result;
 }
 
-+(NSMutableArray *)getMyEventFrom:(NSDate *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id{
++(NSMutableArray *)getMyEventFrom:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg mt_id:(NSString *)mt_id{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
@@ -160,7 +160,7 @@ NSString * const colorList[] = {
     NSMutableArray *result = [SqlData getMyEventFrom:timeStr count:count pg:pg my_id:mt_id];
     return result;
 }
-+(NSMutableArray *)getMyEventFrom:(NSDate *)time :(NSInteger)count :(NSInteger)pg {
++(NSMutableArray *)getMyEventFrom:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
@@ -171,8 +171,26 @@ NSString * const colorList[] = {
     return result;
 }
 
--(NSMutableArray *)getMyPastEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id{
-    NSMutableArray *result = [SqlData getMyPastEvent:time :count :pg :mt_id];
++(NSMutableArray *)getMyPastEvent:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg mt_id:(NSString *)mt_id{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    
+    NSString *timeStr = [formatter stringFromDate:time];
+    
+    NSMutableArray *result = [SqlData getMyPastEvent:timeStr count:count pg:pg mt_id:mt_id];
+    
+    return result;
+}
+
++(NSMutableArray *)getMyPastEvent:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    
+    NSString *timeStr = [formatter stringFromDate:time];
+    
+    NSMutableArray *result = [SqlData getMyPastEvent:timeStr count:count pg:pg];
     
     return result;
 }

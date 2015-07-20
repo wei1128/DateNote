@@ -21,6 +21,9 @@
 @property (strong, nonatomic) NSArray *my_templates;
 @property (strong, nonatomic) NSArray *month_en;
 @property (strong, nonatomic) NSArray *category;
+@property (strong, nonatomic) NSDate *startTime;
+@property (assign, nonatomic) NSInteger prePg;
+@property (assign, nonatomic) NSInteger nextPg;
 
 @end
 
@@ -33,27 +36,59 @@
     [self setupView];
 
     self.month_en = @[@"January",@"February",@"March",@"April",@"May",@"June",@"July",@"August",@"September",@"October",@"November",@"December"];
-    self.events=[[NSMutableArray alloc]init];
-    self.my_templates = [myTemplate getTemplate];
-    self.events = @[@{@"me_id" : @"1", @"mt_id" : @"1", @"e_title" : @"煮紅豆湯", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-07-25 12:00:00", @"r_id" : @"1",@"desc" : @"快喝紅豆湯,快喝紅豆湯,快喝紅豆湯,紅豆兩湯匙,砂糖半匙,一杯水,電鍋跳起來就可以喝了", @"img_url" : @"http://img1.groupon.com.tw/fi/9(1091).jpg", @"color": @"#FF3799",@"t_name":@"女孩月事"},
-  @{@"me_id" : @"2", @"mt_id" : @"2", @"e_title" : @"Y! Summer Party", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-07-26 14:00:00", @"r_id" : @"2",@"desc" : @"帶門票, 午餐券, 停車票, 住宿券, 照相機, 防曬油, 泳衣", @"img_url" : @"https://c2.staticflickr.com/8/7277/7772597482_a587f7278b.jpg", @"color": @"#47cccc",@"t_name":@"一起去郊遊"},
-  @{@"me_id" : @"4", @"mt_id" : @"4", @"e_title" : @"寶寶預產期", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-08-21 14:00:00", @"r_id" : @"2",@"desc" : @"寶貝要來報到囉", @"img_url" : @"http://healthy.bayvoice.net/wp-content/uploads/sites/5/2014/08/14072294350202.jpg", @"color": @"#ff7f50",@"t_name":@"新手爸媽日記"},
-  @{@"me_id" : @"3", @"mt_id" : @"3", @"e_title" : @"煮紅豆湯", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-08-25 12:00:00", @"r_id" : @"3",@"desc" : @"快喝紅豆湯,快喝紅豆湯,快喝紅豆湯,紅豆兩湯匙,砂糖半匙,一杯水,電鍋跳起來就可以喝了", @"img_url" : @"http://img1.groupon.com.tw/fi/9(1091).jpg", @"color": @"#FF3799",@"t_name":@"女孩月事"},
-  @{@"me_id" : @"5", @"mt_id" : @"5", @"e_title" : @"去郭元益拿喜餅", @"e_detail_url" : @"http://www.yahoo.com", @"e_time" : @"2015-09-21 08:00:00", @"r_id" : @"3",@"desc" : @"baby 滿月餅 給同事", @"img_url" : @"http://denwell.com/Uploads/104%E8%81%AF%E5%90%8D%E5%9B%8D%E9%A4%85-755X495-2.jpg", @"color": @"#ff7f50",@"t_name":@"新手爸媽日記"}];
     
-    // set filter
+    self.my_templates = [myTemplate getTemplates];
     [self setFilterTitle];
+    
+    [self initEvent];
 
     self.contentView.dataSource = self;
     self.contentView.delegate = self;
 }
+                   
+- (void) initEvent {
+    self.startTime = [[NSDate alloc]init];
+    
+    self.events = [[NSMutableArray alloc] init];
+    self.prePg = 0;
+    self.nextPg = 0;
+    
+    [self nextPage];
+}
 
--(void) setFilterTitle{
-    //[self.filter removeAllSegments];
+- (void) prePage {
+    NSInteger index = self.filter.selectedSegmentIndex;
+    
+    if (index == 0) {
+        [self.events addObjectsFromArray:[myEvent before:self.startTime pg:self.prePg]];
+    } else {
+        index--;
+        myTemplate *mt = self.my_templates[index];
+        [self.events addObjectsFromArray:[myEvent before:self.startTime pg:self.prePg mt_id:mt.mt_id]];
+    }
+    self.prePg++;
+}
+
+- (void) nextPage {
+    NSInteger index = self.filter.selectedSegmentIndex;
+    
+    if (index == 0) {
+        [self.events addObjectsFromArray:[myEvent from:self.startTime pg:self.nextPg]];
+    } else {
+        index--;
+        myTemplate *mt = self.my_templates[index];
+        [self.events addObjectsFromArray:[myEvent from:self.startTime pg:self.nextPg mt_id:mt.mt_id]];
+    }
+    self.nextPg++;
+}
+
+-(void) setFilterTitle {
+    [self.filter removeAllSegments];
+    [self.filter insertSegmentWithTitle:@"全部分類" atIndex:0 animated:NO];
     
     for (int i = 0; i < self.my_templates.count; i++) {
         myTemplate *mt = self.my_templates[i];
-        [self.filter insertSegmentWithTitle:mt.t_name atIndex:i animated:NO];
+        [self.filter insertSegmentWithTitle:mt.t_name atIndex:i + 1 animated:NO];
         [[[self.filter subviews] objectAtIndex:i] setTintColor:[self colorFromHexString:mt.color]];
     }
 
@@ -97,16 +132,18 @@
     int64_t delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+        NSInteger num = weakSelf.events.count;
+        [weakSelf prePage];
+        
+        NSMutableArray *indexPaths = [NSMutableArray array];
+        
+        for(NSInteger i = 0; i < weakSelf.events.count - num; i++) {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+       
         [weakSelf.contentView beginUpdates];
-
-        // TODO: Fetch data from local DB
-        NSMutableArray *events = [weakSelf mockEvents];
-        [events addObjectsFromArray:weakSelf.events];
-        weakSelf.events = events;
-
-        NSArray *indexPaths = @[[NSIndexPath indexPathForRow:0 inSection:0],
-                                [NSIndexPath indexPathForRow:1 inSection:0],
-                                [NSIndexPath indexPathForRow:2 inSection:0]];
+        
         [weakSelf.contentView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
 
         [weakSelf.contentView endUpdates];
@@ -122,16 +159,18 @@
     int64_t delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+        NSInteger num = weakSelf.events.count;
+        [weakSelf nextPage];
+        
+        NSMutableArray *indexPaths = [NSMutableArray array];
+        
+        for(NSInteger i = num; i < weakSelf.events.count; i++) {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+        
         [weakSelf.contentView beginUpdates];
 
-        // TODO: Fetch data from local DB
-        NSMutableArray *events = [weakSelf.events mutableCopy];
-        [events addObjectsFromArray:[weakSelf mockEvents]];
-        weakSelf.events = events;
-
-        NSArray *indexPaths = @[[NSIndexPath indexPathForRow:weakSelf.events.count-3 inSection:0],
-                                [NSIndexPath indexPathForRow:weakSelf.events.count-2 inSection:0],
-                                [NSIndexPath indexPathForRow:weakSelf.events.count-1 inSection:0]];
         [weakSelf.contentView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
 
         [weakSelf.contentView endUpdates];
@@ -172,37 +211,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     DaliyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyDaliyCell" forIndexPath:indexPath];
-   // NSLog(@"%@", self.events[indexPath.row]);
+    myEvent *me = self.events[indexPath.row];
 
     // title
-    cell.titleLable.text = self.events[indexPath.row][@"e_title"];
+    cell.titleLable.text = me.e_title;
     // desc
-    cell.descriptionLabel.text = self.events[indexPath.row][@"desc"];
-    
+    cell.descriptionLabel.text = me.desc;
+
     // month day hour min
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *date = [dateFormatter dateFromString:self.events[indexPath.row][@"e_time"]];
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSCalendarUnitHour | NSCalendarUnitMinute fromDate:date]; // Get necessary date components
-    cell.dateLabel.text = [NSString stringWithFormat:@"%d", [components day]];
-    cell.monthLabel.text = self.month_en[[components month]-1];//[NSString stringWithFormat:@"%d", [components month]];
-    cell.hourminLabel.text = [NSString stringWithFormat:@"%d:%02d", [components hour],[components minute]];
+    NSDate *currentDate = me.e_time;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour | NSCalendarUnitMinute fromDate:currentDate]; // Get necessary date components
+    cell.dateLabel.text = [NSString stringWithFormat:@"%ld", components.day];
+    cell.monthLabel.text = self.month_en[components.month - 1];
+    cell.hourminLabel.text = [NSString stringWithFormat:@"%ld:%02ld", components.hour, components.minute];
 
     // reminder
-     NSDate *currentDate = [dateFormatter dateFromString:self.events[indexPath.row][@"e_time"]];
-    cell.reminderLabel.text = [self convertTimeToAgo:currentDate];
+    cell.reminderLabel.text = [self convertTimeToAgo:me.e_time];
     
     // color
-    cell.dotView.backgroundColor = [self colorFromHexString:self.events[indexPath.row][@"color"]];
-    cell.colorView.backgroundColor = [self colorFromHexString:self.events[indexPath.row][@"color"]];
+    cell.dotView.backgroundColor = [self colorFromHexString:me.color];
+    cell.colorView.backgroundColor = [self colorFromHexString:me.color];
     
-    // image url
-    NSString *imageUrl= self.events[indexPath.row][@"img_url"];
-    [cell.img setImageWithURL:[NSURL URLWithString:imageUrl]];
+    [cell.img setImageWithURL:[NSURL URLWithString:me.img_url]];
     
     // template name
-    cell.templateNameLabel.text = [NSString stringWithFormat:@"#%@", self.events[indexPath.row][@"t_name"]];
+    cell.templateNameLabel.text = [NSString stringWithFormat:@"#%@", me.t_name];
     
     return cell;
 }
