@@ -23,6 +23,7 @@
 //templateList
 -(NSMutableArray *)getTemplateList;
 -(NSMutableArray *)getTemplateListByID:(NSString *)t_id;
+-(NSMutableArray *)getNewBornTemplateList;
 
 //templateEventList
 -(NSMutableArray *)getTemplateEventListByTID:(NSString *)t_id;
@@ -39,5 +40,6 @@
 
 //myTemplate
 -(NSMutableArray *)getMyTemplate;
+-(void)insertNewBornTemplateEventWithStartTime:(NSDate *)startTime templateTitle:(NSString *)templateTitle;
 
 @end
