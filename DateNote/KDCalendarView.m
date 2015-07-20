@@ -96,10 +96,11 @@
     [self.collectionView registerClass:[KDCalendarViewMonthCell class]
             forCellWithReuseIdentifier:NSStringFromClass([KDCalendarViewMonthCell class])];
     
-    
+
     [self addSubview:self.collectionView];
-    // Events
     
+
+    //[self loadEventsInCalendar];
     
 }
 
@@ -113,8 +114,6 @@
 {
     if(self.dataSource)
     {
-        
-        
         _startDateCache = self.dataSource.startDate;
         
         // * Get the start of the first month and set it as the base date
@@ -181,10 +180,12 @@
                          didScrollToMonth:self.dataSource.startDate];
     }
     
+    /*
     if(self.showsEvents)
     {
         [self loadEventsInCalendar];
     }
+    */
     
     _numberOfItemsInSectionCache = [_calendar components:NSCalendarUnitMonth
                                                 fromDate:_startDateCache
@@ -474,8 +475,6 @@
     if(showsEvents && _startDateCache) // if we set to YES and the view has fetched the dates from the delegates
     {
         [self loadEventsInCalendar];
-        
-        
     }
     
     _showsEvents = showsEvents;
@@ -495,7 +494,6 @@
         // Process Events
         
         NSInteger numberOfItems = [self collectionView:self.collectionView numberOfItemsInSection:0];
-        
         NSMutableArray* eventsByMonth = [NSMutableArray arrayWithCapacity:numberOfItems];
         
         for (int i = 0; i < numberOfItems; i++)
@@ -525,13 +523,11 @@
         __weak KDCalendarView* wself = self;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             [wself.collectionView reloadData];
-            
         });
     };
     
-    //dispatch_async(dispatch_get_global_queue(0, 0), FetchEventsBlock);
+    dispatch_async(dispatch_get_global_queue(0, 0), FetchEventsBlock);
 }
 
 

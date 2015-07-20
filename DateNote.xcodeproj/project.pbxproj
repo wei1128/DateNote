@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		1044D6761B53FEDB0074BAE1 /* DaliyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044D6751B53FEDB0074BAE1 /* DaliyViewController.m */; };
 		1044D6791B53FF520074BAE1 /* DaliyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044D6781B53FF520074BAE1 /* DaliyCell.m */; };
-		124B13131B5652C1004ACE94 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 124B13121B5652C1004ACE94 /* libsqlite3.0.dylib */; };
-		124B13191B56532F004ACE94 /* SqlClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 124B13161B56532F004ACE94 /* SqlClient.m */; };
-		124B131A1B56532F004ACE94 /* SqlData.m in Sources */ = {isa = PBXBuildFile; fileRef = 124B13181B56532F004ACE94 /* SqlData.m */; };
 		269E57901B53B085009895D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 269E578F1B53B085009895D8 /* main.m */; };
 		269E57931B53B085009895D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 269E57921B53B085009895D8 /* AppDelegate.m */; };
 		269E57961B53B085009895D8 /* DateNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 269E57941B53B085009895D8 /* DateNote.xcdatamodeld */; };
@@ -29,6 +26,8 @@
 		269E57CA1B53B347009895D8 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269E57C91B53B347009895D8 /* EventKit.framework */; };
 		269E57CF1B53B386009895D8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269E57CD1B53B386009895D8 /* HomeViewController.m */; };
 		269E57D01B53B386009895D8 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 269E57CE1B53B386009895D8 /* HomeViewController.xib */; };
+		26CB74011B5BA15A0011FFBE /* datenote.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 26CB74001B5BA15A0011FFBE /* datenote.sqlite */; };
+		26CB74041B5BA1B20011FFBE /* myEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CB74031B5BA1B20011FFBE /* myEvent.m */; };
 		7C08A9EAD6F197971610F834 /* libPods-DateNote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 816D42E15CCD84D5BCE37842 /* libPods-DateNote.a */; };
 		EFA687A71B56529C002B0AEC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA687A61B56529C002B0AEC /* libsqlite3.0.dylib */; };
 		EFA687AD1B565340002B0AEC /* SqlClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA687AA1B565340002B0AEC /* SqlClient.m */; };
@@ -50,11 +49,6 @@
 		1044D6751B53FEDB0074BAE1 /* DaliyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaliyViewController.m; sourceTree = "<group>"; };
 		1044D6771B53FF520074BAE1 /* DaliyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaliyCell.h; sourceTree = "<group>"; };
 		1044D6781B53FF520074BAE1 /* DaliyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaliyCell.m; sourceTree = "<group>"; };
-		124B13121B5652C1004ACE94 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		124B13151B56532F004ACE94 /* SqlClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqlClient.h; sourceTree = "<group>"; };
-		124B13161B56532F004ACE94 /* SqlClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqlClient.m; sourceTree = "<group>"; };
-		124B13171B56532F004ACE94 /* SqlData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqlData.h; sourceTree = "<group>"; };
-		124B13181B56532F004ACE94 /* SqlData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqlData.m; sourceTree = "<group>"; };
 		17340886D3AABEC62CABBFF4 /* Pods-DateNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateNote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DateNote/Pods-DateNote.debug.xcconfig"; sourceTree = "<group>"; };
 		269E578A1B53B085009895D8 /* DateNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DateNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E578E1B53B085009895D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -86,6 +80,9 @@
 		269E57CC1B53B386009895D8 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		269E57CD1B53B386009895D8 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		269E57CE1B53B386009895D8 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		26CB74001B5BA15A0011FFBE /* datenote.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = datenote.sqlite; sourceTree = SOURCE_ROOT; };
+		26CB74021B5BA1B20011FFBE /* myEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myEvent.h; sourceTree = "<group>"; };
+		26CB74031B5BA1B20011FFBE /* myEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myEvent.m; sourceTree = "<group>"; };
 		816D42E15CCD84D5BCE37842 /* libPods-DateNote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DateNote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5FCD7777FF8A703F770E36D /* Pods-DateNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateNote.release.xcconfig"; path = "Pods/Target Support Files/Pods-DateNote/Pods-DateNote.release.xcconfig"; sourceTree = "<group>"; };
 		EFA687A61B56529C002B0AEC /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -100,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				124B13131B5652C1004ACE94 /* libsqlite3.0.dylib in Frameworks */,
+				EFA687A71B56529C002B0AEC /* libsqlite3.0.dylib in Frameworks */,
 				269E57CA1B53B347009895D8 /* EventKit.framework in Frameworks */,
 				7C08A9EAD6F197971610F834 /* libPods-DateNote.a in Frameworks */,
 			);
@@ -116,21 +113,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		124B13141B5652C8004ACE94 /* SQLite */ = {
-			isa = PBXGroup;
-			children = (
-				124B13151B56532F004ACE94 /* SqlClient.h */,
-				124B13161B56532F004ACE94 /* SqlClient.m */,
-				124B13171B56532F004ACE94 /* SqlData.h */,
-				124B13181B56532F004ACE94 /* SqlData.m */,
-			);
-			name = SQLite;
-			sourceTree = "<group>";
-		};
 		1CF49009DEE5B80B1E8A3734 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				124B13121B5652C1004ACE94 /* libsqlite3.0.dylib */,
+				EFA687A61B56529C002B0AEC /* libsqlite3.0.dylib */,
 				816D42E15CCD84D5BCE37842 /* libPods-DateNote.a */,
 			);
 			name = Frameworks;
@@ -160,7 +146,9 @@
 		269E578C1B53B085009895D8 /* DateNote */ = {
 			isa = PBXGroup;
 			children = (
-				124B13141B5652C8004ACE94 /* SQLite */,
+				26CB74051B5BCEE00011FFBE /* Resources */,
+				26CB73FF1B5BA1380011FFBE /* model */,
+				EFA687A81B565331002B0AEC /* SQLite */,
 				269E57CB1B53B36D009895D8 /* Home */,
 				269E57B61B53B2BB009895D8 /* KDCalendar */,
 				269E57911B53B085009895D8 /* AppDelegate.h */,
@@ -233,6 +221,23 @@
 				269E57CE1B53B386009895D8 /* HomeViewController.xib */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		26CB73FF1B5BA1380011FFBE /* model */ = {
+			isa = PBXGroup;
+			children = (
+				26CB74021B5BA1B20011FFBE /* myEvent.h */,
+				26CB74031B5BA1B20011FFBE /* myEvent.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		26CB74051B5BCEE00011FFBE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				26CB74001B5BA15A0011FFBE /* datenote.sqlite */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		78DECB3AC8861B3442D84E3C /* Pods */ = {
@@ -340,6 +345,7 @@
 				269E579C1B53B085009895D8 /* Main.storyboard in Resources */,
 				269E57A11B53B085009895D8 /* LaunchScreen.xib in Resources */,
 				269E579E1B53B085009895D8 /* Images.xcassets in Resources */,
+				26CB74011B5BA15A0011FFBE /* datenote.sqlite in Resources */,
 				269E57D01B53B386009895D8 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,13 +402,14 @@
 				269E57991B53B085009895D8 /* ViewController.m in Sources */,
 				1044D6791B53FF520074BAE1 /* DaliyCell.m in Sources */,
 				269E57C51B53B2E7009895D8 /* KDCalendarView.m in Sources */,
-				124B13191B56532F004ACE94 /* SqlClient.m in Sources */,
+				EFA687AD1B565340002B0AEC /* SqlClient.m in Sources */,
 				269E57C61B53B2E7009895D8 /* KDCalendarViewDayCell.m in Sources */,
 				269E57901B53B085009895D8 /* main.m in Sources */,
 				269E57CF1B53B386009895D8 /* HomeViewController.m in Sources */,
 				269E57C81B53B2E7009895D8 /* KDMonthCollectionViewFlowLayout.m in Sources */,
 				269E57C41B53B2E7009895D8 /* KDCalendarLineReusableView.m in Sources */,
-				124B131A1B56532F004ACE94 /* SqlData.m in Sources */,
+				EFA687AE1B565340002B0AEC /* SqlData.m in Sources */,
+				26CB74041B5BA1B20011FFBE /* myEvent.m in Sources */,
 				269E57C31B53B2E7009895D8 /* KDCalendarHeaderView.m in Sources */,
 				1044D6761B53FEDB0074BAE1 /* DaliyViewController.m in Sources */,
 				269E57C71B53B2E7009895D8 /* KDCalendarViewMonthCell.m in Sources */,
@@ -533,6 +540,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = DateNote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -544,6 +552,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = DateNote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

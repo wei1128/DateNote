@@ -18,6 +18,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Pods-DateNote-SVPullToRefresh.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>Pods-DateNote.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -28,12 +33,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>5E66D8D5C1E5673F2F5EA67A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>665CC22DEA142050E6C0BE23</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>6A388DEDDD89341962695D48</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A26F0D26326A1A1568FE9640</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A34F654373A59661EF861C65</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AA0BA6371115CDA6D41ED049</key>
 		<dict>
 			<key>primary</key>
 			<true/>
