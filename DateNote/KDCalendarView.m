@@ -470,7 +470,7 @@
     _showsEvents = showsEvents;
 }
 
-- (void) addEvents:(NSArray *)newEvents {
+- (void)addEvents:(NSArray *)newEvents {
     [self.allEvents addObjectsFromArray:newEvents];
     
     [self loadEventsInCalendar];

@@ -74,8 +74,15 @@ NSString * const colorList[] = {
     return result;
 }
 
--(NSMutableArray *)getMyEventByPeriod:(NSString *)startTime :(NSString *)endTime{
-    NSMutableArray *result = [SqlData getMyEventByPeriod:startTime :endTime];
++(NSMutableArray *)getMyEventFrom:(NSDate *)startTime to:(NSDate *)endTime{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    
+    NSString *startStr = [formatter stringFromDate:startTime];
+    NSString *endStr = [formatter stringFromDate:endTime];
+    NSMutableArray *result = [SqlData getMyEventFrom:startStr to:endStr];
+    
     return result;
 }
 

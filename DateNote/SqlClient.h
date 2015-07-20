@@ -28,7 +28,8 @@
 -(NSMutableArray *)getMyEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id;
 -(NSMutableArray *)getMyPastEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id;
 -(NSMutableArray *)getMyEventByDay:(NSString *)time;
--(NSMutableArray *)getMyEventByPeriod:(NSString *)startTime :(NSString *)endTime;
+
++(NSMutableArray *)getMyEventFrom:(NSDate *)startTime to:(NSDate *)endTime;
 
 
 //myTemplate

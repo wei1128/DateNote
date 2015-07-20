@@ -31,7 +31,7 @@
     [self.calendar setMonthDisplayed:today];
 
     [self.calendar setDateSelected:today];
-    [self.calendar addEvents:[myEvent from:[self startDate] to:[self startDate]]];
+    [self.calendar addEvents:[myEvent from:[self startDate] to:[self endDate]]];
 }
 
 -(NSDate*)startDate
@@ -58,7 +58,7 @@
     NSDate *eday = [[NSCalendar currentCalendar] dateFromComponents:firstday];
     
     NSDateComponents *offsetDateComponents = [[NSDateComponents alloc] init];
-    offsetDateComponents.month = 12;
+    offsetDateComponents.year = 1;
     offsetDateComponents.second = -1;
     eday = [[NSCalendar currentCalendar]dateByAddingComponents:offsetDateComponents toDate:eday options:0];
     

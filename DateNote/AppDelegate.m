@@ -24,7 +24,6 @@
     //[SqlData createEdiableCopyOfDatabaseIfNeeded];
     
     myEvent *me = [[myEvent alloc]init];
-    NSMutableArray *result = [me getMyEvent:[[NSDate alloc]init] :1 :1 :@""];
     
     return YES;
 }

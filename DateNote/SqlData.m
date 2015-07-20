@@ -146,7 +146,7 @@ static sqlite3 *database = nil;
     return result;
 }
 
-+(NSMutableArray *)getMyEventByPeriod:(NSString *)startTime :(NSString *)endTime{
++(NSMutableArray *)getMyEventFrom:(NSString *)startTime to:(NSString *)endTime{
     //建立 Sqlite 語法
     NSString *sqlString = [NSString stringWithFormat:@"select * from myEventView where e_time >='%@' and e_time <='%@' order by e_time asc",startTime, endTime];
     

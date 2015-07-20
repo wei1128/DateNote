@@ -7,7 +7,7 @@
 //
 
 #import "myEvent.h"
-#import "SqlData.h"
+#import "SqlClient.h"
 
 @implementation myEvent
 
@@ -15,26 +15,15 @@
     self = [super init];
     if (self) {
         self.me_id = [dictionary[@"me_id"] integerValue];
-    
     }
     
     return self;
 }
 
-
-
--(NSMutableArray *)getMyEvent :(NSDate *)time :(NSInteger)count :(NSInteger)pg :(NSString *)catid {
-    NSString *cmd = @"select * from myEvent";
-    NSMutableArray *result = [SqlData select:cmd];
-    
-    return result;
-}
-
 + (NSArray *)from:(NSDate *)start to:(NSDate *)end {
-
-    NSLog(@"%@", start);
+    NSMutableArray *events = [SqlClient getMyEventFrom:start to:end];
+    NSLog(@"%@", events);
     return [[NSArray alloc] init];
 }
-
 
 @end
