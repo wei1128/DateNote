@@ -10,8 +10,18 @@
 
 @interface myEvent : NSObject
 
--(NSMutableArray *)getMyEvent :(NSDate *)time :(NSInteger)count :(NSInteger)pg :(NSString *)catid;
+@property (nonatomic, assign) NSInteger me_id;
+@property (nonatomic, assign) NSInteger mt_id;
+@property (nonatomic, strong) NSString *e_title;
+@property (nonatomic, strong) NSString *e_detail_url;
+@property (nonatomic, strong) NSDate *e_time;
+@property (nonatomic, strong) NSString *r_id;
+@property (nonatomic, strong) NSString *desc;
+@property (nonatomic, strong) NSString *img_url;
 
-    
+- (id)initWithDictionary :(NSDictionary *)dictionary;
+
++ (NSArray *)from:(NSDate *)start to:(NSDate *)end;
+-(NSMutableArray *)getMyEvent:(NSDate *)time :(NSInteger)count :(NSInteger)pg :(NSString *)catid;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "KDCalendarView.h"
+#import "myEvent.h"
 
 @interface HomeViewController () <KDCalendarDelegate, KDCalendarDataSource>
 @property (weak, nonatomic) IBOutlet KDCalendarView *calendar;
@@ -28,32 +29,40 @@
 {
     NSDate *today = [[NSDate alloc]init];
     [self.calendar setMonthDisplayed:today];
-    
 
     [self.calendar setDateSelected:today];
-    [self.calendar setShowsEvents:YES];
-    //[self.calendar dateByAddingComponents:components toDate:components options:0];
+    [self.calendar addEvents:[myEvent from:[self startDate] to:[self startDate]]];
 }
 
 -(NSDate*)startDate
 {
-    NSDateComponents *offsetDateComponents = [[NSDateComponents alloc] init];
-    offsetDateComponents.month = -3;
-    NSDate *threeMonthsBeforeDate = [[NSCalendar currentCalendar]dateByAddingComponents:offsetDateComponents toDate:[NSDate date] options:0];
+    NSDateComponents *firstday = [[NSCalendar currentCalendar] components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:[NSDate date]];
+    [firstday setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    firstday.day = 1;
     
-    return threeMonthsBeforeDate;
+    NSDate *sday = [[NSCalendar currentCalendar] dateFromComponents:firstday];
+    
+    NSDateComponents *offsetDateComponents = [[NSDateComponents alloc] init];
+    offsetDateComponents.month = -6;
+    sday = [[NSCalendar currentCalendar]dateByAddingComponents:offsetDateComponents toDate:sday options:0];
+    
+    return sday;
 }
 
 -(NSDate*)endDate
 {
+    NSDateComponents *firstday = [[NSCalendar currentCalendar] components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:[NSDate date]];
+    [firstday setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    firstday.day = 1;
+    
+    NSDate *eday = [[NSCalendar currentCalendar] dateFromComponents:firstday];
+    
     NSDateComponents *offsetDateComponents = [[NSDateComponents alloc] init];
+    offsetDateComponents.month = 12;
+    offsetDateComponents.second = -1;
+    eday = [[NSCalendar currentCalendar]dateByAddingComponents:offsetDateComponents toDate:eday options:0];
     
-    offsetDateComponents.year = 2;
-    offsetDateComponents.month = 0;
-    
-    NSDate *yearLaterDate = [[NSCalendar currentCalendar] dateByAddingComponents:offsetDateComponents toDate:[NSDate date] options:0];
-    
-    return yearLaterDate;
+    return eday;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -29,6 +29,7 @@
 
 - (void) setDateSelected:(NSDate *)dateSelected animated:(BOOL)animated;
 - (void)setMonthDisplayed:(NSDate *)monthDisplayed animated:(BOOL)animated;
+- (void) addEvents:(NSArray *)newEvents;
 
 @end
 

@@ -26,14 +26,13 @@
     
     NSInteger _firstDayActive;
     NSInteger _lastDayActive;
-    
 }
 
 @property (nonatomic, readonly) KDCalendarViewMonthCell* currentMonthCell;
 @property (nonatomic, readonly) NSInteger monthIndex;
 @property (nonatomic, strong) UICollectionView* collectionView;
-@property (nonatomic, strong) NSArray *events;
-
+@property (nonatomic, strong) NSArray *events;  //calender events which is orgnized by month and day
+@property (nonatomic, strong) NSMutableArray *allEvents;
 @property (nonatomic, readonly) NSUInteger cellDisplayedIndex;
 
 @end
@@ -74,6 +73,8 @@
     CGRect sFrame = self.frame;
     sFrame.origin = CGPointZero;
     
+    self.allEvents = [[NSMutableArray alloc]init];
+    
     self.collectionView = [[UICollectionView alloc] initWithFrame:sFrame
                                              collectionViewLayout:flowLayout];
     
@@ -87,7 +88,6 @@
     self.layer.borderWidth = 1.0;
     self.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
     
-    
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
@@ -98,9 +98,6 @@
     
 
     [self addSubview:self.collectionView];
-    
-
-    //[self loadEventsInCalendar];
     
 }
 
@@ -179,13 +176,7 @@
         [self.delegate calendarController:self
                          didScrollToMonth:self.dataSource.startDate];
     }
-    
-    /*
-    if(self.showsEvents)
-    {
-        [self loadEventsInCalendar];
-    }
-    */
+
     
     _numberOfItemsInSectionCache = [_calendar components:NSCalendarUnitMonth
                                                 fromDate:_startDateCache
@@ -471,7 +462,6 @@
 
 - (void) setShowsEvents:(BOOL)showsEvents
 {
-    
     if(showsEvents && _startDateCache) // if we set to YES and the view has fetched the dates from the delegates
     {
         [self loadEventsInCalendar];
@@ -480,15 +470,18 @@
     _showsEvents = showsEvents;
 }
 
+- (void) addEvents:(NSArray *)newEvents {
+    [self.allEvents addObjectsFromArray:newEvents];
+    
+    [self loadEventsInCalendar];
+}
 
 - (void) loadEventsInCalendar
 {
-    
     if(!_store)
     {
         _store = [[EKEventStore alloc] init];
     }
-    
     
     void(^FetchEventsBlock)(void) = ^{
         // Process Events
@@ -505,7 +498,6 @@
                 [eventsByDay addObject:eventsContainer];
             }
             [eventsByMonth addObject:eventsByDay];
-         
         }
         
         NSMutableArray *eventsContainer = (NSMutableArray*)eventsByMonth[1][6];
