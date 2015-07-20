@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A34F654373A59661EF861C65"
+               BlueprintIdentifier = "AD4CC670CDCC2360BA309062"
                BuildableName = "libPods-DateNote-SVPullToRefresh.a"
                BlueprintName = "Pods-DateNote-SVPullToRefresh"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -39,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A34F654373A59661EF861C65"
-            BuildableName = "libPods-DateNote-SVPullToRefresh.a"
-            BlueprintName = "Pods-DateNote-SVPullToRefresh"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -57,15 +48,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A34F654373A59661EF861C65"
-            BuildableName = "libPods-DateNote-SVPullToRefresh.a"
-            BlueprintName = "Pods-DateNote-SVPullToRefresh"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

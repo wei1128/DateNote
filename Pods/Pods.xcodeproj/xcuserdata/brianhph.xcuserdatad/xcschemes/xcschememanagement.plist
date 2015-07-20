@@ -6,58 +6,43 @@
 	<dict>
 		<key>Pods-DateNote-AFNetworking.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-DateNote-SVProgressHUD.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-DateNote-SVPullToRefresh.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-DateNote.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5E66D8D5C1E5673F2F5EA67A</key>
+		<key>3BB36FFA317F336E979C98C0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>753BF5871D44149AB8E1909E</key>
+		<key>72975F3DE956D573593EF457</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79296770D6E831DF9A6D50B4</key>
+		<key>AD4CC670CDCC2360BA309062</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>98F414E561A173CED7A2AB9B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A26F0D26326A1A1568FE9640</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A34F654373A59661EF861C65</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AA0BA6371115CDA6D41ED049</key>
+		<key>D41E5E61F1F5E7AE9190A75E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
