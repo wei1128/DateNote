@@ -22,7 +22,6 @@
     self.calendar.delegate = self;
     self.calendar.dataSource = self;
     self.calendar.showsEvents = YES;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated

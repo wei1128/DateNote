@@ -175,6 +175,21 @@ static sqlite3 *database = nil;
     return result;
 }
 
++(void) deleteMyEventByMyEventID:(NSString *)me_id{
+    NSString *sqlString = [NSString stringWithFormat:@"%@%@", @"delete from myEvent where me_id =", me_id];
+    [self deleteData:sqlString];
+}
+
++(void) deleteMyEventByMyTemplateID:(NSString *)mt_id{
+    NSString *sqlString = [NSString stringWithFormat:@"%@%@", @"delete from myEvent where mt_id =", mt_id];
+    [self deleteData:sqlString];
+}
+
++(void) deleteMyEventByRecycleID:(NSString *)r_id{
+    NSString *sqlString = [NSString stringWithFormat:@"%@%@", @"delete from myEvent where r_id =", r_id];
+    [self deleteData:sqlString];
+}
+
 + (void)insertMyEvent:(NSMutableDictionary *)myEvent{
     NSString *mt_id = [myEvent valueForKey:@"mt_id"];
     NSString *e_title = [myEvent objectForKey:@"e_title"];
@@ -203,6 +218,7 @@ static sqlite3 *database = nil;
     NSString *sqlFormat = @"insert into myTemplate (template_id,t_name,color)values(%@,'%@','%@')";
     
     NSString *sqlString = [NSString stringWithFormat:sqlFormat, template_id, t_name, color];
+    NSLog(@"insertMyTemplate = %@",sqlString);
     
     const char *sql = [sqlString UTF8String];
     
@@ -215,6 +231,7 @@ static sqlite3 *database = nil;
     NSString *sqlFormat = @"insert into templateList (t_name)values('%@')";
     
     NSString *sqlString = [NSString stringWithFormat:sqlFormat, t_name];
+    NSLog(@"insertTemplateList = %@", sqlString);
     
     const char *sql = [sqlString UTF8String];
     
@@ -234,14 +251,13 @@ static sqlite3 *database = nil;
     NSString *sqlFormat = @"insert into templateEventList (template_id,recycle,e_title,desc,e_detail_url,unit,period,img_url)values(%@,'%@','%@','%@','%@','%@',%@,'%@')";
     
     NSString *sqlString = [NSString stringWithFormat:sqlFormat, template_id, recycle, e_title, desc, e_detail_url, unit, period, img_url];
-    
+    NSLog(@"insert Data = %@",sqlString);
     const char *sql = [sqlString UTF8String];
     
     [self insertData:sql];
 }
 
 + (void)insertData:(const char *)sql{
-    NSLog(@"insert Data = %s",sql);
     char *insertErrorMsg;
 
     if (sqlite3_exec(database, sql, NULL, NULL, &insertErrorMsg)==SQLITE_OK) {
@@ -250,6 +266,18 @@ static sqlite3 *database = nil;
         NSLog(@"insertData -- error = %s",insertErrorMsg);
     }
     NSLog(@"sqlite3_last_insert_rowid = %lld", sqlite3_last_insert_rowid(database));
+}
+
++ (void)deleteData:(NSString *)sqlString{
+    NSLog(@"deleteData = %@",sqlString);
+    char *errorMsg;
+    const char *sql = [sqlString UTF8String];
+    
+    if (sqlite3_exec(database, sql, NULL, NULL, &errorMsg)==SQLITE_OK) {
+        NSLog(@"Delete OK");
+    }else{
+        NSLog(@"deleteData -- error = %s",errorMsg);
+    }
 }
 
 + (NSInteger)getLastInsertRowID{

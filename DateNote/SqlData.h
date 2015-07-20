@@ -21,8 +21,8 @@
 + (NSMutableArray *)getData:(NSString *)cmd;
 + (NSInteger)getLastInsertRowID;
 + (void)insertData:(const char *)sql;
++ (void)deleteData:(NSString *)sqlString;
 
-+ (NSMutableArray *)select:(NSString *)tableName;
 + (NSMutableArray *)getTemplateListByID:(NSString *)t_id;
 
 //templateEventList
@@ -33,6 +33,9 @@
 +(NSMutableArray *)getMyPastEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id;
 +(NSMutableArray *)getMyEventByDay:(NSString *)startTime :(NSString *)endTime;
 +(NSMutableArray *)getMyEventFrom:(NSString *)startTime to:(NSString *)endTime;
++(void) deleteMyEventByMyEventID:(NSString *)me_id;
++(void) deleteMyEventByMyTemplateID:(NSString *)mt_id;
++(void) deleteMyEventByRecycleID:(NSString *)r_id;
 
 + (void)insertTempData;
 + (void)insertMyEvent:(NSMutableDictionary *)myEvent;

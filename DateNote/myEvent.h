@@ -22,6 +22,6 @@
 - (id)initWithDictionary :(NSDictionary *)dictionary;
 
 + (NSArray *)from:(NSDate *)start to:(NSDate *)end;
--(NSMutableArray *)getMyEvent:(NSDate *)time :(NSInteger)count :(NSInteger)pg :(NSString *)catid;
++ (NSArray *)myEventsWithArray:(NSArray *)array;
 
 @end

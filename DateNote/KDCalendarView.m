@@ -9,6 +9,7 @@
 #import "KDCalendarView.h"
 #import "KDCalendarViewDayCell.h"
 #import <EventKit/EventKit.h>
+#import "myEvent.h"
 
 #define DEFAULT_NUMBER_OF_MONTHS 24
 #define MAX_NUMBER_OF_DAYS_IN_MONTH 31
@@ -500,14 +501,20 @@
             [eventsByMonth addObject:eventsByDay];
         }
         
+        for (myEvent *myevent in self.allEvents) {
+            NSDateComponents *components = [_calendar components:NSCalendarUnitMonth | NSCalendarUnitDay fromDate:_startDateCache toDate:myevent.e_time options:0];
+            
+            NSMutableArray* monthMutableArray = (NSMutableArray*)eventsByMonth[components.month];
+            
+            NSMutableArray* eventsContainer = (NSMutableArray*)monthMutableArray[components.day];
+            
+            [eventsContainer addObject:myevent];
+        }
+        
+        NSLog(@"%@", self.allEvents);
         NSMutableArray *eventsContainer = (NSMutableArray*)eventsByMonth[1][6];
+        
         [eventsContainer addObject:@"123"];
-        [eventsContainer addObject:@"345"];
-        [eventsContainer addObject:@"345"];
-        [eventsContainer addObject:@"345"];
-        [eventsContainer addObject:@"345"];
-        [eventsContainer addObject:@"345"];
-        [eventsContainer addObject:@"345"];
         [eventsContainer addObject:@"345"];
         
         self.events = [NSArray arrayWithArray:eventsByMonth];
