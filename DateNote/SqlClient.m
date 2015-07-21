@@ -201,32 +201,23 @@ NSString * const colorList[] = {
 }
 
 +(NSMutableArray *)getMyEventFrom:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg mt_id:(NSString *)mt_id{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
     
-    NSString *timeStr = [formatter stringFromDate:time];
+    NSString *timeStr = [SqlClient getStringFromDate:time];
     
     NSMutableArray *result = [SqlData getMyEventFrom:timeStr count:count pg:pg my_id:mt_id];
     return result;
 }
 +(NSMutableArray *)getMyEventFrom:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
     
-    NSString *timeStr = [formatter stringFromDate:time];
+    NSString *timeStr = [SqlClient getStringFromDate:time];
     
     NSMutableArray *result = [SqlData getMyEventFrom:timeStr count:count pg:pg];
     return result;
 }
 
 +(NSMutableArray *)getMyPastEvent:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg mt_id:(NSString *)mt_id{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
-    
-    NSString *timeStr = [formatter stringFromDate:time];
+
+    NSString *timeStr = [SqlClient getStringFromDate:time];
     
     NSMutableArray *result = [SqlData getMyPastEvent:timeStr count:count pg:pg mt_id:mt_id];
     
@@ -234,12 +225,7 @@ NSString * const colorList[] = {
 }
 
 +(NSMutableArray *)getMyPastEvent:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
-    
-    NSString *timeStr = [formatter stringFromDate:time];
-    
+    NSString *timeStr = [SqlClient getStringFromDate:time];
     NSMutableArray *result = [SqlData getMyPastEvent:timeStr count:count pg:pg];
     
     return result;
@@ -251,25 +237,34 @@ NSString * const colorList[] = {
     return result;
 }
 
--(NSMutableArray *)getMyEventByDay:(NSString *)time{
-    NSString *startTime = [NSString stringWithFormat:@"%@ 00:00:00",time];
-    NSString *endTime = [NSString stringWithFormat:@"%@ 23:59:59",time];
++(NSMutableArray *)getMyEventByDay:(NSDate *)time{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+
+    [dateFormatter setDateFormat:@"yyyy-MM-dd 00:00:00"];
+    NSString *startTime = [dateFormatter stringFromDate:time];
     
-    NSMutableArray *result = [SqlData getMyEventByDay:startTime :endTime];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd 23:59:59"];
+    NSString *endTime = [dateFormatter stringFromDate:time];
     
+    NSMutableArray *result = [SqlData getMyEventFrom:startTime to:endTime];
     return result;
 }
 
 +(NSMutableArray *)getMyEventFrom:(NSDate *)startTime to:(NSDate *)endTime{
+    NSString *startStr = [SqlClient getStringFromDate:startTime];
+    NSString *endStr = [SqlClient getStringFromDate:endTime];
+    NSMutableArray *result = [SqlData getMyEventFrom:startStr to:endStr];
+    
+    return result;
+}
+
++ (NSString *)getStringFromDate:(NSDate *)date {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
     
-    NSString *startStr = [formatter stringFromDate:startTime];
-    NSString *endStr = [formatter stringFromDate:endTime];
-    NSMutableArray *result = [SqlData getMyEventFrom:startStr to:endStr];
-    
-    return result;
+    return [formatter stringFromDate:date];
 }
 
 -(void) deleteMyEventByMyEventID:(NSString *)me_id{
