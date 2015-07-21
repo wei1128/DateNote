@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rb2-A5-k0I">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rb2-A5-k0I">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -279,19 +279,26 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CJ2-xH-97Q" id="yPY-UY-AKX">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="喝紅豆湯" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="44h-gc-aW1">
-                                                    <rect key="frame" x="90" y="15" width="68" height="21"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="喝紅豆湯" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="44h-gc-aW1">
+                                                    <rect key="frame" x="90" y="15" width="60" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="3RD-P3-2C8"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxX-uE-gNg">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxX-uE-gNg">
                                                     <rect key="frame" x="39" y="15" width="43" height="21"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="43" id="T6Y-gd-RST"/>
+                                                        <constraint firstAttribute="height" constant="21" id="eXq-T9-Uew"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lcp-Cz-LLy">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lcp-Cz-LLy">
                                                     <rect key="frame" x="16" y="18" width="15" height="15"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -299,13 +306,23 @@
                                                         <constraint firstAttribute="height" constant="15" id="gWy-67-zdL"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#女孩月事" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2M-RF-P7t">
-                                                    <rect key="frame" x="498" y="15" width="78" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#女孩月事" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2M-RF-P7t">
+                                                    <rect key="frame" x="502" y="17" width="64" height="17"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Lcp-Cz-LLy" firstAttribute="leading" secondItem="yPY-UY-AKX" secondAttribute="leading" constant="16" id="0o8-DB-UxN"/>
+                                                <constraint firstItem="44h-gc-aW1" firstAttribute="leading" secondItem="TxX-uE-gNg" secondAttribute="trailing" constant="8" id="0oo-e0-367"/>
+                                                <constraint firstItem="TxX-uE-gNg" firstAttribute="top" secondItem="yPY-UY-AKX" secondAttribute="top" constant="15" id="Eqm-Xd-GA7"/>
+                                                <constraint firstItem="44h-gc-aW1" firstAttribute="top" secondItem="yPY-UY-AKX" secondAttribute="top" constant="15" id="LS6-04-0sN"/>
+                                                <constraint firstItem="TxX-uE-gNg" firstAttribute="leading" secondItem="Lcp-Cz-LLy" secondAttribute="trailing" constant="8" id="Ujl-va-kSA"/>
+                                                <constraint firstAttribute="trailing" secondItem="v2M-RF-P7t" secondAttribute="trailing" constant="11" id="hCY-PR-tFo"/>
+                                                <constraint firstItem="Lcp-Cz-LLy" firstAttribute="top" secondItem="yPY-UY-AKX" secondAttribute="top" constant="18" id="id7-ZA-yK4"/>
+                                                <constraint firstItem="v2M-RF-P7t" firstAttribute="top" secondItem="yPY-UY-AKX" secondAttribute="top" constant="17" id="osc-Xw-eUc"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dotView" destination="Lcp-Cz-LLy" id="076-iR-psx"/>
