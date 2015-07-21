@@ -33,7 +33,7 @@
 +(NSMutableArray *)getMyEventFrom:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg;
 +(NSMutableArray *)getMyPastEvent:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg mt_id:(NSString *)mt_id;
 +(NSMutableArray *)getMyPastEvent:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg;
--(NSMutableArray *)getMyEventByDay:(NSString *)time;
++(NSMutableArray *)getMyEventByDay:(NSDate *)time;
 +(NSMutableArray *)getMyEventFrom:(NSDate *)startTime to:(NSDate *)endTime;
 -(void) deleteMyEventByMyEventID:(NSString *)me_id;
 -(void) deleteMyEventByMyTemplateID:(NSString *)mt_id;

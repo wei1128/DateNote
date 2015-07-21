@@ -11,8 +11,10 @@
 #import "myEvent.h"
 
 @interface HomeViewController () <KDCalendarDelegate, KDCalendarDataSource>
+
 @property (weak, nonatomic) IBOutlet KDCalendarView *calendar;
 @property (weak, nonatomic) IBOutlet UILabel *displayMonth;
+@property (weak, nonatomic) NSArray *dateEvents;
 
 @end
 
@@ -31,7 +33,7 @@
     [self.calendar setMonthDisplayed:today];
 
     [self.calendar setDateSelected:today];
-    [self.calendar addEvents:[myEvent from:[self startDate] to:[self endDate]]];
+    [self.calendar resetEvents:[myEvent from:[self startDate] to:[self endDate]]];
 }
 
 -(NSDate*)startDate
@@ -79,7 +81,8 @@
 
 -(void)calendarController:(KDCalendarView*)calendarViewController didSelectDay:(NSDate*)date
 {
-    NSLog(@"update table view");
+    self.dateEvents = [myEvent getEventsByDate:date];
+    
 }
 
 
