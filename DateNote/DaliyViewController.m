@@ -58,14 +58,22 @@
 
 - (void) prePage {
     NSInteger index = self.filter.selectedSegmentIndex;
+    NSMutableArray *newEvents = [[NSMutableArray alloc]init];
+    NSArray *newArr = [[NSArray alloc]init];
     
     if (index == 0) {
-        [self.events addObjectsFromArray:[myEvent before:self.startTime pg:self.prePg]];
+        newArr = [[[myEvent before:self.startTime pg:self.prePg] reverseObjectEnumerator] allObjects];
+        [newEvents addObjectsFromArray:newArr];
     } else {
         index--;
         myTemplate *mt = self.my_templates[index];
-        [self.events addObjectsFromArray:[myEvent before:self.startTime pg:self.prePg mt_id:mt.mt_id]];
+        newArr = [[[myEvent before:self.startTime pg:self.prePg mt_id:mt.mt_id] reverseObjectEnumerator] allObjects];
+        [newEvents addObjectsFromArray:newArr];
     }
+    
+    [newEvents addObjectsFromArray:self.events];
+    self.events = newEvents;
+    
     self.prePg++;
 }
 
