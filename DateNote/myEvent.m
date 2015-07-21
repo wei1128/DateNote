@@ -86,4 +86,10 @@
     return events;
 }
 
++ (NSArray *)getEventsByDate:(NSDate *)date {
+    NSArray *events = [SqlClient getMyEventByDay:date];
+    
+    return events;
+}
+
 @end

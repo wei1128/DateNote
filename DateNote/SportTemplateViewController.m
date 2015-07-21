@@ -1,23 +1,24 @@
 //
-//  DetailViewController.m
+//  SportTemplateViewController.m
 //  DateNote
 //
 //  Created by Man-Chun Hsieh on 7/21/15.
 //  Copyright (c) 2015 EC. All rights reserved.
 //
 
+#import "SportTemplateViewController.h"
 #import "DetailViewController.h"
-#import "HomeViewcontroller.h"
 
-@interface DetailViewController ()
+@interface SportTemplateViewController ()
 @property (weak, nonatomic) IBOutlet UINavigationItem *nav;
 @end
 
-@implementation DetailViewController
+@implementation SportTemplateViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    // Do any additional setup after loading the view.
+    
     // set nav
     self.nav.title = self.template[@"t_name"];
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.0f];
@@ -25,18 +26,17 @@
     
     // 左邊 Filter
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                             initWithTitle:@"取消"
+                                             initWithTitle:@"Template"
                                              style:UIBarButtonItemStylePlain
                                              target:self
                                              action:@selector(onCancelButton)];
     
     // 右邊 Filter
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithTitle:@"完成"
+                                              initWithTitle:@"下一步"
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(onDoneButton)];
-
 }
 
 - (void) onCancelButton{
@@ -55,7 +55,8 @@
 
 - (void) onDoneButton{
     [self presentViewFromRight];
-    HomeViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"HomeVC"];  //記得要用storyboard id 傳過去
+    DetailViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"DetailVC"];  //記得要用storyboard id 傳過去
+    vc.template = self.template;
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nvc animated:NO completion:nil];
 }
@@ -68,6 +69,7 @@
     transition.subtype = kCATransitionFromRight;
     [self.view.window.layer addAnimation:transition forKey:nil];
 }
+
 
 
 - (void)didReceiveMemoryWarning {

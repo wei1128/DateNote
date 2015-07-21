@@ -28,6 +28,7 @@
 + (NSArray *)before:(NSDate *)start pg:(NSInteger)pg mt_id:(NSString *)mt_id;
 + (NSArray *)before:(NSDate *)start pg:(NSInteger)pg;
 + (NSArray *)from:(NSDate *)time to:(NSDate *)end;
++ (NSArray *)getEventsByDate:(NSDate *)date;
 
 + (NSArray *)myEventsWithArray:(NSArray *)array;
 

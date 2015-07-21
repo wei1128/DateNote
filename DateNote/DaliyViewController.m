@@ -12,6 +12,7 @@
 #import "SVPullToRefresh.h"
 #import "myEvent.h"
 #import "myTemplate.h"
+#import "WebViewController.h"
 
 @interface DaliyViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *contentView;
@@ -189,6 +190,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];  //取消選取
+
+    myEvent *me = self.events[indexPath.row];
+    if (me.e_detail_url && me.e_detail_url.length > 0) {
+        WebViewController *webViewController = [[WebViewController alloc] initWithUrlString:me.e_detail_url];
+        [self.navigationController pushViewController:webViewController animated:YES];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -253,7 +260,6 @@
     }
     return [NSString stringWithFormat:@"%li %@", (long)difference, [periods objectAtIndex:j]];
 }
-
 
 /*
 #pragma mark - Navigation
