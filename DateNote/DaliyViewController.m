@@ -192,7 +192,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];  //取消選取
 
     myEvent *me = self.events[indexPath.row];
-    if (me.e_detail_url || me.e_detail_url.length == 0) {
+    if (me.e_detail_url && me.e_detail_url.length > 0) {
         WebViewController *webViewController = [[WebViewController alloc] initWithUrlString:me.e_detail_url];
         [self.navigationController pushViewController:webViewController animated:YES];
     }
