@@ -7,6 +7,8 @@
 //
 
 #import "KDCalendarViewDayCell.h"
+#import "myEvent.h"
+#import "commonHelper.h"
 
 @implementation KDCalendarViewDayCell
 
@@ -99,8 +101,10 @@
     
     for (int i = 0; i < _events.count; i++)
     {
+        myEvent *me = _events[i];
+        
         UIView* circleEventView = [_eventsMarksView viewWithTag:(100 + i)];
-        circleEventView.backgroundColor = [UIColor blueColor];
+        circleEventView.backgroundColor = [commonHelper colorFromHexString:me.color];
     }
 }
 

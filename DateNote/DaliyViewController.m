@@ -13,6 +13,7 @@
 #import "myEvent.h"
 #import "myTemplate.h"
 #import "WebViewController.h"
+#import "commonHelper.h"
 
 @interface DaliyViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *contentView;
@@ -98,7 +99,7 @@
     for (int i = 0; i < self.my_templates.count; i++) {
         myTemplate *mt = self.my_templates[i];
         [self.filter insertSegmentWithTitle:mt.t_name atIndex:i + 1 animated:NO];
-        [[[self.filter subviews] objectAtIndex:i + 1] setTintColor:[self colorFromHexString:mt.color]];
+        [[[self.filter subviews] objectAtIndex:i + 1] setTintColor:[commonHelper colorFromHexString:mt.color]];
     }
 
     self.filter.selectedSegmentIndex=0;
@@ -223,8 +224,8 @@
     cell.reminderLabel.text = [self convertTimeToAgo:me.e_time];
     
     // color
-    cell.dotView.backgroundColor = [self colorFromHexString:me.color];
-    cell.colorView.backgroundColor = [self colorFromHexString:me.color];
+    cell.dotView.backgroundColor = [commonHelper colorFromHexString:me.color];
+    cell.colorView.backgroundColor = [commonHelper colorFromHexString:me.color];
     
     [cell.img setImageWithURL:[NSURL URLWithString:me.img_url]];
     
@@ -232,14 +233,6 @@
     cell.templateNameLabel.text = [NSString stringWithFormat:@"#%@", me.t_name];
     
     return cell;
-}
-
-- (UIColor *)colorFromHexString:(NSString *)hexString {
-    unsigned rgbValue = 0;
-    NSScanner *scanner = [NSScanner scannerWithString:hexString];
-    [scanner setScanLocation:1]; // bypass '#' character
-    [scanner scanHexInt:&rgbValue];
-    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
 }
 
 - (NSString *)convertTimeToAgo:(NSDate *)createdDate
