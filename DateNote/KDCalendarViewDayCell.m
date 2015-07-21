@@ -43,7 +43,7 @@
         _selectedMarkView = [[UIView alloc] initWithFrame:CGRectInset(labelFrame, 3.0f, 3.0f)];
         _selectedMarkView.clipsToBounds = YES;
         _selectedMarkView.layer.cornerRadius = _selectedMarkView.frame.size.width * 0.5f;
-        _selectedMarkView.backgroundColor = [UIColor brownColor];
+        _selectedMarkView.backgroundColor = [UIColor orangeColor];
         
         [self addSubview:_selectedMarkView];
         [self addSubview:self.label];

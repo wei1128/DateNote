@@ -19,7 +19,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window.rootViewController = [[HomeViewController alloc] init];
+    //self.window.rootViewController = [[HomeViewController alloc] init];
     [SqlData initializeEdiableCopyOfDatabase];
     //[SqlData createEdiableCopyOfDatabaseIfNeeded];
     

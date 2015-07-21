@@ -1,46 +1,28 @@
 //
-//  CustomViewController.m
+//  DetailViewController.m
 //  DateNote
 //
-//  Created by Man-Chun Hsieh on 7/20/15.
+//  Created by Man-Chun Hsieh on 7/21/15.
 //  Copyright (c) 2015 EC. All rights reserved.
 //
 
-#import "CustomViewController.h"
 #import "DetailViewController.h"
+#import "HomeViewcontroller.h"
 
-@interface CustomViewController (){
-NSArray* _titleSelectionData;
-}
-
+@interface DetailViewController ()
 @property (weak, nonatomic) IBOutlet UINavigationItem *nav;
-
 @end
 
-@implementation CustomViewController
+@implementation DetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //
-    // datepicker
-    dataPicker = [[UIDatePicker alloc] init];
-    dataPicker.datePickerMode = UIDatePickerModeDate;
-    [self.startDate setInputView:dataPicker];
-    [self.endDate setInputView:dataPicker];
-    
-    UIToolbar *toolBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    [toolBar setTintColor:[UIColor grayColor]];
-    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(ShowSelectedDate)];
-    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil] animated:YES];
-
-    
     // set nav
     self.nav.title = self.template[@"t_name"];
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.0f];
     self.navigationController.navigationBar.translucent = NO;
-
+    
     // 左邊 Filter
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
                                              initWithTitle:@"取消"
@@ -54,7 +36,6 @@ NSArray* _titleSelectionData;
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(onDoneButton)];
-
 
 }
 
@@ -74,8 +55,7 @@ NSArray* _titleSelectionData;
 
 - (void) onDoneButton{
     [self presentViewFromRight];
-    DetailViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"DetailVC"];  //記得要用storyboard id 傳過去
-    vc.template = self.template;
+    HomeViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"HomeVC"];  //記得要用storyboard id 傳過去
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nvc animated:NO completion:nil];
 }
@@ -89,13 +69,6 @@ NSArray* _titleSelectionData;
     [self.view.window.layer addAnimation:transition forKey:nil];
 }
 
-
--(void)ShowSelectedDate{
-    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"dd/MM/YYYY hh:min a"];
-    self.startDate.text = [NSString stringWithFormat:@"%@",[formatter stringFromDate:dataPicker.date]];
-    [self.startDate resignFirstResponder];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
