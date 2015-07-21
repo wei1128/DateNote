@@ -87,18 +87,18 @@ static sqlite3 *database = nil;
             NSString *keyName, *value;
             NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
             int column_count = sqlite3_column_count(statement);
-            NSLog(@"count = %d",column_count);
+//            NSLog(@"count = %d",column_count);
             for (int i=0; i<column_count; i++) {
                 int column_type = sqlite3_column_type(statement,i);
                 keyName = [NSString stringWithUTF8String:(char *)sqlite3_column_name(statement, i)];
                 if (column_type == SQLITE_INTEGER) {
-                    NSLog(@"%@",keyName);
+//                    NSLog(@"%@",keyName);
                     value = [NSString stringWithFormat:@"%d",(int)sqlite3_column_int(statement, i)];
                 }else{
                     value = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, i)];
                 }
                 
-                NSLog(@"keyname = %@ , value = %@", keyName, value);
+//                NSLog(@"keyname = %@ , value = %@", keyName, value);
                 [data setObject:value forKey:keyName];
             }
             [result addObject:data];
