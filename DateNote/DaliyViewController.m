@@ -36,7 +36,7 @@
 
     [self setupView];
 
-    self.month_en = @[@"January",@"February",@"March",@"April",@"May",@"June",@"July",@"August",@"September",@"October",@"November",@"December"];
+    self.month_en = @[@"Jan.",@"Feb.",@"Mar.",@"Apr.",@"May.",@"Jun.",@"Jul.",@"Aug.",@"Sep.",@"Oct.",@"Nov.",@"Dec."];
     
     self.my_templates = [myTemplate getTemplates];
     [self setFilterTitle];
@@ -248,17 +248,22 @@
     NSTimeInterval time_now = [[NSDate date] timeIntervalSince1970];
     
     double difference = time_get - time_now;
-    NSMutableArray *periods = [NSMutableArray arrayWithObjects:@"sec", @"min", @"hr", @"day", @"week", @"month", @"year", @"decade", nil];
-    NSArray *lengths = [NSArray arrayWithObjects:@60, @60, @24, @7, @4.35, @12, @10, nil];
-    int j = 0;
-    for(j=0; difference >= [[lengths objectAtIndex:j] doubleValue]; j++){
-        difference /= [[lengths objectAtIndex:j] doubleValue];
+    
+    if (difference > 0) {
+        NSMutableArray *periods = [NSMutableArray arrayWithObjects:@"sec", @"min", @"hr", @"day", @"week", @"mth", @"year", @"decade", nil];
+        NSArray *lengths = [NSArray arrayWithObjects:@60, @60, @24, @7, @4.35, @12, @10, nil];
+        int j = 0;
+        for(j=0; difference >= [[lengths objectAtIndex:j] doubleValue]; j++){
+            difference /= [[lengths objectAtIndex:j] doubleValue];
+        }
+        difference = roundl(difference);
+        if(difference != 1){
+            [periods insertObject:[[periods objectAtIndex:j] stringByAppendingString:@"s"] atIndex:j];
+        }
+        return [NSString stringWithFormat:@"%li %@", (long)difference, [periods objectAtIndex:j]];
+    } else {
+        return @"";
     }
-    difference = roundl(difference);
-    if(difference != 1){
-        [periods insertObject:[[periods objectAtIndex:j] stringByAppendingString:@"s"] atIndex:j];
-    }
-    return [NSString stringWithFormat:@"%li %@", (long)difference, [periods objectAtIndex:j]];
 }
 
 /*
