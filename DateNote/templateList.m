@@ -37,7 +37,7 @@
         NSString *unit = inputDic[@"unit"];
         NSString *period = inputDic[@"period"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [formatter setDateFormat:@"yyyy-MM-dd 10:00:00"];
         if ([unit isEqualToString:@"day"]) {
             NSString *date = [sqlClient getNewDateWith:startTime day:[period intValue] month:0 year:0];
             [inputDic setValue:date forKey:@"e_time"];
