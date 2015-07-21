@@ -12,6 +12,7 @@
 @interface SportTemplateViewController ()
 @property (weak, nonatomic) IBOutlet UINavigationItem *nav;
 @property (weak, nonatomic) IBOutlet UITextField *startDate;
+@property (weak, nonatomic) IBOutlet UITextField *templateName;
 @end
 
 @implementation SportTemplateViewController
@@ -80,7 +81,11 @@
 - (void) onDoneButton{
     [self presentViewFromRight];
     DetailViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"DetailVC"];  //記得要用storyboard id 傳過去
-    vc.template = self.template;
+    NSMutableDictionary *inputDic = [[NSMutableDictionary alloc] initWithDictionary:self.template];
+
+    [inputDic setObject:self.startDate.text forKey:@"start_time"];
+    [inputDic setObject:self.templateName.text forKey:@"t_name"];
+    vc.template = inputDic;
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nvc animated:NO completion:nil];
 }
