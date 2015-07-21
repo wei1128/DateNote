@@ -10,6 +10,6 @@
 
 @interface templateList : NSObject
 
-- (NSDictionary *)newChildTemplateName:(NSString *)name date:(NSDate *)birthday;
+- (NSDictionary *)commentTemplateName:(NSString *)name date:(NSDate *)startTime templateId:(NSInteger)templateId;
 
 @end
