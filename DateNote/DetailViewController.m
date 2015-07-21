@@ -12,6 +12,8 @@
 #import "templateList.h"
 #import "myEvent.h"
 #import "UIImageView+AFNetworking.h"
+#import "SqlClient.h"
+#import "commonHelper.h"
 
 
 @interface DetailViewController ()
@@ -34,7 +36,6 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd 10:00:00"];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
     NSDate *birthday = [dateFormatter dateFromString:self.template[@"start_time"]];
-NSLog(@"%@",self.template);
 
     templateList *tl = [[templateList alloc] init];
     
@@ -100,8 +101,8 @@ NSLog(@"%@",self.template);
     cell.reminderLabel.text = [self convertTimeToAgo:me.e_time];
     
     // color
-    cell.dotView.backgroundColor = [self colorFromHexString:me.color];
-    cell.colorView.backgroundColor = [self colorFromHexString:me.color];
+    cell.dotView.backgroundColor = [commonHelper colorFromHexString:me.color];
+    cell.colorView.backgroundColor = [commonHelper colorFromHexString:me.color];
     
     [cell.img setImageWithURL:[NSURL URLWithString:me.img_url]];
     
@@ -129,16 +130,6 @@ NSLog(@"%@",self.template);
     }
     return [NSString stringWithFormat:@"%li %@", (long)difference, [periods objectAtIndex:j]];
 }
-
-
-- (UIColor *)colorFromHexString:(NSString *)hexString {
-    unsigned rgbValue = 0;
-    NSScanner *scanner = [NSScanner scannerWithString:hexString];
-    [scanner setScanLocation:1]; // bypass '#' character
-    [scanner scanHexInt:&rgbValue];
-    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
-}
-
 
 - (void) onCancelButton{
     [self disMissViewFromLeft];

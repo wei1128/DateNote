@@ -293,11 +293,6 @@ static sqlite3 *database = nil;
     return sqlite3_last_insert_rowid(database);
 }
 
-
-- (void)createTableIndex{
-    const char *sql = "create index film_title_index on film(title);";
-}
-
 + (NSMutableArray *)select:(NSString *)tableName{
     //建立 Sqlite 語法
     NSString *sqlString = [NSString stringWithFormat:@"%@%@", @"select * from ", tableName];
