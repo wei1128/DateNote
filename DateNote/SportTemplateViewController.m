@@ -58,7 +58,7 @@
 
 -(void)ShowStartSelectedDate{
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"dd/MM/YYYY hh:mm a"];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
     self.startDate.text = [NSString stringWithFormat:@"%@",[formatter stringFromDate:dataPicker.date]];
     [self.startDate resignFirstResponder];
 }
