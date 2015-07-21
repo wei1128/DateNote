@@ -144,10 +144,16 @@ NSString * const colorList[] = {
     return result;
 }
 
+-(NSString *)getTemplateColor{
+    NSMutableArray *result = [SqlData select:@"myTemplate"];
+    NSString *color = colorList[result.count];
+    return color;
+}
+
 -(void)insertNewBornTemplateEventWithStartTime:(NSDate *)startTime templateTitle:(NSString *)templateTitle{
     //    myTemplate
     NSMutableArray *result = [SqlData select:@"myTemplate"];
-    NSString *color = colorList[result.count];
+    NSString *color = [self getTemplateColor];
     NSDictionary *tempDic = @{@"template_id": @"1",@"t_name": templateTitle,@"color": color};
     
     NSMutableArray *dbCheck = [self getTemplateEventListByTID:[tempDic objectForKey:@"template_id"]];

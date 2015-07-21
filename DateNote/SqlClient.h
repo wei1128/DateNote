@@ -13,6 +13,7 @@
 -(void)initDataBase;
 -(void)initTempData;
 -(void)resetData;
+-(NSString *)getTemplateColor;
 
 -(void)insertOneDayEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description;
 -(void)insertDayEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
