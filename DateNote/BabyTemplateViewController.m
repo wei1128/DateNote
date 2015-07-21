@@ -9,7 +9,7 @@
 #import "BabyTemplateViewController.h"
 #import "DetailViewController.h"
 
-@interface BabyTemplateViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface BabyTemplateViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *templateName;
 @property (weak, nonatomic) IBOutlet UITextField *birthDay;
 @property (weak, nonatomic) IBOutlet UINavigationItem *nav;
