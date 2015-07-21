@@ -126,7 +126,7 @@ NSString * const colorList[] = {
     
     //NSDate to NSString
     NSString *strDate = [dateFormatter stringFromDate:newDate];
-    NSLog(@"new Data = %@", strDate);
+    //NSLog(@"new Data = %@", strDate);
     
     return strDate;
 }

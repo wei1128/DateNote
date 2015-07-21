@@ -14,7 +14,7 @@
 @implementation templateList
 
 - (NSDictionary *)commentTemplateName:(NSString *)name date:(NSDate *)startTime templateId:(NSInteger)templateId{
-    NSLog(@"%ld",templateId);
+    //NSLog(@"%ld",templateId);
     SqlClient *sqlClient = [[SqlClient alloc] init];
     NSString *color = [sqlClient getTemplateColor];
     
