@@ -16,6 +16,7 @@
 - (NSDictionary *)commentTemplateName:(NSString *)name date:(NSDate *)startTime templateId:(NSInteger)templateId{
     NSLog(@"%d",templateId);
     SqlClient *sqlClient = [[SqlClient alloc] init];
+    NSString *color = [sqlClient getTemplateColor];
     
     NSMutableArray *template_arr = [sqlClient getTemplateListByID:[NSString stringWithFormat:@"%d",templateId]];
     NSMutableDictionary *template = [[NSMutableDictionary alloc] initWithDictionary:template_arr[0]];
@@ -53,7 +54,7 @@
         }
         
         [inputDic setValue:@"0" forKey:@"r_id"];
-        [inputDic setValue:@"#ffffff" forKey:@"color"];
+        [inputDic setValue:color forKey:@"color"];
         [inputDic setValue:name forKey:@"t_name"];
         
         myEvent *me = [[myEvent alloc] initWithDictionary:[NSDictionary dictionaryWithDictionary:inputDic]];
