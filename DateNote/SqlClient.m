@@ -241,7 +241,6 @@ NSString * const colorList[] = {
             [offsetComponents setYear:[inputDic[@"period"] intValue]];
         }
 
-        [offsetComponents setMonth:[inputDic[@"period"] intValue]];
         [offsetComponents setHour:0];
         NSDate *newEndTime = [gregorian dateByAddingComponents:offsetComponents toDate:date options:0];
         
