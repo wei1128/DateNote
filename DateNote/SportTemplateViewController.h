@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SportTemplateViewController : UIViewController
+@interface SportTemplateViewController : UIViewController{
+UIDatePicker *dataPicker;
+}
 @property (strong, nonatomic) NSDictionary *template;
 @end
