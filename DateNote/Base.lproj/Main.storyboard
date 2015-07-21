@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rb2-A5-k0I">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rb2-A5-k0I">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -306,12 +306,12 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="UYH-NZ-ezm">
-                        <barButtonItem key="leftBarButtonItem" title="Add" id="7RE-oO-vgA">
+                        <barButtonItem key="leftBarButtonItem" image="add" id="7RE-oO-vgA">
                             <connections>
                                 <segue destination="rY8-TB-P7x" kind="show" id="eJ3-Me-CfD"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="All" id="BfR-fi-Oqf">
+                        <barButtonItem key="rightBarButtonItem" image="list" id="BfR-fi-Oqf">
                             <connections>
                                 <segue destination="bwR-ia-IDW" kind="show" id="miT-Oi-cdx"/>
                             </connections>
@@ -776,6 +776,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add" width="48" height="48"/>
         <image name="icon-16" width="16" height="16"/>
+        <image name="list" width="48" height="48"/>
     </resources>
 </document>
