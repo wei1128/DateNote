@@ -511,7 +511,7 @@
             [eventsContainer addObject:myevent];
         }
         
-        NSLog(@"%@", self.allEvents);
+//        NSLog(@"%@", self.allEvents);
         NSMutableArray *eventsContainer = (NSMutableArray*)eventsByMonth[1][6];
         
         [eventsContainer addObject:@"123"];
