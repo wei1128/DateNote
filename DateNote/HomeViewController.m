@@ -118,6 +118,11 @@
     // color
     cell.dotView.backgroundColor = [commonHelper colorFromHexString:me.color];
     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"H:mm"];
+    NSString *strDate = [dateFormatter stringFromDate:me.e_time];
+    cell.hourminLabel.text = strDate;
+    
     // template name
     cell.templateNameLabel.text = [NSString stringWithFormat:@"#%@", me.t_name];
 
