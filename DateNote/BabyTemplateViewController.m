@@ -9,7 +9,8 @@
 #import "BabyTemplateViewController.h"
 #import "DetailViewController.h"
 
-@interface BabyTemplateViewController ()
+@interface BabyTemplateViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *templateName;
 @property (weak, nonatomic) IBOutlet UITextField *birthDay;
 @property (weak, nonatomic) IBOutlet UINavigationItem *nav;
 @end
@@ -18,9 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self setupBirthDate];
-    
+
     // set nav
     self.nav.title = self.template[@"t_name"];
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.0f];
@@ -58,7 +58,7 @@
 
 -(void)ShowStartSelectedDate{
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"dd/MM/YYYY hh:mm a"];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
     self.birthDay.text = [NSString stringWithFormat:@"%@",[formatter stringFromDate:dataPicker.date]];
     [self.birthDay resignFirstResponder];
 }
@@ -81,7 +81,11 @@
 - (void) onDoneButton{
     [self presentViewFromRight];
     DetailViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"DetailVC"];  //記得要用storyboard id 傳過去
-    vc.template = self.template;
+
+    NSMutableDictionary *inputDic = [[NSMutableDictionary alloc] initWithDictionary:self.template];
+    [inputDic setObject:self.birthDay.text forKey:@"start_time"];
+    [inputDic setObject:self.templateName.text forKey:@"t_name"];
+    vc.template = inputDic;
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nvc animated:NO completion:nil];
 }
