@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "HomeViewController.h"
 #import "SqlData.h"
-#import "myEvent.h"
+
 
 @interface AppDelegate ()
 @end
