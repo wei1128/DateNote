@@ -471,8 +471,8 @@
     _showsEvents = showsEvents;
 }
 
-- (void)addEvents:(NSArray *)newEvents {
-    [self.allEvents addObjectsFromArray:newEvents];
+- (void)resetEvents:(NSArray *)newEvents {
+    self.allEvents = [newEvents mutableCopy];
     
     [self loadEventsInCalendar];
 }
