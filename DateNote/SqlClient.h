@@ -45,5 +45,5 @@
 //myTemplate
 +(NSMutableArray *)getMyTemplate;
 -(void)insertNewBornTemplateEventWithStartTime:(NSDate *)startTime templateTitle:(NSString *)templateTitle;
-
+-(void)insertTemplateEventWithStartTime:(NSDate *)startTime templateTitle:(NSString *)templateTitle templateId:(NSString *)templateId;
 @end
