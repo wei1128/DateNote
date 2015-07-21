@@ -39,6 +39,8 @@
 
     [self.calendar setDateSelected:today];
     [self.calendar resetEvents:[myEvent from:[self startDate] to:[self endDate]]];
+
+    [self calendarController:self.calendar didScrollToMonth:today];
 }
 
 -(NSDate*)startDate
