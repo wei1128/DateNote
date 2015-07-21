@@ -85,7 +85,12 @@
 
 -(void)calendarController:(KDCalendarView*)calendarViewController didSelectDay:(NSDate*)date
 {
-    self.dateEvents = [myEvent getEventsByDate:date];
+    // hack for correct time in taiwan
+    NSDateComponents *offsetDateComponents = [[NSDateComponents alloc] init];
+    offsetDateComponents.day = 1;
+    NSDate *newdate = [[NSCalendar currentCalendar]dateByAddingComponents:offsetDateComponents toDate:date options:0];
+    
+    self.dateEvents = [myEvent getEventsByDate:newdate];
     [self.BriefTable reloadData];
     
 }
@@ -95,7 +100,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"%d",[self.dateEvents count]);
+    NSLog(@"%ld",[self.dateEvents count]);
     return [self.dateEvents count];
 }
 
