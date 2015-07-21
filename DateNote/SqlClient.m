@@ -138,6 +138,56 @@ NSString * const colorList[] = {
     return result;
 }
 
+-(NSMutableArray *)getNewBornTemplateList{
+    NSMutableArray *result = [SqlData getTemplateListByID:@"1"];
+    
+    return result;
+}
+
+-(void)insertNewBornTemplateEventWithStartTime:(NSDate *)startTime templateTitle:(NSString *)templateTitle{
+    //    myTemplate
+    NSMutableArray *result = [SqlData select:@"myTemplate"];
+    NSString *color = colorList[result.count];
+    NSDictionary *tempDic = @{@"template_id": @"1",@"t_name": templateTitle,@"color": color};
+    
+    NSMutableArray *dbCheck = [self getTemplateEventListByTID:[tempDic objectForKey:@"template_id"]];
+    
+    NSMutableDictionary *inputDic = [[NSMutableDictionary alloc] initWithDictionary:tempDic];
+//    NSLog(@"myTemplate = %@",result);
+    [SqlData insertMyTemplate:inputDic];
+    
+    NSInteger mt_id = [SqlData getLastInsertRowID];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd 10:00:00"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    NSString *dateString = [dateFormatter stringFromDate:startTime];
+    //    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    
+    //設定出生日期
+    NSDate *date = [dateFormatter dateFromString:dateString];
+    
+    //    NSLog(@"today = %@",[dateFormatter stringFromDate:date]);
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    
+    for (int i=0; i<dbCheck.count; i++) {
+        //拿每筆template event list
+        NSMutableDictionary *inputDic = [[NSMutableDictionary alloc] initWithDictionary:dbCheck[i]];
+        [inputDic setObject:[NSString stringWithFormat:@"%d", mt_id] forKey:@"mt_id"];
+        [inputDic setObject:@"0" forKey:@"r_id"];
+        
+        [offsetComponents setMonth:[inputDic[@"period"] intValue]];
+        [offsetComponents setHour:0];
+        NSDate *newEndTime = [gregorian dateByAddingComponents:offsetComponents toDate:date options:0];
+        
+//        NSLog(@"date = %@",[dateFormatter stringFromDate:newEndTime]);
+        [inputDic setObject:[dateFormatter stringFromDate:newEndTime] forKey:@"e_time"];
+        
+        [SqlData insertMyEvent:inputDic];
+    }
+}
+
 -(NSMutableArray *)getTemplateListByID:(NSString *)t_id{
     NSMutableArray *result = [SqlData getTemplateListByID:t_id];
     
@@ -150,18 +200,52 @@ NSString * const colorList[] = {
     return result;
 }
 
--(NSMutableArray *)getMyEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id{
-    NSMutableArray *result = [SqlData getMyEvent:time :count :pg :mt_id];
++(NSMutableArray *)getMyEventFrom:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg mt_id:(NSString *)mt_id{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    
+    NSString *timeStr = [formatter stringFromDate:time];
+    
+    NSMutableArray *result = [SqlData getMyEventFrom:timeStr count:count pg:pg my_id:mt_id];
+    return result;
+}
++(NSMutableArray *)getMyEventFrom:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    
+    NSString *timeStr = [formatter stringFromDate:time];
+    
+    NSMutableArray *result = [SqlData getMyEventFrom:timeStr count:count pg:pg];
     return result;
 }
 
--(NSMutableArray *)getMyPastEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id{
-    NSMutableArray *result = [SqlData getMyPastEvent:time :count :pg :mt_id];
++(NSMutableArray *)getMyPastEvent:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg mt_id:(NSString *)mt_id{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    
+    NSString *timeStr = [formatter stringFromDate:time];
+    
+    NSMutableArray *result = [SqlData getMyPastEvent:timeStr count:count pg:pg mt_id:mt_id];
     
     return result;
 }
 
--(NSMutableArray *)getMyTemplate{
++(NSMutableArray *)getMyPastEvent:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    
+    NSString *timeStr = [formatter stringFromDate:time];
+    
+    NSMutableArray *result = [SqlData getMyPastEvent:timeStr count:count pg:pg];
+    
+    return result;
+}
+
++(NSMutableArray *)getMyTemplate{
     NSMutableArray *result = [SqlData select:@"myTemplate"];
     
     return result;

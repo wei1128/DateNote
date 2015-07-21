@@ -12,7 +12,6 @@
 #import "myEvent.h"
 
 @interface AppDelegate ()
-- (void)createEdiableCopyOfDatabaseIfNeeded;
 @end
 
 @implementation AppDelegate
@@ -22,8 +21,6 @@
     //self.window.rootViewController = [[HomeViewController alloc] init];
     [SqlData initializeEdiableCopyOfDatabase];
     //[SqlData createEdiableCopyOfDatabaseIfNeeded];
-    
-    myEvent *me = [[myEvent alloc]init];
     
     return YES;
 }

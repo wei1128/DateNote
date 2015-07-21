@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface myEvent : NSObject
+@interface myEvent : NSObject 
 
 @property (nonatomic, assign) NSInteger me_id;
 @property (nonatomic, assign) NSInteger mt_id;
@@ -18,10 +18,17 @@
 @property (nonatomic, strong) NSString *r_id;
 @property (nonatomic, strong) NSString *desc;
 @property (nonatomic, strong) NSString *img_url;
+@property (nonatomic, strong) NSString *t_name;
+@property (nonatomic, strong) NSString *color;
 
 - (id)initWithDictionary :(NSDictionary *)dictionary;
 
-+ (NSArray *)from:(NSDate *)start to:(NSDate *)end;
++ (NSArray *)from:(NSDate *)start pg:(NSInteger)pg mt_id:(NSString *)mt_id;
++ (NSArray *)from:(NSDate *)start pg:(NSInteger)pg;
++ (NSArray *)before:(NSDate *)start pg:(NSInteger)pg mt_id:(NSString *)mt_id;
++ (NSArray *)before:(NSDate *)start pg:(NSInteger)pg;
++ (NSArray *)from:(NSDate *)time to:(NSDate *)end;
+
 + (NSArray *)myEventsWithArray:(NSArray *)array;
 
 @end

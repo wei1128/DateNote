@@ -23,13 +23,16 @@
 //templateList
 -(NSMutableArray *)getTemplateList;
 -(NSMutableArray *)getTemplateListByID:(NSString *)t_id;
+-(NSMutableArray *)getNewBornTemplateList;
 
 //templateEventList
 -(NSMutableArray *)getTemplateEventListByTID:(NSString *)t_id;
 
 //myEvent
--(NSMutableArray *)getMyEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id;
--(NSMutableArray *)getMyPastEvent:(NSString *)time :(NSInteger)count :(NSInteger)pg :(NSString *)mt_id;
++(NSMutableArray *)getMyEventFrom:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg mt_id:(NSString *)mt_id;
++(NSMutableArray *)getMyEventFrom:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg;
++(NSMutableArray *)getMyPastEvent:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg mt_id:(NSString *)mt_id;
++(NSMutableArray *)getMyPastEvent:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg;
 -(NSMutableArray *)getMyEventByDay:(NSString *)time;
 +(NSMutableArray *)getMyEventFrom:(NSDate *)startTime to:(NSDate *)endTime;
 -(void) deleteMyEventByMyEventID:(NSString *)me_id;
@@ -38,6 +41,7 @@
 
 
 //myTemplate
--(NSMutableArray *)getMyTemplate;
++(NSMutableArray *)getMyTemplate;
+-(void)insertNewBornTemplateEventWithStartTime:(NSDate *)startTime templateTitle:(NSString *)templateTitle;
 
 @end
