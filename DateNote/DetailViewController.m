@@ -46,7 +46,7 @@
 
 -(void)disMissViewFromLeft{
     CATransition *transition = [CATransition animation];
-    transition.duration = 0.7;
+    transition.duration = 0.5;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionPush;
     transition.subtype = kCATransitionFromLeft;
@@ -62,7 +62,7 @@
 
 -(void)presentViewFromRight{
     CATransition *transition = [CATransition animation];
-    transition.duration = 0.7;
+    transition.duration = 0.5;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionPush;
     transition.subtype = kCATransitionFromRight;

@@ -56,6 +56,12 @@
         vc.template = self.templates[indexPath.row];
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
         [self presentViewController:nvc animated:NO completion:nil];
+    }else if(indexPath.row==2){
+        [self presentViewFromRight];
+        BabyTemplateViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"SportVC"];  //記得要用storyboard id 傳過去
+        vc.template = self.templates[indexPath.row];
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:nvc animated:NO completion:nil];
     }
     
 
@@ -88,7 +94,7 @@
 
 -(void)presentViewFromRight{
     CATransition *transition = [CATransition animation];
-    transition.duration = 0.7;
+    transition.duration = 0.5;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionPush;
     transition.subtype = kCATransitionFromRight;

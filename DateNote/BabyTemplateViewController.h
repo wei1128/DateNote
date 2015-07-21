@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BabyTemplateViewController : UIViewController
+@interface BabyTemplateViewController : UIViewController{
+UIDatePicker *dataPicker;
+}
 @property (strong, nonatomic) NSDictionary *template;
 @end
