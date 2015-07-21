@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -16,30 +16,40 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89m-rX-VrE" customClass="KDCalendarView">
-                    <rect key="frame" x="0.0" y="65" width="375" height="250"/>
+                    <rect key="frame" x="13" y="116" width="348" height="246"/>
                     <color key="backgroundColor" red="0.14509804549999999" green="0.83137261870000001" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="375" id="MSm-vb-jKH"/>
-                        <constraint firstAttribute="height" constant="250" id="eVo-X4-Ont"/>
+                        <constraint firstAttribute="height" constant="246" id="gB2-pC-P30"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="B1g-aT-1Ir">
-                    <rect key="frame" x="0.0" y="315" width="375" height="352"/>
+                    <rect key="frame" x="0.0" y="370" width="361" height="297"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MM, YYYY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAd-Ch-fRe">
+                    <rect key="frame" x="145" y="79" width="84" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="xx1-h2-ABk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="B1g-aT-1Ir" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8Za-0k-QuU"/>
-                <constraint firstAttribute="trailing" secondItem="89m-rX-VrE" secondAttribute="trailing" id="BRZ-Gp-rrK"/>
+                <constraint firstAttribute="trailing" secondItem="B1g-aT-1Ir" secondAttribute="trailing" constant="14" id="9JH-bj-ZVT"/>
                 <constraint firstItem="89m-rX-VrE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Cvg-Qm-LLo"/>
+                <constraint firstAttribute="centerX" secondItem="aAd-Ch-fRe" secondAttribute="centerX" id="HX0-Ss-W3G"/>
                 <constraint firstItem="89m-rX-VrE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pe8-w4-ovE"/>
+                <constraint firstAttribute="trailing" secondItem="89m-rX-VrE" secondAttribute="trailing" constant="14" id="VW4-jZ-IfB"/>
+                <constraint firstItem="89m-rX-VrE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="116" id="Zue-W3-5tu"/>
+                <constraint firstAttribute="bottom" secondItem="B1g-aT-1Ir" secondAttribute="bottom" id="cz8-ET-VNE"/>
+                <constraint firstItem="89m-rX-VrE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="13" id="dPE-Oz-ktF"/>
                 <constraint firstAttribute="bottom" secondItem="89m-rX-VrE" secondAttribute="bottom" id="fVi-QL-OmX"/>
-                <constraint firstAttribute="bottom" secondItem="B1g-aT-1Ir" secondAttribute="bottom" id="jS0-xs-83r"/>
-                <constraint firstAttribute="trailing" secondItem="B1g-aT-1Ir" secondAttribute="trailing" id="kDt-aF-9NF"/>
-                <constraint firstItem="89m-rX-VrE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="lC7-QA-JHW"/>
-                <constraint firstItem="B1g-aT-1Ir" firstAttribute="top" secondItem="89m-rX-VrE" secondAttribute="bottom" id="qrJ-2Z-xbq"/>
-                <constraint firstItem="89m-rX-VrE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qxK-a4-0d6"/>
+                <constraint firstItem="aAd-Ch-fRe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="gZD-bj-7h7"/>
+                <constraint firstItem="B1g-aT-1Ir" firstAttribute="top" secondItem="89m-rX-VrE" secondAttribute="bottom" constant="8" id="pUw-I4-vK0"/>
+                <constraint firstItem="B1g-aT-1Ir" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xn6-g1-jGV"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

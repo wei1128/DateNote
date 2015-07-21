@@ -20,7 +20,7 @@
         self.e_detail_url = dictionary[@"e_detail_url"];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+        [formatter setDateFormat:@"yyyy-MM-dd H:mm:ss"];
         NSDate *e_time = [formatter dateFromString:dictionary[@"e_time"]];
         self.e_time = e_time;
         
