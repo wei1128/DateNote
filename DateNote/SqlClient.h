@@ -19,6 +19,7 @@
 -(void)insertWeekEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
 -(void)insertMonthEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
 -(void)insertYearEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id;
+-(NSString *)getNewDateWith:(NSDate *)startTime day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year;
 
 //templateList
 -(NSMutableArray *)getTemplateList;
