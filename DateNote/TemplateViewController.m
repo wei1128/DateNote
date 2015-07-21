@@ -32,8 +32,6 @@
     self.nav.title = @"Template";
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.0f];
     self.navigationController.navigationBar.translucent = NO;
-
-
 }
 
 - (void)didReceiveMemoryWarning {
