@@ -12,6 +12,7 @@
 #import "templateList.h"
 #import "myEvent.h"
 #import "UIImageView+AFNetworking.h"
+#import "SqlClient.h"
 
 
 @interface DetailViewController ()
@@ -34,7 +35,6 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd 10:00:00"];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
     NSDate *birthday = [dateFormatter dateFromString:self.template[@"start_time"]];
-NSLog(@"%@",self.template);
 
     templateList *tl = [[templateList alloc] init];
     
