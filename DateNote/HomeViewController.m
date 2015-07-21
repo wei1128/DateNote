@@ -12,6 +12,7 @@
 
 @interface HomeViewController () <KDCalendarDelegate, KDCalendarDataSource>
 @property (weak, nonatomic) IBOutlet KDCalendarView *calendar;
+@property (weak, nonatomic) IBOutlet UILabel *displayMonth;
 
 @end
 
@@ -80,8 +81,7 @@
 {
     NSDateFormatter* headerFormatter = [[NSDateFormatter alloc] init];
     headerFormatter.dateFormat = @"MMMM, yyyy";
-    
-    
+    self.displayMonth.text = [headerFormatter stringFromDate:date];
 }
 
 -(void)calendarController:(KDCalendarView*)calendarViewController didSelectDay:(NSDate*)date
