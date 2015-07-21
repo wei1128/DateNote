@@ -15,6 +15,7 @@
 		10F2780E1B5D5DE6007EC733 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F2780D1B5D5DE6007EC733 /* DetailViewController.m */; };
 		10F278111B5E1FBE007EC733 /* SportTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F278101B5E1FBE007EC733 /* SportTemplateViewController.m */; };
 		10F278151B5E2008007EC733 /* BabyTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F278141B5E2008007EC733 /* BabyTemplateViewController.m */; };
+		10F4BEBF1B5E624D00B821DA /* BabyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F4BEBE1B5E624D00B821DA /* BabyCell.m */; };
 		264952511B5E29FD0099370A /* templateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 264952501B5E29FD0099370A /* templateList.m */; };
 		266975A21B5D1E8200B00661 /* myTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 266975A11B5D1E8200B00661 /* myTemplate.m */; };
 		269E57901B53B085009895D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 269E578F1B53B085009895D8 /* main.m */; };
@@ -71,6 +72,8 @@
 		10F278101B5E1FBE007EC733 /* SportTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportTemplateViewController.m; sourceTree = "<group>"; };
 		10F278131B5E2008007EC733 /* BabyTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyTemplateViewController.h; sourceTree = "<group>"; };
 		10F278141B5E2008007EC733 /* BabyTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabyTemplateViewController.m; sourceTree = "<group>"; };
+		10F4BEBD1B5E624D00B821DA /* BabyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyCell.h; sourceTree = "<group>"; };
+		10F4BEBE1B5E624D00B821DA /* BabyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabyCell.m; sourceTree = "<group>"; };
 		17340886D3AABEC62CABBFF4 /* Pods-DateNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateNote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DateNote/Pods-DateNote.debug.xcconfig"; sourceTree = "<group>"; };
 		2649524F1B5E29FD0099370A /* templateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = templateList.h; sourceTree = "<group>"; };
 		264952501B5E29FD0099370A /* templateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = templateList.m; sourceTree = "<group>"; };
@@ -145,12 +148,10 @@
 		10F278121B5E1FC6007EC733 /* Template */ = {
 			isa = PBXGroup;
 			children = (
-				10F278091B5C07DF007EC733 /* CustomViewController.h */,
-				10F2780A1B5C07DF007EC733 /* CustomViewController.m */,
-				10F2780C1B5D5DE6007EC733 /* DetailViewController.h */,
-				10F2780D1B5D5DE6007EC733 /* DetailViewController.m */,
 				10F278131B5E2008007EC733 /* BabyTemplateViewController.h */,
 				10F278141B5E2008007EC733 /* BabyTemplateViewController.m */,
+				10F4BEBD1B5E624D00B821DA /* BabyCell.h */,
+				10F4BEBE1B5E624D00B821DA /* BabyCell.m */,
 				10F2780F1B5E1FBE007EC733 /* SportTemplateViewController.h */,
 				10F278101B5E1FBE007EC733 /* SportTemplateViewController.m */,
 			);
@@ -463,6 +464,7 @@
 				269E57991B53B085009895D8 /* ViewController.m in Sources */,
 				1044D6791B53FF520074BAE1 /* DaliyCell.m in Sources */,
 				269E57C51B53B2E7009895D8 /* KDCalendarView.m in Sources */,
+				10F4BEBF1B5E624D00B821DA /* BabyCell.m in Sources */,
 				10F278081B5BFC3D007EC733 /* TemplateCell.m in Sources */,
 				EFA687AD1B565340002B0AEC /* SqlClient.m in Sources */,
 				10F278111B5E1FBE007EC733 /* SportTemplateViewController.m in Sources */,
