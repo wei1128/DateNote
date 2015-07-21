@@ -118,7 +118,7 @@
     NSTimeInterval time_now = [[NSDate date] timeIntervalSince1970];
     
     double difference = time_get - time_now;
-    NSMutableArray *periods = [NSMutableArray arrayWithObjects:@"sec", @"min", @"hr", @"day", @"week", @"month", @"year", @"decade", nil];
+    NSMutableArray *periods = [NSMutableArray arrayWithObjects:@"sec", @"min", @"hr", @"day", @"week", @"mth", @"year", @"decade", nil];
     NSArray *lengths = [NSArray arrayWithObjects:@60, @60, @24, @7, @4.35, @12, @10, nil];
     int j = 0;
     for(j=0; difference >= [[lengths objectAtIndex:j] doubleValue]; j++){
