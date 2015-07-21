@@ -172,11 +172,11 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     
-    if(self.delegate)
-    {
-        [self.delegate calendarController:self
-                         didScrollToMonth:self.dataSource.startDate];
-    }
+//    if(self.delegate)
+//    {
+//        [self.delegate calendarController:self
+//                         didScrollToMonth:self.dataSource.startDate];
+//    }
 
     
     _numberOfItemsInSectionCache = [_calendar components:NSCalendarUnitMonth
