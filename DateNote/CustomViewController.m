@@ -22,20 +22,9 @@ NSArray* _titleSelectionData;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //
-    // datepicker
-    dataPicker = [[UIDatePicker alloc] init];
-    dataPicker.datePickerMode = UIDatePickerModeDate;
-    [self.startDate setInputView:dataPicker];
-    [self.endDate setInputView:dataPicker];
-    
-    UIToolbar *toolBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    [toolBar setTintColor:[UIColor grayColor]];
-    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(ShowSelectedDate)];
-    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil] animated:YES];
-
-    
+    [self setupStartDate];
+    [self setupEndDate];
+   
     // set nav
     self.nav.title = self.template[@"t_name"];
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.0f];
@@ -54,8 +43,34 @@ NSArray* _titleSelectionData;
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(onDoneButton)];
+}
 
+- (void)setupStartDate {
+    dataPicker = [[UIDatePicker alloc] init];
+    dataPicker.datePickerMode = UIDatePickerModeDate;
+    
+    UIToolbar *toolBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [toolBar setTintColor:[UIColor grayColor]];
+    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(ShowStartSelectedDate)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil] animated:YES];
+    
+    [self.startDate setInputView:dataPicker];
+    [self.startDate setInputAccessoryView:toolBar];
+}
 
+- (void)setupEndDate {
+    dataPicker = [[UIDatePicker alloc] init];
+    dataPicker.datePickerMode = UIDatePickerModeDate;
+    
+    UIToolbar *toolBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [toolBar setTintColor:[UIColor grayColor]];
+    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(ShowEndSelectedDate)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil] animated:YES];
+    
+    [self.endDate setInputView:dataPicker];
+    [self.endDate setInputAccessoryView:toolBar];
 }
 
 - (void) onCancelButton{
@@ -90,11 +105,18 @@ NSArray* _titleSelectionData;
 }
 
 
--(void)ShowSelectedDate{
+-(void)ShowStartSelectedDate{
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"dd/MM/YYYY hh:min a"];
     self.startDate.text = [NSString stringWithFormat:@"%@",[formatter stringFromDate:dataPicker.date]];
     [self.startDate resignFirstResponder];
+}
+
+-(void)ShowEndSelectedDate{
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"dd/MM/YYYY hh:min a"];
+    self.endDate.text = [NSString stringWithFormat:@"%@",[formatter stringFromDate:dataPicker.date]];
+    [self.endDate resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
