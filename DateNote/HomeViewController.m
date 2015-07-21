@@ -9,8 +9,9 @@
 #import "HomeViewController.h"
 #import "KDCalendarView.h"
 #import "myEvent.h"
+#import "BriefCell.h"
 
-@interface HomeViewController () <KDCalendarDelegate, KDCalendarDataSource>
+@interface HomeViewController () <KDCalendarDelegate, KDCalendarDataSource, UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet KDCalendarView *calendar;
 @property (weak, nonatomic) IBOutlet UILabel *displayMonth;
@@ -22,6 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.BriefTable.delegate=self;
+    self.BriefTable.dataSource=self;
+    
     self.calendar.delegate = self;
     self.calendar.dataSource = self;
     self.calendar.showsEvents = YES;
@@ -82,7 +86,42 @@
 -(void)calendarController:(KDCalendarView*)calendarViewController didSelectDay:(NSDate*)date
 {
     self.dateEvents = [myEvent getEventsByDate:date];
+    [self.BriefTable reloadData];
     
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];  //取消選取
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"%d",[self.dateEvents count]);
+    return [self.dateEvents count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    BriefCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyBriefCell" forIndexPath:indexPath];
+    
+    myEvent *me = self.dateEvents[indexPath.row];
+    
+    // title
+    cell.titleLable.text = me.e_title;
+    
+    // color
+    cell.dotView.backgroundColor = [self colorFromHexString:me.color];
+    
+    // template name
+    cell.templateNameLabel.text = [NSString stringWithFormat:@"#%@", me.t_name];
+
+    return cell;
+}
+
+- (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
 }
 
 

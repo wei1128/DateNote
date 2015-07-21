@@ -108,8 +108,6 @@ NSLog(@"%@",self.template);
     // template name
     cell.templateNameLabel.text = [NSString stringWithFormat:@"#%@", me.t_name];
     
-
-    
     return cell;
 }
 
