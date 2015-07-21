@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rb2-A5-k0I">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -96,7 +96,7 @@
                                                         <constraint firstAttribute="width" constant="16" id="3Vg-gZ-pkg"/>
                                                     </constraints>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mGY-sw-g7Y">
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mGY-sw-g7Y">
                                                     <rect key="frame" x="83" y="4" width="1" height="124"/>
                                                     <color key="backgroundColor" red="0.0" green="0.4161939737" blue="0.87726878159999999" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -603,6 +603,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="nav" destination="eZn-Ab-0PT" id="cRp-da-fvM"/>
+                        <outlet property="startDate" destination="LyC-KQ-7ZX" id="3mR-Nb-en7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ex-Iq-Kzr" userLabel="First Responder" sceneMemberID="firstResponder"/>

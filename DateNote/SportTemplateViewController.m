@@ -11,13 +11,15 @@
 
 @interface SportTemplateViewController ()
 @property (weak, nonatomic) IBOutlet UINavigationItem *nav;
+@property (weak, nonatomic) IBOutlet UITextField *startDate;
 @end
 
 @implementation SportTemplateViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self setupStartDate];
     
     // set nav
     self.nav.title = self.template[@"t_name"];
@@ -37,6 +39,28 @@
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(onDoneButton)];
+
+}
+
+- (void)setupStartDate {
+    dataPicker = [[UIDatePicker alloc] init];
+    dataPicker.datePickerMode = UIDatePickerModeDate;
+    
+    UIToolbar *toolBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [toolBar setTintColor:[UIColor grayColor]];
+    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(ShowStartSelectedDate)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil] animated:YES];
+    
+    [self.startDate setInputView:dataPicker];
+    [self.startDate setInputAccessoryView:toolBar];
+}
+
+-(void)ShowStartSelectedDate{
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"dd/MM/YYYY hh:mm a"];
+    self.startDate.text = [NSString stringWithFormat:@"%@",[formatter stringFromDate:dataPicker.date]];
+    [self.startDate resignFirstResponder];
 }
 
 - (void) onCancelButton{
