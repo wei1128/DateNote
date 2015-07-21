@@ -14,11 +14,11 @@
 @implementation templateList
 
 - (NSDictionary *)commentTemplateName:(NSString *)name date:(NSDate *)startTime templateId:(NSInteger)templateId{
-    NSLog(@"%d",templateId);
+    NSLog(@"%ld",templateId);
     SqlClient *sqlClient = [[SqlClient alloc] init];
     NSString *color = [sqlClient getTemplateColor];
     
-    NSMutableArray *template_arr = [sqlClient getTemplateListByID:[NSString stringWithFormat:@"%d",templateId]];
+    NSMutableArray *template_arr = [sqlClient getTemplateListByID:[NSString stringWithFormat:@"%ld",templateId]];
     NSMutableDictionary *template = [[NSMutableDictionary alloc] initWithDictionary:template_arr[0]];
     [template setValue:@"" forKey:@"mt_id"];
     [template setValue:name forKey:@"t_name"];
@@ -26,7 +26,7 @@
     myTemplate *mt = [[myTemplate  alloc] initWithDictionary:template];
     
     NSMutableArray *myEvents = [[NSMutableArray alloc]init];
-    NSMutableArray *templateEvent_arr = [sqlClient getTemplateEventListByTID:[NSString stringWithFormat:@"%d",templateId]];
+    NSMutableArray *templateEvent_arr = [sqlClient getTemplateEventListByTID:[NSString stringWithFormat:@"%ld",templateId]];
     
     for (int i=0; i<templateEvent_arr.count; i++) {
         NSMutableDictionary *inputDic = [[NSMutableDictionary alloc] initWithDictionary:templateEvent_arr[i]];

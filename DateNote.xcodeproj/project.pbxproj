@@ -16,7 +16,9 @@
 		10F278111B5E1FBE007EC733 /* SportTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F278101B5E1FBE007EC733 /* SportTemplateViewController.m */; };
 		10F278151B5E2008007EC733 /* BabyTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F278141B5E2008007EC733 /* BabyTemplateViewController.m */; };
 		10F4BEBF1B5E624D00B821DA /* BabyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F4BEBE1B5E624D00B821DA /* BabyCell.m */; };
+		10F4BEC21B5E7DD400B821DA /* BriefCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F4BEC11B5E7DD400B821DA /* BriefCell.m */; };
 		264952511B5E29FD0099370A /* templateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 264952501B5E29FD0099370A /* templateList.m */; };
+		264A58BC1B5E816500FEEB16 /* commonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 264A58BB1B5E816500FEEB16 /* commonHelper.m */; };
 		266975A21B5D1E8200B00661 /* myTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 266975A11B5D1E8200B00661 /* myTemplate.m */; };
 		269E57901B53B085009895D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 269E578F1B53B085009895D8 /* main.m */; };
 		269E57931B53B085009895D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 269E57921B53B085009895D8 /* AppDelegate.m */; };
@@ -74,9 +76,13 @@
 		10F278141B5E2008007EC733 /* BabyTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabyTemplateViewController.m; sourceTree = "<group>"; };
 		10F4BEBD1B5E624D00B821DA /* BabyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyCell.h; sourceTree = "<group>"; };
 		10F4BEBE1B5E624D00B821DA /* BabyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabyCell.m; sourceTree = "<group>"; };
+		10F4BEC01B5E7DD400B821DA /* BriefCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BriefCell.h; sourceTree = "<group>"; };
+		10F4BEC11B5E7DD400B821DA /* BriefCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BriefCell.m; sourceTree = "<group>"; };
 		17340886D3AABEC62CABBFF4 /* Pods-DateNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateNote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DateNote/Pods-DateNote.debug.xcconfig"; sourceTree = "<group>"; };
 		2649524F1B5E29FD0099370A /* templateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = templateList.h; sourceTree = "<group>"; };
 		264952501B5E29FD0099370A /* templateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = templateList.m; sourceTree = "<group>"; };
+		264A58BA1B5E816500FEEB16 /* commonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commonHelper.h; sourceTree = "<group>"; };
+		264A58BB1B5E816500FEEB16 /* commonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commonHelper.m; sourceTree = "<group>"; };
 		266975A01B5D1E8200B00661 /* myTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myTemplate.h; sourceTree = "<group>"; };
 		266975A11B5D1E8200B00661 /* myTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myTemplate.m; sourceTree = "<group>"; };
 		269E578A1B53B085009895D8 /* DateNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DateNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +221,8 @@
 				10F2780D1B5D5DE6007EC733 /* DetailViewController.m */,
 				CFBB25831B5E4515005B2C9A /* WebViewController.h */,
 				CFBB25841B5E4515005B2C9A /* WebViewController.m */,
+				10F4BEC01B5E7DD400B821DA /* BriefCell.h */,
+				10F4BEC11B5E7DD400B821DA /* BriefCell.m */,
 				CFBB25851B5E4515005B2C9A /* WebViewController.xib */,
 				269E579A1B53B085009895D8 /* Main.storyboard */,
 				269E579D1B53B085009895D8 /* Images.xcassets */,
@@ -289,6 +297,8 @@
 				266975A11B5D1E8200B00661 /* myTemplate.m */,
 				2649524F1B5E29FD0099370A /* templateList.h */,
 				264952501B5E29FD0099370A /* templateList.m */,
+				264A58BA1B5E816500FEEB16 /* commonHelper.h */,
+				264A58BB1B5E816500FEEB16 /* commonHelper.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -460,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				269E57931B53B085009895D8 /* AppDelegate.m in Sources */,
+				10F4BEC21B5E7DD400B821DA /* BriefCell.m in Sources */,
 				269E57961B53B085009895D8 /* DateNote.xcdatamodeld in Sources */,
 				269E57991B53B085009895D8 /* ViewController.m in Sources */,
 				1044D6791B53FF520074BAE1 /* DaliyCell.m in Sources */,
@@ -483,6 +494,7 @@
 				269E57C31B53B2E7009895D8 /* KDCalendarHeaderView.m in Sources */,
 				CFBB25861B5E4515005B2C9A /* WebViewController.m in Sources */,
 				266975A21B5D1E8200B00661 /* myTemplate.m in Sources */,
+				264A58BC1B5E816500FEEB16 /* commonHelper.m in Sources */,
 				1044D6761B53FEDB0074BAE1 /* DaliyViewController.m in Sources */,
 				269E57C71B53B2E7009895D8 /* KDCalendarViewMonthCell.m in Sources */,
 			);

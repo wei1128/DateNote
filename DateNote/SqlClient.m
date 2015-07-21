@@ -180,7 +180,7 @@ NSString * const colorList[] = {
     for (int i=0; i<dbCheck.count; i++) {
         //拿每筆template event list
         NSMutableDictionary *inputDic = [[NSMutableDictionary alloc] initWithDictionary:dbCheck[i]];
-        [inputDic setObject:[NSString stringWithFormat:@"%d", mt_id] forKey:@"mt_id"];
+        [inputDic setObject:[NSString stringWithFormat:@"%ld", mt_id] forKey:@"mt_id"];
         [inputDic setObject:@"0" forKey:@"r_id"];
         
         [offsetComponents setMonth:[inputDic[@"period"] intValue]];
@@ -484,7 +484,7 @@ NSString * const colorList[] = {
     for (int i=0; i<dbCheck.count; i++) {
         //拿每筆template event list
         NSMutableDictionary *inputDic = [[NSMutableDictionary alloc] initWithDictionary:dbCheck[i]];
-        [inputDic setObject:[NSString stringWithFormat:@"%d", mt_id] forKey:@"mt_id"];
+        [inputDic setObject:[NSString stringWithFormat:@"%ld", mt_id] forKey:@"mt_id"];
         [inputDic setObject:@"0" forKey:@"r_id"];
         
         [offsetComponents setMonth:[inputDic[@"period"] intValue]];
