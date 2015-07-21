@@ -37,6 +37,8 @@
 		26CB74011B5BA15A0011FFBE /* datenote.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 26CB74001B5BA15A0011FFBE /* datenote.sqlite */; };
 		26CB74041B5BA1B20011FFBE /* myEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CB74031B5BA1B20011FFBE /* myEvent.m */; };
 		7C08A9EAD6F197971610F834 /* libPods-DateNote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 816D42E15CCD84D5BCE37842 /* libPods-DateNote.a */; };
+		CFBB25861B5E4515005B2C9A /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBB25841B5E4515005B2C9A /* WebViewController.m */; };
+		CFBB25871B5E4515005B2C9A /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBB25851B5E4515005B2C9A /* WebViewController.xib */; };
 		EFA687A71B56529C002B0AEC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA687A61B56529C002B0AEC /* libsqlite3.0.dylib */; };
 		EFA687AD1B565340002B0AEC /* SqlClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA687AA1B565340002B0AEC /* SqlClient.m */; };
 		EFA687AE1B565340002B0AEC /* SqlData.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA687AC1B565340002B0AEC /* SqlData.m */; };
@@ -109,6 +111,9 @@
 		26CB74031B5BA1B20011FFBE /* myEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myEvent.m; sourceTree = "<group>"; };
 		816D42E15CCD84D5BCE37842 /* libPods-DateNote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DateNote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5FCD7777FF8A703F770E36D /* Pods-DateNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateNote.release.xcconfig"; path = "Pods/Target Support Files/Pods-DateNote/Pods-DateNote.release.xcconfig"; sourceTree = "<group>"; };
+		CFBB25831B5E4515005B2C9A /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		CFBB25841B5E4515005B2C9A /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		CFBB25851B5E4515005B2C9A /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		EFA687A61B56529C002B0AEC /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		EFA687A91B565340002B0AEC /* SqlClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqlClient.h; sourceTree = "<group>"; };
 		EFA687AA1B565340002B0AEC /* SqlClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqlClient.m; sourceTree = "<group>"; };
@@ -203,6 +208,13 @@
 				10F278041B5BFAFB007EC733 /* TemplateViewController.m */,
 				10F278061B5BFC3D007EC733 /* TemplateCell.h */,
 				10F278071B5BFC3D007EC733 /* TemplateCell.m */,
+				10F278091B5C07DF007EC733 /* CustomViewController.h */,
+				10F2780A1B5C07DF007EC733 /* CustomViewController.m */,
+				10F2780C1B5D5DE6007EC733 /* DetailViewController.h */,
+				10F2780D1B5D5DE6007EC733 /* DetailViewController.m */,
+				CFBB25831B5E4515005B2C9A /* WebViewController.h */,
+				CFBB25841B5E4515005B2C9A /* WebViewController.m */,
+				CFBB25851B5E4515005B2C9A /* WebViewController.xib */,
 				269E579A1B53B085009895D8 /* Main.storyboard */,
 				269E579D1B53B085009895D8 /* Images.xcassets */,
 				269E579F1B53B085009895D8 /* LaunchScreen.xib */,
@@ -393,6 +405,7 @@
 				269E579C1B53B085009895D8 /* Main.storyboard in Resources */,
 				269E57A11B53B085009895D8 /* LaunchScreen.xib in Resources */,
 				269E579E1B53B085009895D8 /* Images.xcassets in Resources */,
+				CFBB25871B5E4515005B2C9A /* WebViewController.xib in Resources */,
 				26CB74011B5BA15A0011FFBE /* datenote.sqlite in Resources */,
 				269E57D01B53B386009895D8 /* HomeViewController.xib in Resources */,
 			);
@@ -466,6 +479,7 @@
 				26CB74041B5BA1B20011FFBE /* myEvent.m in Sources */,
 				10F278151B5E2008007EC733 /* BabyTemplateViewController.m in Sources */,
 				269E57C31B53B2E7009895D8 /* KDCalendarHeaderView.m in Sources */,
+				CFBB25861B5E4515005B2C9A /* WebViewController.m in Sources */,
 				266975A21B5D1E8200B00661 /* myTemplate.m in Sources */,
 				1044D6761B53FEDB0074BAE1 /* DaliyViewController.m in Sources */,
 				269E57C71B53B2E7009895D8 /* KDCalendarViewMonthCell.m in Sources */,
