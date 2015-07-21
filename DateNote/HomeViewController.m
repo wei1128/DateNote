@@ -23,13 +23,6 @@
     self.calendar.delegate = self;
     self.calendar.dataSource = self;
     self.calendar.showsEvents = YES;
-
-//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.0f];
-//    self.navigationController.navigationBar.translucent = NO;
-
-    self.navigationItem.title = @"Home";
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onNewTweet)];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rb2-A5-k0I">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rb2-A5-k0I">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -232,7 +232,7 @@
             </objects>
             <point key="canvasLocation" x="1276" y="237"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Home-->
         <scene sceneID="lpg-uY-glD">
             <objects>
                 <viewController id="keg-kA-g37" customClass="HomeViewController" sceneMemberID="viewController">
@@ -281,7 +281,18 @@
                             <constraint firstItem="paE-TW-gs0" firstAttribute="top" secondItem="Tze-Lo-kFS" secondAttribute="bottom" constant="17" id="zvX-dt-LtI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="yRC-ev-aUX"/>
+                    <navigationItem key="navigationItem" title="Home" id="UYH-NZ-ezm">
+                        <barButtonItem key="leftBarButtonItem" title="Add" id="7RE-oO-vgA">
+                            <connections>
+                                <segue destination="rY8-TB-P7x" kind="show" id="eJ3-Me-CfD"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="All" id="BfR-fi-Oqf">
+                            <connections>
+                                <segue destination="bwR-ia-IDW" kind="show" id="miT-Oi-cdx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="calendar" destination="W4v-Fg-mn2" id="ut8-mm-EqC"/>
                         <outlet property="displayMonth" destination="paE-TW-gs0" id="T4c-zE-n1C"/>
