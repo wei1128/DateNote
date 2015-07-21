@@ -16,7 +16,7 @@
 #import "commonHelper.h"
 
 
-@interface DetailViewController ()
+@interface DetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *detailTable;
 @property (weak, nonatomic) IBOutlet UINavigationItem *nav;
 @property (strong, nonatomic) NSDictionary *templates;
@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.month_en = @[@"January",@"February",@"March",@"April",@"May",@"June",@"July",@"August",@"September",@"October",@"November",@"December"];
+    self.month_en = @[@"Jan.",@"Feb.",@"Mar.",@"Apr.",@"May.",@"Jun.",@"Jul.",@"Aug.",@"Sep.",@"Oct.",@"Nov.",@"Dec."];
 
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

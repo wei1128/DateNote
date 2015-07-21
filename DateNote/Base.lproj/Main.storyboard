@@ -279,8 +279,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CJ2-xH-97Q" id="yPY-UY-AKX">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="喝紅豆湯" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="44h-gc-aW1">
-                                                    <rect key="frame" x="90" y="15" width="60" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="喝紅豆湯" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="44h-gc-aW1">
+                                                    <rect key="frame" x="90" y="15" width="404" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="3RD-P3-2C8"/>
                                                     </constraints>
@@ -306,8 +306,12 @@
                                                         <constraint firstAttribute="height" constant="15" id="gWy-67-zdL"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#女孩月事" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2M-RF-P7t">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="#女孩月事" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2M-RF-P7t">
                                                     <rect key="frame" x="502" y="17" width="64" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="fgA-Xp-Uf6"/>
+                                                        <constraint firstAttribute="height" constant="17" id="pbu-od-Bom"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -317,11 +321,12 @@
                                                 <constraint firstItem="Lcp-Cz-LLy" firstAttribute="leading" secondItem="yPY-UY-AKX" secondAttribute="leading" constant="16" id="0o8-DB-UxN"/>
                                                 <constraint firstItem="44h-gc-aW1" firstAttribute="leading" secondItem="TxX-uE-gNg" secondAttribute="trailing" constant="8" id="0oo-e0-367"/>
                                                 <constraint firstItem="TxX-uE-gNg" firstAttribute="top" secondItem="yPY-UY-AKX" secondAttribute="top" constant="15" id="Eqm-Xd-GA7"/>
+                                                <constraint firstItem="v2M-RF-P7t" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="44h-gc-aW1" secondAttribute="trailing" constant="8" id="FVe-sH-1j3"/>
                                                 <constraint firstItem="44h-gc-aW1" firstAttribute="top" secondItem="yPY-UY-AKX" secondAttribute="top" constant="15" id="LS6-04-0sN"/>
                                                 <constraint firstItem="TxX-uE-gNg" firstAttribute="leading" secondItem="Lcp-Cz-LLy" secondAttribute="trailing" constant="8" id="Ujl-va-kSA"/>
-                                                <constraint firstAttribute="trailing" secondItem="v2M-RF-P7t" secondAttribute="trailing" constant="11" id="hCY-PR-tFo"/>
+                                                <constraint firstAttribute="bottom" secondItem="v2M-RF-P7t" secondAttribute="bottom" constant="14.5" id="aBP-lS-oAX"/>
+                                                <constraint firstAttribute="trailing" secondItem="v2M-RF-P7t" secondAttribute="trailing" constant="11" id="bQV-Rb-hWc"/>
                                                 <constraint firstItem="Lcp-Cz-LLy" firstAttribute="top" secondItem="yPY-UY-AKX" secondAttribute="top" constant="18" id="id7-ZA-yK4"/>
-                                                <constraint firstItem="v2M-RF-P7t" firstAttribute="top" secondItem="yPY-UY-AKX" secondAttribute="top" constant="17" id="osc-Xw-eUc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
