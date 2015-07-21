@@ -34,20 +34,21 @@
         [inputDic setValue:@"" forKey:@"mt_id"];
         
         NSString *unit = inputDic[@"unit"];
+        NSString *period = inputDic[@"period"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         if ([unit isEqualToString:@"day"]) {
-            NSString *date = [sqlClient getNewDateWith:startTime day:[unit intValue] month:0 year:0];
+            NSString *date = [sqlClient getNewDateWith:startTime day:[period intValue] month:0 year:0];
             [inputDic setValue:date forKey:@"e_time"];
         }
         
         if ([unit isEqualToString:@"month"]) {
-            NSString *date = [sqlClient getNewDateWith:startTime day:0 month:[unit intValue] year:0];
+            NSString *date = [sqlClient getNewDateWith:startTime day:0 month:[period intValue] year:0];
             [inputDic setValue:date forKey:@"e_time"];
         }
         
         if ([unit isEqualToString:@"year"]) {
-            NSString *date = [sqlClient getNewDateWith:startTime day:0 month:0 year:[unit intValue]];
+            NSString *date = [sqlClient getNewDateWith:startTime day:0 month:0 year:[period intValue]];
             [inputDic setValue:date forKey:@"e_time"];
         }
         
