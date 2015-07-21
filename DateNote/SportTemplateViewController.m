@@ -7,17 +7,94 @@
 //
 
 #import "SportTemplateViewController.h"
+#import "DetailViewController.h"
 
 @interface SportTemplateViewController ()
-
+@property (weak, nonatomic) IBOutlet UINavigationItem *nav;
+@property (weak, nonatomic) IBOutlet UITextField *startDate;
 @end
 
 @implementation SportTemplateViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self setupStartDate];
+    
+    // set nav
+    self.nav.title = self.template[@"t_name"];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.0f];
+    self.navigationController.navigationBar.translucent = NO;
+    
+    // 左邊 Filter
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                                             initWithTitle:@"Template"
+                                             style:UIBarButtonItemStylePlain
+                                             target:self
+                                             action:@selector(onCancelButton)];
+    
+    // 右邊 Filter
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithTitle:@"下一步"
+                                              style:UIBarButtonItemStylePlain
+                                              target:self
+                                              action:@selector(onDoneButton)];
+
 }
+
+- (void)setupStartDate {
+    dataPicker = [[UIDatePicker alloc] init];
+    dataPicker.datePickerMode = UIDatePickerModeDate;
+    
+    UIToolbar *toolBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [toolBar setTintColor:[UIColor grayColor]];
+    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(ShowStartSelectedDate)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil] animated:YES];
+    
+    [self.startDate setInputView:dataPicker];
+    [self.startDate setInputAccessoryView:toolBar];
+}
+
+-(void)ShowStartSelectedDate{
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    self.startDate.text = [NSString stringWithFormat:@"%@",[formatter stringFromDate:dataPicker.date]];
+    [self.startDate resignFirstResponder];
+}
+
+- (void) onCancelButton{
+    [self disMissViewFromLeft];
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+-(void)disMissViewFromLeft{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+}
+
+- (void) onDoneButton{
+    [self presentViewFromRight];
+    DetailViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"DetailVC"];  //記得要用storyboard id 傳過去
+    vc.template = self.template;
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nvc animated:NO completion:nil];
+}
+
+-(void)presentViewFromRight{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

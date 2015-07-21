@@ -32,14 +32,14 @@ NSArray* _titleSelectionData;
 
     // 左邊 Filter
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                             initWithTitle:@"取消"
+                                             initWithTitle:@"Template"
                                              style:UIBarButtonItemStylePlain
                                              target:self
                                              action:@selector(onCancelButton)];
     
     // 右邊 Filter
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithTitle:@"完成"
+                                              initWithTitle:@"下一步"
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(onDoneButton)];
@@ -80,7 +80,7 @@ NSArray* _titleSelectionData;
 
 -(void)disMissViewFromLeft{
     CATransition *transition = [CATransition animation];
-    transition.duration = 0.7;
+    transition.duration = 0.5;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionPush;
     transition.subtype = kCATransitionFromLeft;
@@ -97,7 +97,7 @@ NSArray* _titleSelectionData;
 
 -(void)presentViewFromRight{
     CATransition *transition = [CATransition animation];
-    transition.duration = 0.7;
+    transition.duration = 0.5;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionPush;
     transition.subtype = kCATransitionFromRight;
@@ -107,14 +107,14 @@ NSArray* _titleSelectionData;
 
 -(void)ShowStartSelectedDate{
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"dd/MM/YYYY hh:min a"];
+    [formatter setDateFormat:@"dd/MM/YYYY hh:mm a"];
     self.startDate.text = [NSString stringWithFormat:@"%@",[formatter stringFromDate:dataPicker.date]];
     [self.startDate resignFirstResponder];
 }
 
 -(void)ShowEndSelectedDate{
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"dd/MM/YYYY hh:min a"];
+    [formatter setDateFormat:@"dd/MM/YYYY hh:mm a"];
     self.endDate.text = [NSString stringWithFormat:@"%@",[formatter stringFromDate:dataPicker.date]];
     [self.endDate resignFirstResponder];
 }
