@@ -10,6 +10,8 @@
 #import "TemplateCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "CustomViewController.h"
+#import "BabyTemplateViewController.h"
+#import "SportTemplateViewController.h"
 
 @interface TemplateViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -23,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.templates = @[@{@"t_name":@"新樣板",@"count":@"",@"img_url":@"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN9xDBZhSYO-m4BqOOGy0rpWcwbxy_HDM91sQ2idW6F5zoe8zufDX6W8M"},@{@"t_name":@"月經紀錄",@"count":@"131k",@"img_url":@"https://lh6.ggpht.com/rJYVwzTDOPzlXlQI8NTnjSpyWaOxO_5XY9fpN5j_8tGLlgehP5g0priDM2rrfJu5SSIP=w300"},@{@"t_name":@"新手爸媽日記",@"count":@"63k",@"img_url":@"http://a1.mzstatic.com/us/r30/Purple5/v4/c7/c6/09/c7c6097f-b1be-8f50-aab1-7b4a6d9ef347/icon350x350.jpeg"},@{@"t_name":@"運動可養成",@"count":@"80k",@"img_url":@"http://a5.mzstatic.com/us/r30/Purple1/v4/c5/95/e9/c595e9ed-3149-7082-4f71-cbc401099774/icon175x175.png"},@{@"t_name":@"10000小時學習計畫",@"count":@"3k",@"img_url":@"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRnNI4VxrYbXKeYelrN41kkZ-MSdI2Lfb76YQPHlDZ4kyCg3kcp"}];
+    self.templates = @[@{@"t_name":@"新樣板",@"count":@"",@"img_url":@"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN9xDBZhSYO-m4BqOOGy0rpWcwbxy_HDM91sQ2idW6F5zoe8zufDX6W8M"},@{@"t_name":@"新手爸媽日記",@"count":@"63k",@"img_url":@"http://a1.mzstatic.com/us/r30/Purple5/v4/c7/c6/09/c7c6097f-b1be-8f50-aab1-7b4a6d9ef347/icon350x350.jpeg"},@{@"t_name":@"運動可養成",@"count":@"80k",@"img_url":@"http://a5.mzstatic.com/us/r30/Purple1/v4/c5/95/e9/c595e9ed-3149-7082-4f71-cbc401099774/icon175x175.png"},@{@"t_name":@"月經紀錄",@"count":@"131k",@"img_url":@"https://lh6.ggpht.com/rJYVwzTDOPzlXlQI8NTnjSpyWaOxO_5XY9fpN5j_8tGLlgehP5g0priDM2rrfJu5SSIP=w300"},@{@"t_name":@"10000小時學習計畫",@"count":@"3k",@"img_url":@"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRnNI4VxrYbXKeYelrN41kkZ-MSdI2Lfb76YQPHlDZ4kyCg3kcp"}];
     self.templateTable.dataSource = self;
     self.templateTable.delegate = self;
     
@@ -50,7 +52,14 @@
         vc.template = self.templates[indexPath.row];
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
         [self presentViewController:nvc animated:NO completion:nil];
+    }else if (indexPath.row==1) {
+        [self presentViewFromRight];
+        BabyTemplateViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"BabyVC"];  //記得要用storyboard id 傳過去
+        vc.template = self.templates[indexPath.row];
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:nvc animated:NO completion:nil];
     }
+    
 
 }
 
