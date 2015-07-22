@@ -81,16 +81,20 @@ UIPickerView *catalogPicker;
         [text appendFormat:@"Selected item \"%@\" in component %lu\n", title, i];
     }
     self.catalogIndex=selectedRow;
-    NSLog(@"%d",self.catalogIndex);
     self.birthDay.text = [NSString stringWithFormat:@"%@",title];
     [self.birthDay resignFirstResponder];
     
     [self initEvent];
     [self.contentView reloadData];
-     myTemplate *mt = self.my_templates[selectedRow-1];
-
-    self.birthDay.backgroundColor = [commonHelper colorFromHexString:mt.color];
-    self.birthDay.textColor = [UIColor whiteColor];
+    
+    if(selectedRow==0){
+        self.birthDay.backgroundColor = [UIColor whiteColor];
+        self.birthDay.textColor = [UIColor blackColor];
+    }else{
+        myTemplate *mt = self.my_templates[selectedRow-1];
+        self.birthDay.backgroundColor = [commonHelper colorFromHexString:mt.color];
+        self.birthDay.textColor = [UIColor whiteColor];
+    }
 }
 
 
