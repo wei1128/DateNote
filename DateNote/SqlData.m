@@ -73,7 +73,7 @@ static sqlite3 *database = nil;
 }
 
 + (NSMutableArray *)getData:(NSString *)cmd{
-    NSLog(@"sql query = %@",cmd);
+//    NSLog(@"sql query = %@",cmd);
     //建立 Sqlite 語法
     const char *sql = [cmd UTF8String];
     
@@ -212,7 +212,7 @@ static sqlite3 *database = nil;
     NSString *sqlFormat = @"insert into myEvent (mt_id,e_title,e_detail_url,e_time,r_id,desc,img_url)values(%@,'%@','%@','%@','%@','%@','%@')";
     
     NSString *sqlString = [NSString stringWithFormat:sqlFormat, mt_id, e_title, e_detail_url, e_time, r_id, desc, img_url];
-    NSLog(@"sql = %@",sqlString);
+//    NSLog(@"sql = %@",sqlString);
     
     const char *sql = [sqlString UTF8String];
     
@@ -228,7 +228,7 @@ static sqlite3 *database = nil;
     NSString *sqlFormat = @"insert into myTemplate (template_id,t_name,color)values(%@,'%@','%@')";
     
     NSString *sqlString = [NSString stringWithFormat:sqlFormat, template_id, t_name, color];
-    NSLog(@"insertMyTemplate = %@",sqlString);
+//    NSLog(@"insertMyTemplate = %@",sqlString);
     
     const char *sql = [sqlString UTF8String];
     
@@ -241,7 +241,7 @@ static sqlite3 *database = nil;
     NSString *sqlFormat = @"insert into templateList (t_name)values('%@')";
     
     NSString *sqlString = [NSString stringWithFormat:sqlFormat, t_name];
-    NSLog(@"insertTemplateList = %@", sqlString);
+//    NSLog(@"insertTemplateList = %@", sqlString);
     
     const char *sql = [sqlString UTF8String];
     
@@ -261,7 +261,7 @@ static sqlite3 *database = nil;
     NSString *sqlFormat = @"insert into templateEventList (template_id,recycle,e_title,desc,e_detail_url,unit,period,img_url)values(%@,'%@','%@','%@','%@','%@',%@,'%@')";
     
     NSString *sqlString = [NSString stringWithFormat:sqlFormat, template_id, recycle, e_title, desc, e_detail_url, unit, period, img_url];
-    NSLog(@"insert Data = %@",sqlString);
+//    NSLog(@"insert Data = %@",sqlString);
     const char *sql = [sqlString UTF8String];
     
     [self insertData:sql];
