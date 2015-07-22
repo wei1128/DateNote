@@ -49,7 +49,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="132" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1Kl-b3-Ufg">
-                                <rect key="frame" x="0.0" y="69" width="600" height="531"/>
+                                <rect key="frame" x="0.0" y="136" width="600" height="464"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyDaliyCell" rowHeight="132" id="sPx-oT-Rgy" customClass="DaliyCell">
@@ -212,19 +212,31 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="全部分類" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ajS-as-qef">
+                                <rect key="frame" x="11" y="72" width="578" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="catalogChange:" destination="bwR-ia-IDW" eventType="valueChanged" id="ImU-AV-0mF"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5fy-OZ-1T9" firstAttribute="leading" secondItem="g9h-6y-A3V" secondAttribute="leading" constant="16" id="0KN-GG-APv"/>
+                            <constraint firstAttribute="trailing" secondItem="ajS-as-qef" secondAttribute="trailing" constant="11" id="4h5-gb-N3G"/>
+                            <constraint firstItem="ajS-as-qef" firstAttribute="leading" secondItem="g9h-6y-A3V" secondAttribute="leading" constant="11" id="5ht-Um-s07"/>
                             <constraint firstAttribute="trailing" secondItem="5fy-OZ-1T9" secondAttribute="trailing" constant="16" id="HBC-ac-1Jg"/>
                             <constraint firstAttribute="trailing" secondItem="1Kl-b3-Ufg" secondAttribute="trailing" id="Up3-9f-ah7"/>
                             <constraint firstItem="eoU-kA-yVj" firstAttribute="top" secondItem="1Kl-b3-Ufg" secondAttribute="bottom" id="ioo-e8-A8E"/>
                             <constraint firstItem="1Kl-b3-Ufg" firstAttribute="leading" secondItem="g9h-6y-A3V" secondAttribute="leading" id="kUx-aC-MF1"/>
+                            <constraint firstItem="ajS-as-qef" firstAttribute="top" secondItem="VSu-T1-0wq" secondAttribute="bottom" constant="8" id="lKh-g8-QuR"/>
                             <constraint firstItem="1Kl-b3-Ufg" firstAttribute="top" secondItem="5fy-OZ-1T9" secondAttribute="bottom" constant="13" id="q15-tx-ISJ"/>
                             <constraint firstItem="5fy-OZ-1T9" firstAttribute="top" secondItem="VSu-T1-0wq" secondAttribute="bottom" constant="8" id="xpM-q4-HKw"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="birthDay" destination="ajS-as-qef" id="ybF-Hq-T3l"/>
                         <outlet property="contentView" destination="1Kl-b3-Ufg" id="6Iy-a5-PPV"/>
                         <outlet property="filter" destination="5fy-OZ-1T9" id="pFd-l1-0py"/>
                     </connections>
