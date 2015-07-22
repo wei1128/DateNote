@@ -15,26 +15,31 @@
 #import "WebViewController.h"
 #import "commonHelper.h"
 
-@interface DaliyViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface DaliyViewController () <UITableViewDataSource, UITableViewDelegate>{
+UIPickerView *catalogPicker;
+}
+@property (weak, nonatomic) IBOutlet UITextField *birthDay;
 @property (weak, nonatomic) IBOutlet UITableView *contentView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *filter;
 
 @property (strong, nonatomic) NSMutableArray *events;
 @property (strong, nonatomic) NSArray *my_templates;
 @property (strong, nonatomic) NSArray *month_en;
+@property (strong, nonatomic) NSMutableArray *catalogNames;
 @property (strong, nonatomic) NSArray *category;
 @property (strong, nonatomic) NSDate *startTime;
 @property (assign, nonatomic) NSInteger prePg;
 @property (assign, nonatomic) NSInteger nextPg;
-
+@property (strong, nonatomic) NSArray *countryNames;
+@property (strong, nonatomic) NSArray *exchangeRates;
+@property (assign, nonatomic) NSInteger *catalogIndex;
 @end
 
 @implementation DaliyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-
+    [self setupCatalog];
     [self setupView];
 
     self.month_en = @[@"Jan.",@"Feb.",@"Mar.",@"Apr.",@"May.",@"Jun.",@"Jul.",@"Aug.",@"Sep.",@"Oct.",@"Nov.",@"Dec."];
@@ -46,6 +51,59 @@
 
     self.contentView.dataSource = self;
     self.contentView.delegate = self;
+}
+
+- (void)setupCatalog {
+    catalogPicker = [[UIPickerView alloc] init];
+    catalogPicker.delegate =self;
+    catalogPicker.dataSource =self;
+    
+    UIToolbar *toolBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [toolBar setTintColor:[UIColor grayColor]];
+    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(ShowCatalog)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    [toolBar setItems:[NSArray arrayWithObjects:space, doneBtn, nil] animated:YES];
+    
+    [self.birthDay setInputView:catalogPicker];
+    [self.birthDay setInputAccessoryView:toolBar];
+}
+
+
+
+-(void)ShowCatalog{
+    NSUInteger numComponents = [[catalogPicker dataSource] numberOfComponentsInPickerView:catalogPicker];
+    NSMutableString * text = [NSMutableString string];
+    NSString * title;
+    NSUInteger selectedRow;
+    for(NSUInteger i = 0; i < numComponents; ++i) {
+        selectedRow = [catalogPicker selectedRowInComponent:i];
+        title = [[catalogPicker delegate] pickerView:catalogPicker titleForRow:selectedRow forComponent:i];
+        [text appendFormat:@"Selected item \"%@\" in component %lu\n", title, i];
+    }
+    self.catalogIndex=selectedRow;
+    NSLog(@"%d",self.catalogIndex);
+    self.birthDay.text = [NSString stringWithFormat:@"%@",title];
+    [self.birthDay resignFirstResponder];
+    
+    [self initEvent];
+    [self.contentView reloadData];
+}
+
+
+- (NSInteger)numberOfComponentsInPickerView:
+(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return self.catalogNames.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return self.catalogNames[row];
 }
                    
 - (void) initEvent {
@@ -80,8 +138,8 @@
 }
 
 - (void) nextPage {
-    NSInteger index = self.filter.selectedSegmentIndex;
-    
+    //NSInteger index = self.filter.selectedSegmentIndex;
+    NSInteger index = self.catalogIndex;
     if (index == 0) {
         [self.events addObjectsFromArray:[myEvent from:self.startTime pg:self.nextPg]];
     } else {
@@ -91,17 +149,25 @@
     }
     self.nextPg++;
 }
+- (IBAction)catalogChange:(UITextField *)sender {
+    NSLog(@"change test");
+    
+}
 
 -(void) setFilterTitle {
     [self.filter removeAllSegments];
     [self.filter insertSegmentWithTitle:@"全部分類" atIndex:0 animated:NO];
-    
+    NSMutableArray *tmp = [[NSMutableArray alloc]init];
+    [tmp addObject:@"全部分類"];
     for (int i = 0; i < self.my_templates.count; i++) {
         myTemplate *mt = self.my_templates[i];
+        [tmp addObject:mt.t_name];
+        
         [self.filter insertSegmentWithTitle:mt.t_name atIndex:i + 1 animated:NO];
         [[[self.filter subviews] objectAtIndex:i + 1] setTintColor:[commonHelper colorFromHexString:mt.color]];
     }
-
+    self.catalogNames = tmp;
+    self.catalogIndex=0;
     self.filter.selectedSegmentIndex=0;
 }
 
