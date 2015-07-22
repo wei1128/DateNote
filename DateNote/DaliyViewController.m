@@ -87,6 +87,10 @@ UIPickerView *catalogPicker;
     
     [self initEvent];
     [self.contentView reloadData];
+     myTemplate *mt = self.my_templates[selectedRow-1];
+
+    self.birthDay.backgroundColor = [commonHelper colorFromHexString:mt.color];
+    self.birthDay.textColor = [UIColor whiteColor];
 }
 
 
