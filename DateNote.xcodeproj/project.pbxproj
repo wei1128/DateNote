@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1044D6761B53FEDB0074BAE1 /* DaliyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044D6751B53FEDB0074BAE1 /* DaliyViewController.m */; };
 		1044D6791B53FF520074BAE1 /* DaliyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044D6781B53FF520074BAE1 /* DaliyCell.m */; };
+		107125F71B67C16B00F3B4BD /* BigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 107125F61B67C16B00F3B4BD /* BigImageViewController.m */; };
+		107125FA1B67C1C500F3B4BD /* BigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 107125F91B67C1C500F3B4BD /* BigImageCell.m */; };
 		10F278051B5BFAFB007EC733 /* TemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F278041B5BFAFB007EC733 /* TemplateViewController.m */; };
 		10F278081B5BFC3D007EC733 /* TemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F278071B5BFC3D007EC733 /* TemplateCell.m */; };
 		10F2780B1B5C07DF007EC733 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F2780A1B5C07DF007EC733 /* CustomViewController.m */; };
@@ -62,6 +64,10 @@
 		1044D6751B53FEDB0074BAE1 /* DaliyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaliyViewController.m; sourceTree = "<group>"; };
 		1044D6771B53FF520074BAE1 /* DaliyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaliyCell.h; sourceTree = "<group>"; };
 		1044D6781B53FF520074BAE1 /* DaliyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaliyCell.m; sourceTree = "<group>"; };
+		107125F51B67C16A00F3B4BD /* BigImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigImageViewController.h; sourceTree = "<group>"; };
+		107125F61B67C16B00F3B4BD /* BigImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigImageViewController.m; sourceTree = "<group>"; };
+		107125F81B67C1C500F3B4BD /* BigImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigImageCell.h; sourceTree = "<group>"; };
+		107125F91B67C1C500F3B4BD /* BigImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigImageCell.m; sourceTree = "<group>"; };
 		10F278031B5BFAFB007EC733 /* TemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateViewController.h; sourceTree = "<group>"; };
 		10F278041B5BFAFB007EC733 /* TemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateViewController.m; sourceTree = "<group>"; };
 		10F278061B5BFC3D007EC733 /* TemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateCell.h; sourceTree = "<group>"; };
@@ -223,6 +229,10 @@
 				CFBB25841B5E4515005B2C9A /* WebViewController.m */,
 				10F4BEC01B5E7DD400B821DA /* BriefCell.h */,
 				10F4BEC11B5E7DD400B821DA /* BriefCell.m */,
+				107125F51B67C16A00F3B4BD /* BigImageViewController.h */,
+				107125F61B67C16B00F3B4BD /* BigImageViewController.m */,
+				107125F81B67C1C500F3B4BD /* BigImageCell.h */,
+				107125F91B67C1C500F3B4BD /* BigImageCell.m */,
 				CFBB25851B5E4515005B2C9A /* WebViewController.xib */,
 				269E579A1B53B085009895D8 /* Main.storyboard */,
 				269E579D1B53B085009895D8 /* Images.xcassets */,
@@ -479,6 +489,8 @@
 				10F278081B5BFC3D007EC733 /* TemplateCell.m in Sources */,
 				EFA687AD1B565340002B0AEC /* SqlClient.m in Sources */,
 				10F278111B5E1FBE007EC733 /* SportTemplateViewController.m in Sources */,
+				107125FA1B67C1C500F3B4BD /* BigImageCell.m in Sources */,
+				107125F71B67C16B00F3B4BD /* BigImageViewController.m in Sources */,
 				269E57C61B53B2E7009895D8 /* KDCalendarViewDayCell.m in Sources */,
 				10F278051B5BFAFB007EC733 /* TemplateViewController.m in Sources */,
 				269E57901B53B085009895D8 /* main.m in Sources */,
