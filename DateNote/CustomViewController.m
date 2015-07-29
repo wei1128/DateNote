@@ -8,6 +8,7 @@
 
 #import "CustomViewController.h"
 #import "DetailViewController.h"
+#import "HomeViewController.h";
 
 @interface CustomViewController ()<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>{
 NSArray* _titleSelectionData;
@@ -43,7 +44,7 @@ NSArray* _titleSelectionData;
     
     // 右邊 Filter
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithTitle:@"下一步"
+                                              initWithTitle:@"完成"
                                               style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(onDoneButton)];
@@ -183,9 +184,21 @@ NSArray* _titleSelectionData;
 }
 
 - (void) onDoneButton{
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd 10:00:00"];
+//    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+//    NSDate *birthday = [dateFormatter dateFromString:self.template[@"start_time"]];
+//    
+//    SqlClient *sqlClient = [[SqlClient alloc] init];
+//    [sqlClient insertTemplateEventWithStartTime:birthday templateTitle:self.template[@"t_name"] templateId:self.template[@"t_id"]];
+//    [self presentViewFromRight];
+//    HomeViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"HomeVC"];  //記得要用storyboard id 傳過去
+//    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+//    [self presentViewController:nvc animated:NO completion:nil];
+    
     [self presentViewFromRight];
-    DetailViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"DetailVC"];  //記得要用storyboard id 傳過去
-    vc.template = self.template;
+    HomeViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"HomeVC"];  //記得要用storyboard id 傳過去
+//    vc.template = self.template;
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nvc animated:NO completion:nil];
 }

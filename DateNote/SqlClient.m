@@ -331,6 +331,12 @@ NSString * const colorList[] = {
     return [formatter stringFromDate:date];
 }
 
++(NSMutableArray *)getMyEventByEventID:(NSString *)me_id{
+    NSMutableArray *result = [SqlData getMyEventByEventID:me_id];
+    
+    return result;
+}
+
 -(void) deleteMyEventByMyEventID:(NSString *)me_id{
     [SqlData deleteMyEventByMyEventID:me_id];
 }

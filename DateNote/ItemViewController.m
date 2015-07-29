@@ -9,8 +9,14 @@
 #import "ItemViewController.h"
 #import "EventDateCell.h"
 #import "EventDescCell.h"
+#import "SqlClient.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface ItemViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@interface ItemViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSMutableDictionary *event;
+    NSMutableArray *eventList;
+}
 
 @end
 
@@ -26,7 +32,13 @@
     self.eventDescTableView.dataSource=self;
     self.eventDescTableView.delegate=self;
     self.eventDescTableView.separatorStyle=NO;
-
+    
+    eventList = [SqlClient getMyEventByEventID:@"1"];
+    event = eventList[0];
+    self.titleLabel.text = event[@"e_title"];
+    [self.image setImageWithURL:[NSURL URLWithString:event[@"img_url"]]];
+//    self.image.image = [uiimage][UIImage imageWithContentsOfURL:theURL];
+    NSLog(@"array = %@",[SqlClient getMyEventByEventID:@"1"]);
     // Do any additional setup after loading the view.
 }
 
@@ -55,11 +67,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.eventDateTableView) {
         EventDateCell *dateCell = [tableView dequeueReusableCellWithIdentifier:@"EventDateCell" forIndexPath:indexPath];
+        dateCell.eventDate.text = event[@"e_time"];
+        dateCell.eventTemplateName.text = event[@"t_name"];
         return dateCell;
     }
     
     if (tableView == self.eventDescTableView) {
         EventDescCell *descCell = [tableView dequeueReusableCellWithIdentifier:@"EventDescCell" forIndexPath:indexPath];
+        descCell.eventDesc.text = event[@"desc"];
         return descCell;
     }
     

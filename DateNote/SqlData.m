@@ -147,6 +147,15 @@ static sqlite3 *database = nil;
     return result;
 }
 
++(NSMutableArray *)getMyEventByEventID:(NSString *)me_id{
+    //建立 Sqlite 語法
+    NSString *sqlString = [NSString stringWithFormat:@"select * from myEventView where me_id=%@", me_id];
+    
+    NSMutableArray *result = [self getData:sqlString];
+    
+    return result;
+}
+
 +(NSMutableArray *)getMyPastEvent:(NSString *)time count:(NSInteger)count pg:(NSInteger)pg {
     //建立 Sqlite 語法
     NSString *sqlString = [NSString stringWithFormat:@"select * from myEventView where e_time <='%@' order by e_time desc limit %ld,%ld", time, (long)pg*(long)count, (long)count];
