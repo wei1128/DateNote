@@ -19,6 +19,7 @@
 		10F278151B5E2008007EC733 /* BabyTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F278141B5E2008007EC733 /* BabyTemplateViewController.m */; };
 		10F4BEBF1B5E624D00B821DA /* BabyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F4BEBE1B5E624D00B821DA /* BabyCell.m */; };
 		10F4BEC21B5E7DD400B821DA /* BriefCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F4BEC11B5E7DD400B821DA /* BriefCell.m */; };
+		127A55B51B68C74B006FB818 /* ItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 127A55B41B68C74B006FB818 /* ItemViewController.m */; };
 		264952511B5E29FD0099370A /* templateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 264952501B5E29FD0099370A /* templateList.m */; };
 		264A58BC1B5E816500FEEB16 /* commonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 264A58BB1B5E816500FEEB16 /* commonHelper.m */; };
 		266975A21B5D1E8200B00661 /* myTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 266975A11B5D1E8200B00661 /* myTemplate.m */; };
@@ -84,6 +85,8 @@
 		10F4BEBE1B5E624D00B821DA /* BabyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabyCell.m; sourceTree = "<group>"; };
 		10F4BEC01B5E7DD400B821DA /* BriefCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BriefCell.h; sourceTree = "<group>"; };
 		10F4BEC11B5E7DD400B821DA /* BriefCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BriefCell.m; sourceTree = "<group>"; };
+		127A55B31B68C74B006FB818 /* ItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemViewController.h; sourceTree = "<group>"; };
+		127A55B41B68C74B006FB818 /* ItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemViewController.m; sourceTree = "<group>"; };
 		17340886D3AABEC62CABBFF4 /* Pods-DateNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateNote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DateNote/Pods-DateNote.debug.xcconfig"; sourceTree = "<group>"; };
 		2649524F1B5E29FD0099370A /* templateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = templateList.h; sourceTree = "<group>"; };
 		264952501B5E29FD0099370A /* templateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = templateList.m; sourceTree = "<group>"; };
@@ -239,6 +242,8 @@
 				269E579F1B53B085009895D8 /* LaunchScreen.xib */,
 				269E57941B53B085009895D8 /* DateNote.xcdatamodeld */,
 				269E578D1B53B085009895D8 /* Supporting Files */,
+				127A55B31B68C74B006FB818 /* ItemViewController.h */,
+				127A55B41B68C74B006FB818 /* ItemViewController.m */,
 			);
 			path = DateNote;
 			sourceTree = "<group>";
@@ -502,6 +507,7 @@
 				EFA687AE1B565340002B0AEC /* SqlData.m in Sources */,
 				10F2780E1B5D5DE6007EC733 /* DetailViewController.m in Sources */,
 				26CB74041B5BA1B20011FFBE /* myEvent.m in Sources */,
+				127A55B51B68C74B006FB818 /* ItemViewController.m in Sources */,
 				10F278151B5E2008007EC733 /* BabyTemplateViewController.m in Sources */,
 				269E57C31B53B2E7009895D8 /* KDCalendarHeaderView.m in Sources */,
 				CFBB25861B5E4515005B2C9A /* WebViewController.m in Sources */,
