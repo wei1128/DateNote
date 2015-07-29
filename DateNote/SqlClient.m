@@ -10,7 +10,7 @@
 #import "SqlData.h"
 
 NSString * const colorList[] = {
-    @"#c1deb4", @"#f6cbd6", @"#c0a8f0", @"#0a8fab", @"#e5ea91", @"#ffa500", @"#eae3aa", @"#94cd4b"
+    @"#c1deb4", @"#f6cbd6", @"#c0a8f0", @"#0a8fab", @"#e5ea91", @"#ffa500", @"#eae3aa", @"#94cd4b",@"#c1deb4", @"#f6cbd6", @"#c0a8f0", @"#0a8fab", @"#e5ea91", @"#ffa500", @"#eae3aa", @"#94cd4b"
 };
 
 @interface SqlClient ()
