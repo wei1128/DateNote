@@ -12,9 +12,9 @@
 #import "BriefCell.h"
 #import "commonHelper.h"
 
-@interface HomeViewController () <KDCalendarDelegate, KDCalendarDataSource, UITableViewDelegate,UITableViewDataSource>
+@interface HomeViewController () <KDCalendarDelegate, KDCalendarDataSource, UITableViewDelegate,UITableViewDataSource, UITabBarDelegate>
 
-@property (weak, nonatomic) IBOutlet KDCalendarView *calendar;
+@property (strong, nonatomic) KDCalendarView *calendar;
 @property (weak, nonatomic) IBOutlet UILabel *displayMonth;
 @property (weak, nonatomic) NSArray *dateEvents;
 
@@ -26,10 +26,15 @@
     [super viewDidLoad];
     self.BriefTable.delegate=self;
     self.BriefTable.dataSource=self;
-    
+
+    self.calendar = [[KDCalendarView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 300.0f)];
     self.calendar.delegate = self;
     self.calendar.dataSource = self;
     self.calendar.showsEvents = YES;
+
+    [self.view addSubview:self.calendar];
+
+    self.tabBar.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -129,16 +134,11 @@
     return cell;
 }
 
+#pragma marl - Tab bar events
 
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
 
 @end

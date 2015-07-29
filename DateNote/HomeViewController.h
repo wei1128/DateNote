@@ -10,5 +10,6 @@
 
 @interface HomeViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *BriefTable;
+@property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 
 @end

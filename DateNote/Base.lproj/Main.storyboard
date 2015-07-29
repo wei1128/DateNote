@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YvQ-sb-pZD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rb2-A5-k0I">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -266,23 +266,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W4v-Fg-mn2" customClass="KDCalendarView">
-                                <rect key="frame" x="16" y="110" width="343" height="205"/>
-                                <color key="backgroundColor" red="0.14509804549999999" green="0.83137261870000001" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="568" id="XRq-1R-mNd"/>
-                                    <constraint firstAttribute="width" constant="343" id="a9N-PF-wS0"/>
-                                    <constraint firstAttribute="height" constant="205" id="cC4-1l-DAz"/>
-                                    <constraint firstAttribute="height" constant="205" id="dyO-nm-Xxx"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="XRq-1R-mNd"/>
-                                        <exclude reference="cC4-1l-DAz"/>
-                                    </mask>
-                                </variation>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="49" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mMg-ih-ZtM">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="49" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mMg-ih-ZtM">
                                 <rect key="frame" x="7" y="323" width="577" height="269"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -350,28 +334,30 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EaN-9F-zRB">
+                                <rect key="frame" x="16" y="551" width="568" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Add" id="RyN-J1-CcY"/>
+                                    <tabBarItem title="Item" id="udD-YO-c5S"/>
+                                    <tabBarItem title="Item" id="Tgr-dT-crA"/>
+                                    <tabBarItem title="Setting" id="9Ce-dm-fzb" userLabel="Setting"/>
+                                </items>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mMg-ih-ZtM" firstAttribute="top" secondItem="W4v-Fg-mn2" secondAttribute="bottom" constant="8" id="0oC-vr-pr2"/>
                             <constraint firstItem="W87-f8-wfg" firstAttribute="top" secondItem="mMg-ih-ZtM" secondAttribute="bottom" constant="8" id="39B-nd-rGL"/>
-                            <constraint firstItem="W4v-Fg-mn2" firstAttribute="leading" secondItem="V7w-xx-Awp" secondAttribute="leading" constant="16" id="9gK-yg-lDF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="paE-TW-gs0" secondAttribute="trailing" constant="15" id="Fsw-9j-Kgs"/>
-                            <constraint firstItem="W4v-Fg-mn2" firstAttribute="leading" secondItem="V7w-xx-Awp" secondAttribute="leadingMargin" id="NTF-dy-2uO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EaN-9F-zRB" secondAttribute="trailing" id="Ib8-fW-Eye"/>
+                            <constraint firstItem="W87-f8-wfg" firstAttribute="top" secondItem="EaN-9F-zRB" secondAttribute="bottom" id="Yra-Eo-WAo"/>
                             <constraint firstItem="mMg-ih-ZtM" firstAttribute="leading" secondItem="V7w-xx-Awp" secondAttribute="leading" constant="7" id="ZNV-FN-7zp"/>
-                            <constraint firstAttribute="trailing" secondItem="W4v-Fg-mn2" secondAttribute="trailing" constant="97" id="inw-6n-9w9"/>
                             <constraint firstItem="paE-TW-gs0" firstAttribute="leading" secondItem="V7w-xx-Awp" secondAttribute="leadingMargin" constant="15" id="nli-u3-UOs"/>
-                            <constraint firstItem="mMg-ih-ZtM" firstAttribute="top" secondItem="W4v-Fg-mn2" secondAttribute="bottom" constant="8" id="ohl-Ja-L6q"/>
                             <constraint firstAttribute="trailing" secondItem="mMg-ih-ZtM" secondAttribute="trailing" constant="16" id="txG-yE-S4V"/>
-                            <constraint firstItem="W4v-Fg-mn2" firstAttribute="top" secondItem="paE-TW-gs0" secondAttribute="bottom" constant="8" id="uDG-Zp-3iJ"/>
+                            <constraint firstItem="EaN-9F-zRB" firstAttribute="leading" secondItem="V7w-xx-Awp" secondAttribute="leadingMargin" id="w4I-ql-Aa7"/>
                             <constraint firstItem="paE-TW-gs0" firstAttribute="top" secondItem="Tze-Lo-kFS" secondAttribute="bottom" constant="17" id="zvX-dt-LtI"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="inw-6n-9w9"/>
-                                <exclude reference="0oC-vr-pr2"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="UYH-NZ-ezm">
                         <barButtonItem key="leftBarButtonItem" image="add" id="7RE-oO-vgA">
@@ -387,8 +373,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="BriefTable" destination="mMg-ih-ZtM" id="0Y8-kX-BEg"/>
-                        <outlet property="calendar" destination="W4v-Fg-mn2" id="ut8-mm-EqC"/>
                         <outlet property="displayMonth" destination="paE-TW-gs0" id="T4c-zE-n1C"/>
+                        <outlet property="tabBar" destination="EaN-9F-zRB" id="lmY-WL-wW2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u68-E4-IGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
