@@ -20,6 +20,8 @@
 		10F4BEBF1B5E624D00B821DA /* BabyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F4BEBE1B5E624D00B821DA /* BabyCell.m */; };
 		10F4BEC21B5E7DD400B821DA /* BriefCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F4BEC11B5E7DD400B821DA /* BriefCell.m */; };
 		127A55B51B68C74B006FB818 /* ItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 127A55B41B68C74B006FB818 /* ItemViewController.m */; };
+		127A55B81B68D3B8006FB818 /* EventDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 127A55B71B68D3B7006FB818 /* EventDateCell.m */; };
+		127A55BB1B68D3E6006FB818 /* EventDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 127A55BA1B68D3E6006FB818 /* EventDescCell.m */; };
 		264952511B5E29FD0099370A /* templateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 264952501B5E29FD0099370A /* templateList.m */; };
 		264A58BC1B5E816500FEEB16 /* commonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 264A58BB1B5E816500FEEB16 /* commonHelper.m */; };
 		266975A21B5D1E8200B00661 /* myTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 266975A11B5D1E8200B00661 /* myTemplate.m */; };
@@ -87,6 +89,10 @@
 		10F4BEC11B5E7DD400B821DA /* BriefCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BriefCell.m; sourceTree = "<group>"; };
 		127A55B31B68C74B006FB818 /* ItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemViewController.h; sourceTree = "<group>"; };
 		127A55B41B68C74B006FB818 /* ItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemViewController.m; sourceTree = "<group>"; };
+		127A55B61B68D3B7006FB818 /* EventDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDateCell.h; sourceTree = "<group>"; };
+		127A55B71B68D3B7006FB818 /* EventDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDateCell.m; sourceTree = "<group>"; };
+		127A55B91B68D3E6006FB818 /* EventDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDescCell.h; sourceTree = "<group>"; };
+		127A55BA1B68D3E6006FB818 /* EventDescCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDescCell.m; sourceTree = "<group>"; };
 		17340886D3AABEC62CABBFF4 /* Pods-DateNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateNote.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DateNote/Pods-DateNote.debug.xcconfig"; sourceTree = "<group>"; };
 		2649524F1B5E29FD0099370A /* templateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = templateList.h; sourceTree = "<group>"; };
 		264952501B5E29FD0099370A /* templateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = templateList.m; sourceTree = "<group>"; };
@@ -244,6 +250,10 @@
 				269E578D1B53B085009895D8 /* Supporting Files */,
 				127A55B31B68C74B006FB818 /* ItemViewController.h */,
 				127A55B41B68C74B006FB818 /* ItemViewController.m */,
+				127A55B61B68D3B7006FB818 /* EventDateCell.h */,
+				127A55B71B68D3B7006FB818 /* EventDateCell.m */,
+				127A55B91B68D3E6006FB818 /* EventDescCell.h */,
+				127A55BA1B68D3E6006FB818 /* EventDescCell.m */,
 			);
 			path = DateNote;
 			sourceTree = "<group>";
@@ -494,11 +504,13 @@
 				10F278081B5BFC3D007EC733 /* TemplateCell.m in Sources */,
 				EFA687AD1B565340002B0AEC /* SqlClient.m in Sources */,
 				10F278111B5E1FBE007EC733 /* SportTemplateViewController.m in Sources */,
+				127A55B81B68D3B8006FB818 /* EventDateCell.m in Sources */,
 				107125FA1B67C1C500F3B4BD /* BigImageCell.m in Sources */,
 				107125F71B67C16B00F3B4BD /* BigImageViewController.m in Sources */,
 				269E57C61B53B2E7009895D8 /* KDCalendarViewDayCell.m in Sources */,
 				10F278051B5BFAFB007EC733 /* TemplateViewController.m in Sources */,
 				269E57901B53B085009895D8 /* main.m in Sources */,
+				127A55BB1B68D3E6006FB818 /* EventDescCell.m in Sources */,
 				269E57CF1B53B386009895D8 /* HomeViewController.m in Sources */,
 				269E57C81B53B2E7009895D8 /* KDMonthCollectionViewFlowLayout.m in Sources */,
 				10F2780B1B5C07DF007EC733 /* CustomViewController.m in Sources */,

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ItemViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *title;
 
 @end
