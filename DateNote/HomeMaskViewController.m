@@ -23,11 +23,12 @@ static CGFloat calendarHeight = 250.0f;
 
 @implementation HomeMaskViewController
 
-- (id)initWithCalendar:(KDCalendarView *)calendar
+- (id)initWithCalendar:(KDCalendarView *)calendar tableView:(UITableView *)tableView
 {
     self = [super init];
     if (self) {
         self.calendar = calendar;
+        self.tableView = tableView;
     }
     return self;
 }
@@ -52,7 +53,9 @@ static CGFloat calendarHeight = 250.0f;
 - (void)setupView
 {
     // UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
 
+    // create top mask view
     self.topMaskView = [[UIView alloc] initWithFrame:self.view.frame];
     CGRect rect = self.topMaskView.frame;
     rect.size.height = self.view.frame.size.height * topMaskViewHeight;
@@ -61,13 +64,14 @@ static CGFloat calendarHeight = 250.0f;
     self.originalPoint = rect.origin;
     self.topMaskView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.6f];
 
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    // set calendar position
     rect = CGRectMake(0.0f, 0.0f, calendarWidth, calendarHeight);
     rect.origin.x = (screenRect.size.width - calendarWidth) / 2;
     rect.origin.y = self.topMaskView.frame.size.height - calendarBottomMargin - calendarHeight;
     self.calendar.frame = rect;
     [self.topMaskView addSubview:self.calendar];
 
+    // add pan event
     UIPanGestureRecognizer *singleFingerTap = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                             action:@selector(handlePan:)];
     [self.topMaskView addGestureRecognizer:singleFingerTap];
@@ -75,13 +79,18 @@ static CGFloat calendarHeight = 250.0f;
     [self.view addSubview:self.topMaskView];
 
 
-    // bottom
+    // create bottom mask view
     self.bottomMaskView = [[UIView alloc] initWithFrame:self.view.frame];
     rect = self.bottomMaskView.frame;
     rect.size.height = self.view.frame.size.height * (1.0f - topMaskViewHeight);
     rect.origin.y = self.view.frame.size.height;
     self.bottomMaskView.frame = rect;
     self.bottomMaskView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.6f];
+
+    // set table view position
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.frame = CGRectMake(0.0f, 0.0f, self.bottomMaskView.frame.size.width, self.bottomMaskView.frame.size.height);
+    [self.bottomMaskView addSubview:self.tableView];
 
     [self.view addSubview:self.bottomMaskView];
 }

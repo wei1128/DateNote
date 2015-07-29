@@ -11,8 +11,9 @@
 
 @interface HomeMaskViewController : UIViewController
 
-@property (strong, nonatomic) KDCalendarView *calendar;
+@property(strong, nonatomic) KDCalendarView *calendar;
+@property(strong, nonatomic) UITableView *tableView;
 
-- (id)initWithCalendar:(KDCalendarView *)calendar;
+- (id)initWithCalendar:(KDCalendarView *)calendar tableView:(UITableView *)tableView;
 
 @end

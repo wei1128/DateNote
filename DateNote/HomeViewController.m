@@ -28,12 +28,17 @@
 
     [self.navigationController setNavigationBarHidden:YES];
 
-    self.BriefTable.delegate=self;
-    self.BriefTable.dataSource=self;
+//    self.BriefTable.delegate=self;
+//    self.BriefTable.dataSource=self;
 
     self.tabBar.delegate = self;
 
-    self.maskViewController = [[HomeMaskViewController alloc] initWithCalendar:[[KDCalendarView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 250.0f)]];
+    KDCalendarView *calendar = [[KDCalendarView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 250.0f)];
+    UITableView *tableView = [[UITableView alloc] init];
+    [tableView registerNib:[UINib nibWithNibName:@"BriefCell" bundle:nil] forCellReuseIdentifier:@"BriefCell"];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    self.maskViewController = [[HomeMaskViewController alloc] initWithCalendar:calendar tableView:tableView];
     self.maskViewController.view.frame = self.view.frame;
 
     self.maskViewController.calendar.delegate = self;
@@ -105,8 +110,7 @@
     NSDate *newdate = [[NSCalendar currentCalendar]dateByAddingComponents:offsetDateComponents toDate:date options:0];
     
     self.dateEvents = [myEvent getEventsByDate:newdate];
-    [self.BriefTable reloadData];
-    
+    [self.maskViewController.tableView reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -119,7 +123,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BriefCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyBriefCell" forIndexPath:indexPath];
+    BriefCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BriefCell" forIndexPath:indexPath];
     
     myEvent *me = self.dateEvents[indexPath.row];
     
