@@ -67,7 +67,28 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.eventDateTableView) {
         EventDateCell *dateCell = [tableView dequeueReusableCellWithIdentifier:@"EventDateCell" forIndexPath:indexPath];
-        dateCell.eventDate.text = event[@"e_time"];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+        
+        NSDate *birthday = [dateFormatter dateFromString:event[@"e_time"]];
+        
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        
+        [df setDateFormat:@"dd"];
+        NSString *day = [df stringFromDate:birthday];
+        
+        [df setDateFormat:@"M"];
+        NSString *month = [df stringFromDate:birthday];
+        
+        [df setDateFormat:@"yyyy"];
+        NSString *year = [df stringFromDate:birthday];
+        NSString *dateString = [NSString stringWithFormat:@"%@年%@月%@日", year,month,day];
+        
+        dateCell.eventDate.text = dateString;
+//        NSString *dateString = [NSString stringWithFormat:@"%@年%@月%@日",year,month,day];
+        
         dateCell.eventTemplateName.text = event[@"t_name"];
         return dateCell;
     }
