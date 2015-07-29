@@ -11,7 +11,9 @@
 
 @interface ItemViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *image;
-@property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+
 @property (weak, nonatomic) IBOutlet UITableView *eventDateTableView;
 @property (weak, nonatomic) IBOutlet UITableView *eventDescTableView;
 
