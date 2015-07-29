@@ -45,6 +45,7 @@
 		26CB74011B5BA15A0011FFBE /* datenote.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 26CB74001B5BA15A0011FFBE /* datenote.sqlite */; };
 		26CB74041B5BA1B20011FFBE /* myEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CB74031B5BA1B20011FFBE /* myEvent.m */; };
 		7C08A9EAD6F197971610F834 /* libPods-DateNote.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 816D42E15CCD84D5BCE37842 /* libPods-DateNote.a */; };
+		CF765CD61B68F29C00C82466 /* HomeMaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF765CD51B68F29C00C82466 /* HomeMaskViewController.m */; };
 		CFBB25861B5E4515005B2C9A /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBB25841B5E4515005B2C9A /* WebViewController.m */; };
 		CFBB25871B5E4515005B2C9A /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFBB25851B5E4515005B2C9A /* WebViewController.xib */; };
 		EFA687A71B56529C002B0AEC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA687A61B56529C002B0AEC /* libsqlite3.0.dylib */; };
@@ -135,6 +136,8 @@
 		26CB74031B5BA1B20011FFBE /* myEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myEvent.m; sourceTree = "<group>"; };
 		816D42E15CCD84D5BCE37842 /* libPods-DateNote.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DateNote.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5FCD7777FF8A703F770E36D /* Pods-DateNote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateNote.release.xcconfig"; path = "Pods/Target Support Files/Pods-DateNote/Pods-DateNote.release.xcconfig"; sourceTree = "<group>"; };
+		CF765CD41B68F29C00C82466 /* HomeMaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMaskViewController.h; sourceTree = "<group>"; };
+		CF765CD51B68F29C00C82466 /* HomeMaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMaskViewController.m; sourceTree = "<group>"; };
 		CFBB25831B5E4515005B2C9A /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		CFBB25841B5E4515005B2C9A /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		CFBB25851B5E4515005B2C9A /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
@@ -309,6 +312,8 @@
 				269E57CC1B53B386009895D8 /* HomeViewController.h */,
 				269E57CD1B53B386009895D8 /* HomeViewController.m */,
 				269E57CE1B53B386009895D8 /* HomeViewController.xib */,
+				CF765CD41B68F29C00C82466 /* HomeMaskViewController.h */,
+				CF765CD51B68F29C00C82466 /* HomeMaskViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 				269E57931B53B085009895D8 /* AppDelegate.m in Sources */,
 				10F4BEC21B5E7DD400B821DA /* BriefCell.m in Sources */,
 				269E57961B53B085009895D8 /* DateNote.xcdatamodeld in Sources */,
+				CF765CD61B68F29C00C82466 /* HomeMaskViewController.m in Sources */,
 				269E57991B53B085009895D8 /* ViewController.m in Sources */,
 				1044D6791B53FF520074BAE1 /* DaliyCell.m in Sources */,
 				269E57C51B53B2E7009895D8 /* KDCalendarView.m in Sources */,

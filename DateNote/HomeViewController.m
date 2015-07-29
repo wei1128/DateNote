@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "HomeMaskViewController.h"
 #import "KDCalendarView.h"
 #import "myEvent.h"
 #import "BriefCell.h"
@@ -14,7 +15,7 @@
 
 @interface HomeViewController () <KDCalendarDelegate, KDCalendarDataSource, UITableViewDelegate,UITableViewDataSource, UITabBarDelegate>
 
-@property (strong, nonatomic) KDCalendarView *calendar;
+@property (strong, nonatomic) HomeMaskViewController *maskViewController;
 @property (weak, nonatomic) IBOutlet UILabel *displayMonth;
 @property (weak, nonatomic) NSArray *dateEvents;
 
@@ -24,28 +25,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self.navigationController setNavigationBarHidden:YES];
+
     self.BriefTable.delegate=self;
     self.BriefTable.dataSource=self;
 
-    self.calendar = [[KDCalendarView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 300.0f)];
-    self.calendar.delegate = self;
-    self.calendar.dataSource = self;
-    self.calendar.showsEvents = YES;
-
-    [self.view addSubview:self.calendar];
-
     self.tabBar.delegate = self;
+
+    self.maskViewController = [[HomeMaskViewController alloc] initWithCalendar:[[KDCalendarView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 250.0f)]];
+    self.maskViewController.view.frame = self.view.frame;
+
+    self.maskViewController.calendar.delegate = self;
+    self.maskViewController.calendar.dataSource = self;
+    self.maskViewController.calendar.showsEvents = YES;
+
+    [self.view addSubview:self.maskViewController.view];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     NSDate *today = [[NSDate alloc]init];
-    [self.calendar setMonthDisplayed:today];
+    [self.maskViewController.calendar setMonthDisplayed:today];
 
-    [self.calendar setDateSelected:today];
-    [self.calendar resetEvents:[myEvent from:[self startDate] to:[self endDate]]];
+    [self.maskViewController.calendar setDateSelected:today];
+    [self.maskViewController.calendar resetEvents:[myEvent from:[self startDate] to:[self endDate]]];
 
-    [self calendarController:self.calendar didScrollToMonth:today];
+    [self calendarController:self.maskViewController.calendar didScrollToMonth:today];
 }
 
 -(NSDate*)startDate
