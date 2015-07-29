@@ -1226,6 +1226,8 @@
                         <color key="backgroundColor" red="0.91203046085858586" green="0.91203046085858586" blue="0.91203046085858586" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="eventDateTableView" destination="mOF-6o-uEI" id="2LW-kH-3PC"/>
+                        <outlet property="eventDescTableView" destination="iEc-2A-XvK" id="tmB-63-Iwy"/>
                         <outlet property="image" destination="a0N-lC-YL9" id="NwR-9S-QvF"/>
                         <outlet property="title" destination="z7w-NG-U8V" id="tcv-GF-yMB"/>
                     </connections>
