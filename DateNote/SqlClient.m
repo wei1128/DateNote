@@ -58,7 +58,7 @@ NSString * const colorList[] = {
         
         [SqlData insertMyEvent:inputDic];
     }
-
+    
 }
 
 -(void)insertYearEventStartWith:(NSDate *)startTime title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id{
@@ -70,7 +70,7 @@ NSString * const colorList[] = {
         
         [SqlData insertMyEvent:inputDic];
     }
-
+    
 }
 
 -(NSMutableDictionary *)createMyEventDic:(NSString *)date title:(NSString *)title description:(NSString *)description r_id:(NSString *)r_id{
@@ -159,7 +159,7 @@ NSString * const colorList[] = {
     NSMutableArray *dbCheck = [self getTemplateEventListByTID:[tempDic objectForKey:@"template_id"]];
     
     NSMutableDictionary *inputDic = [[NSMutableDictionary alloc] initWithDictionary:tempDic];
-//    NSLog(@"myTemplate = %@",result);
+    //    NSLog(@"myTemplate = %@",result);
     [SqlData insertMyTemplate:inputDic];
     
     NSInteger mt_id = [SqlData getLastInsertRowID];
@@ -187,7 +187,7 @@ NSString * const colorList[] = {
         [offsetComponents setHour:0];
         NSDate *newEndTime = [gregorian dateByAddingComponents:offsetComponents toDate:date options:0];
         
-//        NSLog(@"date = %@",[dateFormatter stringFromDate:newEndTime]);
+        //        NSLog(@"date = %@",[dateFormatter stringFromDate:newEndTime]);
         [inputDic setObject:[dateFormatter stringFromDate:newEndTime] forKey:@"e_time"];
         
         [SqlData insertMyEvent:inputDic];
@@ -228,7 +228,7 @@ NSString * const colorList[] = {
         [inputDic setObject:@"0" forKey:@"r_id"];
         
         NSString *unit = inputDic[@"unit"];
-
+        
         if ([unit isEqualToString:@"day"]) {
             [offsetComponents setDay:[inputDic[@"period"] intValue]];
         }
@@ -240,7 +240,7 @@ NSString * const colorList[] = {
         if ([unit isEqualToString:@"year"]) {
             [offsetComponents setYear:[inputDic[@"period"] intValue]];
         }
-
+        
         [offsetComponents setHour:0];
         NSDate *newEndTime = [gregorian dateByAddingComponents:offsetComponents toDate:date options:0];
         
@@ -280,7 +280,7 @@ NSString * const colorList[] = {
 }
 
 +(NSMutableArray *)getMyPastEvent:(NSDate *)time count:(NSInteger)count pg:(NSInteger)pg mt_id:(NSString *)mt_id{
-
+    
     NSString *timeStr = [SqlClient getStringFromDate:time];
     
     NSMutableArray *result = [SqlData getMyPastEvent:timeStr count:count pg:pg mt_id:mt_id];
@@ -304,7 +304,7 @@ NSString * const colorList[] = {
 +(NSMutableArray *)getMyEventByDay:(NSDate *)time{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
-
+    
     [dateFormatter setDateFormat:@"yyyy-MM-dd 00:00:00"];
     NSString *startTime = [dateFormatter stringFromDate:time];
     
@@ -331,6 +331,12 @@ NSString * const colorList[] = {
     return [formatter stringFromDate:date];
 }
 
++(NSMutableArray *)getMyEventByEventID:(NSString *)me_id{
+    NSMutableArray *result = [SqlData getMyEventByEventID:me_id];
+    
+    return result;
+}
+
 -(void) deleteMyEventByMyEventID:(NSString *)me_id{
     [SqlData deleteMyEventByMyEventID:me_id];
 }
@@ -342,27 +348,27 @@ NSString * const colorList[] = {
 }
 
 -(void)initDataBase{
-//    [sqlData dropTable:@"myEvent"];
-//    [sqlData dropTable:@"myTemplate"];
-//    [sqlData dropTable:@"templateEventList"];
-//    [sqlData dropTable:@"templateList"];
-
-      //範例
-//    NSDate *nowDate = [NSDate date];
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
-//    NSMutableArray *result = [self getMyEvent:[dateFormatter stringFromDate:nowDate] :3 :0 :@"1"];
-//    NSLog(@"getMyEvent pg0 = %@",result);
-//    NSLog(@"getMyEvent pg1 = %@",[self getMyEvent:[dateFormatter stringFromDate:nowDate] :3 :1 :@"1"]);
-//    
-//    NSLog(@"getMyPastEvent = %@",[self getMyPastEvent:[dateFormatter stringFromDate:nowDate] :5 :0 :@"1"]);
-//    
-//    NSLog(@"getMyTemplate = %@",[self getMyTemplate]);
-//    
-//    NSLog(@"getMyEventByDay = %@",[self getMyEventByDay:@"2015-07-12"]);
-//    
-//    NSLog(@"getMyEventByPeriod = %@",[self getMyEventByPeriod:@"2015-07-12 00:00:00" :@"2016-05-12 23:59:59"]);
+    //    [sqlData dropTable:@"myEvent"];
+    //    [sqlData dropTable:@"myTemplate"];
+    //    [sqlData dropTable:@"templateEventList"];
+    //    [sqlData dropTable:@"templateList"];
+    
+    //範例
+    //    NSDate *nowDate = [NSDate date];
+    //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    //    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+    //    NSMutableArray *result = [self getMyEvent:[dateFormatter stringFromDate:nowDate] :3 :0 :@"1"];
+    //    NSLog(@"getMyEvent pg0 = %@",result);
+    //    NSLog(@"getMyEvent pg1 = %@",[self getMyEvent:[dateFormatter stringFromDate:nowDate] :3 :1 :@"1"]);
+    //
+    //    NSLog(@"getMyPastEvent = %@",[self getMyPastEvent:[dateFormatter stringFromDate:nowDate] :5 :0 :@"1"]);
+    //
+    //    NSLog(@"getMyTemplate = %@",[self getMyTemplate]);
+    //
+    //    NSLog(@"getMyEventByDay = %@",[self getMyEventByDay:@"2015-07-12"]);
+    //
+    //    NSLog(@"getMyEventByPeriod = %@",[self getMyEventByPeriod:@"2015-07-12 00:00:00" :@"2016-05-12 23:59:59"]);
     
     
     NSMutableArray *dbCheck = self.getTemplateList;
@@ -375,8 +381,8 @@ NSString * const colorList[] = {
         [inputDic setObject:@"小孩出生" forKey:@"t_name"];
         [SqlData insertTemplateList:inputDic];
         
-//        NSMutableArray *result = [SqlData select:@"templateList"];
-//        NSLog(@"templateList = %@",result);
+        //        NSMutableArray *result = [SqlData select:@"templateList"];
+        //        NSLog(@"templateList = %@",result);
         //建立第一個template list
         
         //建立template event
@@ -433,9 +439,9 @@ NSString * const colorList[] = {
         [inputDic setObject:@"日本腦炎疫苗第三劑" forKey:@"e_title"];
         [inputDic setObject:@"27" forKey:@"period"];
         [SqlData insertTemplateEventList:inputDic];
-
-//        result = [SqlData select:@"templateEventList"];
-//        NSLog(@"templateEventList = %@",result);
+        
+        //        result = [SqlData select:@"templateEventList"];
+        //        NSLog(@"templateEventList = %@",result);
         
         //建立template event
     }
@@ -445,17 +451,17 @@ NSString * const colorList[] = {
 -(void)initTempData{
     
     NSMutableArray *dbCheck = [self getTemplateListByID:@"1"];
-//    NSLog(@"bbbbb = %@",dbCheck[0]);
+    //    NSLog(@"bbbbb = %@",dbCheck[0]);
     
     NSDictionary *dic = dbCheck[0];
     
     NSString *myTemplateName = [dic objectForKey:@"t_name"];
-//    NSLog(@"name = %@",myTemplateName);
+    //    NSLog(@"name = %@",myTemplateName);
     
     dbCheck = [self getTemplateEventListByTID:[dic objectForKey:@"template_id"]];
-//    NSLog(@"getTemplateEventListByTID = %@",dbCheck);
+    //    NSLog(@"getTemplateEventListByTID = %@",dbCheck);
     
-//    myTemplate
+    //    myTemplate
     NSMutableArray *result = [SqlData select:@"myTemplate"];
     NSString *color = colorList[result.count];
     NSDictionary *tempDic = @{@"template_id": @"1",@"t_name": myTemplateName,@"color": color};
@@ -463,20 +469,20 @@ NSString * const colorList[] = {
     NSLog(@"myTemplate = %@",result);
     [SqlData insertMyTemplate:inputDic];
     //清資料
-//    [sqlData dropTable:@"myTemplate"];
-//    [sqlData dropTable:@"myEvent"];
+    //    [sqlData dropTable:@"myTemplate"];
+    //    [sqlData dropTable:@"myEvent"];
     
     NSInteger mt_id = [SqlData getLastInsertRowID];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
-//    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    //    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     
     //設定出生日期為2015-05-12 10:00:00
     NSDate *date = [dateFormatter dateFromString:@"2015-05-12 10:00:00"];
     
-//    NSLog(@"today = %@",[dateFormatter stringFromDate:date]);
+    //    NSLog(@"today = %@",[dateFormatter stringFromDate:date]);
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
     
@@ -496,8 +502,8 @@ NSString * const colorList[] = {
         [SqlData insertMyEvent:inputDic];
     }
     
-//    dbCheck = [sqlData select:@"templateEventList"];
-//    NSLog(@"my event list = %@",self.getMyEvent);
+    //    dbCheck = [sqlData select:@"templateEventList"];
+    //    NSLog(@"my event list = %@",self.getMyEvent);
     
     
     [SqlData closeDatabase];
