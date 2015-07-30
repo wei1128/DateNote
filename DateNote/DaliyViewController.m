@@ -51,6 +51,10 @@ UIPickerView *catalogPicker;
 
     self.contentView.dataSource = self;
     self.contentView.delegate = self;
+    
+    //self.contentView.estimatedRowHeight = 88;
+    //self.contentView.rowHeight = UITableViewAutomaticDimension;
+    self.contentView.separatorStyle=NO;
 }
 
 - (void)setupCatalog {
@@ -305,6 +309,12 @@ UIPickerView *catalogPicker;
     
     // template name
     cell.templateNameLabel.text = [NSString stringWithFormat:@"#%@", me.t_name];
+    
+    [cell.testview.layer setShadowOffset:CGSizeMake(0.0, 0.0)]; //陰影的位移量
+    [cell.testview.layer setShadowRadius:3.0];    //陰影的散射半徑（緊實程度）
+    [cell.testview.layer setShadowOpacity:0.8];    //陰影的透明度1為不透明
+    [cell.testview.layer setShadowColor:[UIColor blackColor].CGColor];    //陰影顏色
+
     
     return cell;
 }
