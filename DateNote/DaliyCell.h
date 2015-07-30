@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIView *colorView;
 @property (weak, nonatomic) IBOutlet UIView *dotView;
 @property (weak, nonatomic) IBOutlet UILabel *templateNameLabel;
+@property (weak, nonatomic) IBOutlet UIView *testview;
 
 @end
