@@ -73,7 +73,7 @@ static sqlite3 *database = nil;
 }
 
 + (NSMutableArray *)getData:(NSString *)cmd{
-//    NSLog(@"sql query = %@",cmd);
+    //    NSLog(@"sql query = %@",cmd);
     //建立 Sqlite 語法
     const char *sql = [cmd UTF8String];
     
@@ -87,18 +87,18 @@ static sqlite3 *database = nil;
             NSString *keyName, *value;
             NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
             int column_count = sqlite3_column_count(statement);
-//            NSLog(@"count = %d",column_count);
+            //            NSLog(@"count = %d",column_count);
             for (int i=0; i<column_count; i++) {
                 int column_type = sqlite3_column_type(statement,i);
                 keyName = [NSString stringWithUTF8String:(char *)sqlite3_column_name(statement, i)];
                 if (column_type == SQLITE_INTEGER) {
-//                    NSLog(@"%@",keyName);
+                    //                    NSLog(@"%@",keyName);
                     value = [NSString stringWithFormat:@"%d",(int)sqlite3_column_int(statement, i)];
                 }else{
                     value = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, i)];
                 }
                 
-//                NSLog(@"keyname = %@ , value = %@", keyName, value);
+                //                NSLog(@"keyname = %@ , value = %@", keyName, value);
                 
                 [data setObject:value forKey:keyName];
             }
@@ -141,6 +141,15 @@ static sqlite3 *database = nil;
 +(NSMutableArray *)getMyPastEvent:(NSString *)time count:(NSInteger)count pg:(NSInteger)pg mt_id:(NSString *)mt_id{
     //建立 Sqlite 語法
     NSString *sqlString = [NSString stringWithFormat:@"select * from myEventView where e_time <='%@' and mt_id=%@   order by e_time desc limit %ld,%ld", time, mt_id, (long)pg*(long)count, (long)count];
+    
+    NSMutableArray *result = [self getData:sqlString];
+    
+    return result;
+}
+
++(NSMutableArray *)getMyEventByEventID:(NSString *)me_id{
+    //建立 Sqlite 語法
+    NSString *sqlString = [NSString stringWithFormat:@"select * from myEventView where me_id=%@", me_id];
     
     NSMutableArray *result = [self getData:sqlString];
     
@@ -212,7 +221,7 @@ static sqlite3 *database = nil;
     NSString *sqlFormat = @"insert into myEvent (mt_id,e_title,e_detail_url,e_time,r_id,desc,img_url)values(%@,'%@','%@','%@','%@','%@','%@')";
     
     NSString *sqlString = [NSString stringWithFormat:sqlFormat, mt_id, e_title, e_detail_url, e_time, r_id, desc, img_url];
-//    NSLog(@"sql = %@",sqlString);
+    //    NSLog(@"sql = %@",sqlString);
     
     const char *sql = [sqlString UTF8String];
     
@@ -228,7 +237,7 @@ static sqlite3 *database = nil;
     NSString *sqlFormat = @"insert into myTemplate (template_id,t_name,color)values(%@,'%@','%@')";
     
     NSString *sqlString = [NSString stringWithFormat:sqlFormat, template_id, t_name, color];
-//    NSLog(@"insertMyTemplate = %@",sqlString);
+    //    NSLog(@"insertMyTemplate = %@",sqlString);
     
     const char *sql = [sqlString UTF8String];
     
@@ -241,7 +250,7 @@ static sqlite3 *database = nil;
     NSString *sqlFormat = @"insert into templateList (t_name)values('%@')";
     
     NSString *sqlString = [NSString stringWithFormat:sqlFormat, t_name];
-//    NSLog(@"insertTemplateList = %@", sqlString);
+    //    NSLog(@"insertTemplateList = %@", sqlString);
     
     const char *sql = [sqlString UTF8String];
     
@@ -261,7 +270,7 @@ static sqlite3 *database = nil;
     NSString *sqlFormat = @"insert into templateEventList (template_id,recycle,e_title,desc,e_detail_url,unit,period,img_url)values(%@,'%@','%@','%@','%@','%@',%@,'%@')";
     
     NSString *sqlString = [NSString stringWithFormat:sqlFormat, template_id, recycle, e_title, desc, e_detail_url, unit, period, img_url];
-//    NSLog(@"insert Data = %@",sqlString);
+    //    NSLog(@"insert Data = %@",sqlString);
     const char *sql = [sqlString UTF8String];
     
     [self insertData:sql];
@@ -269,7 +278,7 @@ static sqlite3 *database = nil;
 
 + (void)insertData:(const char *)sql{
     char *insertErrorMsg;
-
+    
     if (sqlite3_exec(database, sql, NULL, NULL, &insertErrorMsg)==SQLITE_OK) {
         NSLog(@"INSERT OK");
     }else{
